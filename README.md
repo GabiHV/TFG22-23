@@ -2,7 +2,7 @@
 Repositorio del Trabajo Fin de Grado "Análisis de datos de temperatura y huemedad de suelo procedentes de sensores IoT desplegados en un viñedo" por Gabriel Hernández Vallejo.
 
 Estado del proceso de desarrollo del TFG:
-- :arrow_right: Preprocesamiento de datos
+:arrow_right: Preprocesamiento de datos
 - [ ] Selección del modelo de RNA
 - [ ] Modelado de la red
 - [ ] Entrenamiento de la red
