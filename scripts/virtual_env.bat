@@ -1,2 +1,2 @@
 python -m venv ..\.venv
-..\.venv\Scripts\pip.exe install -r requirements.txt
+..\.venv\Scripts\activate.bat && pip3 install -r requirements.txt

@@ -20,35 +20,36 @@ En este proyecto se busca analizar los datos de temperatura y humedad a distinta
 
 ## Estructura del proyecto:
 El proyecto cuenta con la siguiente estructura de directorios y ficheros:
-```
-.
-|-LICENSE.md -> fichero con licencia de uso de la aplicación.
-|-README.md -> fichero con la información del proyecto.
-|-data-preprocessing.ipynb -> fichero notebook con el pre-procesamiento del conjunto de datos.
-|-graficas_datos.py -> script Python que permite graficar los datos procesados de los sensores.
-|-scipts/
-|   |-requeriments.txt -> módulos requeridos para ejecutar los scripts de Python
-|   |-virtual_env.bat -> script para instalación del entorno virtual de Python junto con los módulos requeridos. 
-|   |-virtual_env.sh -> script para instalación del entorno virtual de Python junto con los módulos requeridos.
-|-img/
-|   |-graphics/ -> directorio que alberga las gráficas de los datos de los diferentes sensores.
-|-docs/
-|   |-img/ -> directorio que alberga las imágenes empleadas en la memoria del proyecto.
-|   |-tex/ -> directorio con las diferentes secciones de la memoria (ficheros LaTeX).
-|   |-.gitignore -> fichero con los módulos a ignorar en el control de versiones. 
-|   |-anexos.pdf -> PDF de los anexos de la memoria del proyecto.
-|   |-anexos.tex -> fichero LaTeX de los anexos de la memoria.
-|   |-bibliografia.bib -> fichero con la bibliografía de la memoria.
-|   |-bibliografiaAnexos.bib -> fichero con la bibliográfia de los anexos de la memoria.
-|   |-memoria.pdf -> PDF de la memoria del proyecto.
-|   |-memoria.tex -> fichero LaTeX de la memoria del proyecto.
-|   |-README.md -> fichero con la información de la memoria del proyecto.
-|-data/
-    |-raw_data/
-    |   |-sensores/ -> directorio que alberga los muestreos de los diferentes datos.
-    |   |-pluviometro/ -> directorio que alberga los muestreos del pluviómetro.
-    |-classified_data/ -> directorio con los datos procesados.
-```
+
+>.</br>
+>|-LICENSE.md -> fichero con licencia de uso de la aplicación.</br>
+>|-README.md -> fichero con la información del proyecto.</br>
+>|-data-preprocessing.ipynb -> fichero notebook con el pre-procesamiento del conjunto de datos.</br>
+>|-graficas_datos.py -> script Python que permite graficar los datos procesados de los sensores.</br>
+>|-scripts/</br>
+>|&emsp;&emsp;|-requeriments.txt -> módulos requeridos para ejecutar los scripts de Python</br>
+>|&emsp;&emsp;|-virtual_env.bat -> script para instalación del entorno virtual de Python junto con los módulos requeridos en CMD. </br>
+>|&emsp;&emsp;|-virtual_env.sh -> script para instalación del entorno virtual de Python junto con los módulos requeridos en Bash.</br>
+>|&emsp;&emsp;|-Virtual_env.ps1 -> script para instalación del entorno virtual de Python junto con los módulos requeridos en PowerShell.</br>
+>|-img/</br>
+>|&emsp;&emsp;|-graphics/ -> directorio que alberga las gráficas de los datos de los diferentes sensores.</br>
+>|-docs/</br>
+>|&emsp;&emsp;|-img/ -> directorio que alberga las imágenes empleadas en la memoria del proyecto.</br>
+>|&emsp;&emsp;|-tex/ -> directorio con las diferentes secciones de la memoria (ficheros LaTeX).</br>
+>|&emsp;&emsp;|-.gitignore -> fichero con los módulos a ignorar en el control de versiones. </br>
+>|&emsp;&emsp;|-anexos.pdf -> PDF de los anexos de la memoria del proyecto.</br>
+>|&emsp;&emsp;|-anexos.tex -> fichero LaTeX de los anexos de la memoria.</br>
+>|&emsp;&emsp;|-bibliografia.bib -> fichero con la bibliografía de la memoria.</br>
+>|&emsp;&emsp;|-bibliografiaAnexos.bib -> fichero con la bibliográfia de los anexos de la memoria.</br>
+>|&emsp;&emsp;|-memoria.pdf -> PDF de la memoria del proyecto.</br>
+>|&emsp;&emsp;|-memoria.tex -> fichero LaTeX de la memoria del proyecto.</br>
+>|&emsp;&emsp;|-README.md -> fichero con la información de la memoria del proyecto.</br>
+>|-data/</br>
+>&emsp;&emsp;|-raw_data/</br>
+>&emsp;&emsp;|&emsp;&emsp;|-sensores/ -> directorio que alberga los muestreos de los diferentes datos.</br>
+>&emsp;&emsp;|&emsp;&emsp;|-pluviometro/ -> directorio que alberga los muestreos del pluviómetro.</br>
+>&emsp;&emsp;|-classified_data/ -> directorio con los datos procesados.</br>
+
 
 ## Requisitos e instalación:
 El proyecto se ha desarrollado y probado en [Python 3.9.13](https://www.python.org/downloads/release/python-3913/).
@@ -63,10 +64,17 @@ Luego se pasará a ejecutar los scripts correspondientes dependiendo del sistema
 
 En sistemas Windows:
 
-```./virtual_env.bat```
+- PowerShell: La ejecución de scripts debe estar activada. Si no es el caso se debe ejecutar PowerShell como administrador y cambiar la política de ejecución de scripts: `Set-ExecutionPolicy Unrestricted`
+
+&emsp;&emsp;&emsp;Tras esto podemos ejecutar el script:
+
+&emsp;&emsp;&emsp;```./Virtual_env.ps1```
+- CMD: Para ejecutar el script en CMD basta con introducir:
+
+&emsp;&emsp;&emsp;```virtual_env.bat```
 
 En sistemas Linux:
 
-```./virtual_env.sh```
+&emsp;&emsp;&emsp;```chmod +x virtual_env.sh && ./virtual_env.sh```
 
 Tras la ejecución de los scripts podemos cerrar el terminal y proceder a la ejecución de los programas empleando el entorno virtual generado.
