@@ -20,7 +20,7 @@ En este proyecto se busca analizar los datos de temperatura y humedad a distinta
 
 ## Estructura del proyecto:
 El proyecto cuenta con la siguiente estructura de directorios y ficheros:
-
+<font size="1">
 >.</br>
 >|-LICENSE.md -> fichero con licencia de uso de la aplicación.</br>
 >|-README.md -> fichero con la información del proyecto.</br>
@@ -49,7 +49,7 @@ El proyecto cuenta con la siguiente estructura de directorios y ficheros:
 >&emsp;&emsp;|&emsp;&emsp;|-sensores/ -> directorio que alberga los muestreos de los diferentes datos.</br>
 >&emsp;&emsp;|&emsp;&emsp;|-pluviometro/ -> directorio que alberga los muestreos del pluviómetro.</br>
 >&emsp;&emsp;|-classified_data/ -> directorio con los datos procesados.</br>
-
+</font>
 
 ## Requisitos e instalación:
 El proyecto se ha desarrollado y probado en [Python 3.9.13](https://www.python.org/downloads/release/python-3913/).
@@ -58,7 +58,9 @@ Para realizar la instalación del entorno virtual es necesario seguir los siguie
 Primero se deberá abrir una nueva sesión en la consola o terminal de Windows o Linux en el directorio del proyecto.
 Posteriormente se deberá ejecutar el siguiente comando:
 
-```cd ./scripts/```
+```
+cd ./scripts/
+```
 
 Luego se pasará a ejecutar los scripts correspondientes dependiendo del sistema operativo instalado.
 
@@ -68,13 +70,19 @@ En sistemas Windows:
 
 &emsp;&emsp;&emsp;Tras esto podemos ejecutar el script:
 
-&emsp;&emsp;&emsp;```./Virtual_env.ps1```
+```
+./Virtual_env.ps1
+```
 - CMD: Para ejecutar el script en CMD basta con introducir:
 
-&emsp;&emsp;&emsp;```virtual_env.bat```
+```
+virtual_env.bat
+```
 
 En sistemas Linux:
 
-&emsp;&emsp;&emsp;```chmod +x virtual_env.sh && ./virtual_env.sh```
+```
+chmod +x virtual_env.sh && ./virtual_env.sh
+```
 
 Tras la ejecución de los scripts podemos cerrar el terminal y proceder a la ejecución de los programas empleando el entorno virtual generado.
