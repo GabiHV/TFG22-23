@@ -1,6 +1,89 @@
 \capitulo{4}{Técnicas y herramientas}
 
-Esta parte de la memoria tiene como objetivo presentar las técnicas metodológicas y las herramientas de desarrollo que se han utilizado para llevar a cabo el proyecto. Si se han estudiado diferentes alternativas de metodologías, herramientas, bibliotecas se puede hacer un resumen de los aspectos más destacados de cada alternativa, incluyendo comparativas entre las distintas opciones y una justificación de las elecciones realizadas. 
-No se pretende que este apartado se convierta en un capítulo de un libro dedicado a cada una de las alternativas, sino comentar los aspectos más destacados de cada opción, con un repaso somero a los fundamentos esenciales y referencias bibliográficas para que el lector pueda ampliar su conocimiento sobre el tema.
+\section{Metodologías}
+\subsection{Scrum}
+La metodología \textit{Scrum} es un marco de trabajo de desarrollo ágil de software
+iterativo (dividido en líneas de tiempo denominados \textit{sprints}) e incremental, 
+que surge como antítesis a la gestión de proyectos predictiva (centrada en la planificación,
+presupuestos y los plazos de entrega) \cite{enwiki:scrum2023,book:palacio2021}.
 
+\section{Control de versiones}
 
+\section{Alojamiento del repositorio}
+\begin{itemize}
+    \item Herramientas consideradas: \href{https://github.com/}{GitHub}, 
+        \href{https://bitbucket.org/product/es/}{Bitbucket},
+        \href{https://about.gitlab.com/}{GitLab}
+    \item Herramienta escogida: \href{https://github.com/}{GitHub}
+\end{itemize}
+
+\section{Gestión del proyecto}
+
+\section{Comunicación}
+La comunicación durante desarrollo del proyecto se realiza via e-mail, debido a la rapidez,
+versatilidad y facilidad de la comunicación, además de la familiaridad de las partes con el 
+medio de comunicación.
+Para las tutorías telemáticas se escogió emplear 
+\href{https://www.microsoft.com/es-es/microsoft-teams/log-in}{Microsoft Teams} por la existencia 
+de forma predefinida de una cuenta de usuario de la Suite Office de Microsoft proporcionada
+por la Universidad.
+
+\section{Entorno de desarrollo}
+Debido a la flexibilidad que aporta Visual Studio Code (editor de texto bajo licencia MIT desarrollado por Microsoft \cite{enwiki:vscode2023})
+gracias a el entorno proporcionado de forma nativa y a las extensiones disponibles de Microsoft y terceros, se ha optado
+por emplearlo para el desarrollo de los scripts de Python, los Python Notebooks, la documentación del repositorio
+en Markdown y la realización de la memoria en LaTeX. 
+
+En cuanto al intérprete Python se ha empleado \href{https://www.python.org/downloads/release/python-3913/}{Python 3.9.13} mediante un entorno virutal que permite instalar
+las dependencias sin modificar el entorno base.
+
+En lo referente a la compilación de los ficheros LaTeX, se ha optado por emplear 
+MikTex debido a la facilidad de actualización e instalación de dependencias.
+Para la integración del compilador de LaTeX con Visual Studio Code se emplea 
+\href{https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop}{LaTeX Workshop}, 
+puesto que permite la compilación automática al guardar los cambios en los ficheros sin realizar
+ninguna configuración explícita.
+
+\section{Librerías}
+\subsection{Pandas}
+Pandas es una herramienta de análisis de datos escrita en Python que ofrece estructuras 
+de datos y operaciones para manipular tablas numéricas y series temporales 
+\cite{eswiki:pandas2023}.
+
+\subsection{Tensorflow}
+Tensorflow es una librería de código abierto para aprendizaje automático desarrollada
+por Google \cite{eswiki:tensorflow2021}.
+
+\subsection{Matplotlib}
+Matplotlib es una librería para generar gráficos bidimensionales en Python a partir de 
+diferentes estructuras de datos como listas \cite{eswiki:matplotlib2022}.
+
+\subsection{Json}
+El módulo JSON de Python proporciona una \textit{API} (interfaz de programación de 
+aplicaciones) para manejar objetos en formato JSON (\textit{JavaScript Object 
+Notation}) \cite{python:json2023}.
+
+\subsection{Os}
+El módulo OS de Python proporciona una manera portable de emplear la funcionalidad del
+sistema operativo \cite{python:os2023}.
+
+\section{Restful API}
+Para obtener los datos meteorológicos de la zona en la que se situa el viñedo y poder
+realizar la comparación con las muestras obtenidas en el pluviómetro desplegado se han 
+estudiado diferentes opciones:
+\begin{itemize}
+    \item \href{https://openweathermap.org/}{OpenWeatherMap}
+    \item \href{https://www.weatherbit.io/}{Weatherbit}
+    \item \href{https://www.aemet.es/es/datos_abiertos/AEMET_OpenData}{AEMET OpenData}
+\end{itemize}
+
+Todas las opciones requieren de una petición al servidor mediante HTTPS o HTTP, sin 
+embargo, en el primer caso a pesar de que se muestran los datos en una frecuencia 
+de una hora, el limitante se encuentra en que solo permite recuperar hasta un año atrás.
+En el segundo caso los requerimientos se cumplen al completo, pero tras contactar con el
+soporte de la \textit{API} no hay respuestas que permitan el acceso al 
+\textit{endpoint} correspondiente.
+
+Finalmente la última opción proporciona datos históricos sin límite, la contraparte es
+que la estación meteorológica consultada se encuentra en Aranda de Duero y se tratan de
+datos diarios.
