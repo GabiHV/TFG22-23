@@ -1,26 +1,48 @@
 \capitulo{1}{Introducción}
 El cuidado de las tierras de cultivo vitícolas ha supuesto a menudo a lo largo 
 de la historia diferentes retos desde el comienzo de su domesticación entorno al 
-3500-3100 a.C., continuando en la época del Antiguo Egipto (donde se han hallado 
-cantidad de pinturas en las que se describen con grandes detalles el proceso
-del cuidado de la vid), lugar en el que se cree se comenzó a popularizar la ingesta
+3500-3100 a.C., continuando en la época del Antiguo Egipto, lugar en el que se cree se comenzó a popularizar la ingesta
 del producto resultante de la labranza y cosecha de los cultivos: el vino \cite{book:piqueras2014}.
 
 En la península ibérica el interés por este proceso y su resultante comenzó en el 
 periodo fenicio cerca del 1100 a.C., expandiéndose por todo el territorio peninsular
-gracias al comercio, lo que dió como resultado que los procesos enológicos fueran ya bien
+gracias al comercio, lo que dio como resultado que los procesos enológicos fueran ya bien
 conocidos en los siglos IV-III a.C. \cite{book:piqueras2014, MAPA:Historia}.
 
 Entre los principales retos a los que se han enfrentado los viticultores en la península ibérica se 
-encuentran numerosas plagas de insectos, ácaros, nematodos, diferentes vertebrados, moluscos, bacterias, etc \cite{book:mundi2004}.
+encuentran numerosas plagas de insectos, ácaros, nematodos, diferentes vertebrados, moluscos, bacterias, etc \cite{book:mundi2004cap1}.
 Siendo la más devastadora la causada por la histórica palga de filoxera (\textit{Phylloxera vastatrix}) a 
-finales del siglo XIX y comienzos del XX, que obligó a una reestructuración prácticamente completa de la viticultura española \cite{book:mundi2004}.
+finales del siglo XIX y comienzos del XX, que obligó a una reestructuración prácticamente completa de la viticultura española \cite{book:mundi2004cap3}.
 
 Sin embargo, el principal factor influyente en el cultivo de la vid es el clima, siendo este el causante de sus alteraciones, fisiopatías y
 la presencia de casi todas las plagas, de manera que estas se encuentran relacionadas con diferentes 
 factores climáticos como la temperatura, las precipitaciones, la humedad y la humectación. 
 De esta forma, por ejemplo, las altas lluvias o humedades y/o bajas temperaturas pueden producir corrimiento del racimo (escasez anormal de bayas en los racimos) o 
-las altas temperaturas pueden generar desequilibrios hídricos que afecten a los injertos y a aquellas cepas infectadas por hongos de la madera \cite{book:mundi2004}.
+las altas temperaturas pueden generar desequilibrios hídricos que afecten a los injertos y a aquellas cepas infectadas por hongos de la madera \cite{book:mundi2004cap1}.
+
+\clearpage
+
+Por otro lado, los datos climatológicos históricos indican que la temperatura global ha aumentado 1,1ºC desde el 
+inicio de la Revolución Industrial hasta nuestros días, siendo este desequilibrio causado en los úiltimos años
+por la actividad humana, produciéndose a valocidad tal que los ecosistemas no tienen tiempo de adaptarse \cite{book:zuniga2021}.
+Las precipitaciones, además, no son uniformes sino que aumentan en zonas donde ya son muy abundantes y disminuyen
+en las regiones más secas \cite{book:zuniga2021}.
+
+Ante esta situación se plantea la cuestión de cuáles de estos efectos podríamos ser capaces de predecir
+y en qué proporción para, si bien no subsanar completamente, si ser capaces de paliar en cierta medida
+conociendo con anterioridad ciertos datos climatológicos que ayudarán a las diferentes tomas de decisiones de 
+los viticultores.
+
+De esta manera, siendo conocedores a corto o medio plazo la humedad y la temperatura superficial del suelo,
+entre otras variables, podríamos adaptar los sistemas de riego para adecuarlos a las necesidades de los
+cultivos y por otro lado, gestionar de forma adecuada los recursos hídricos nacionales (en este caso
+de la zona hidrográfica del Duero) al mismo tiempo que protegemos a las vides de plagas y trastornos fisiológicos 
+debidos a diferentes factores como la humectación o la temperatura del suelo.
+
+En este proyecto se propone el análisis de los datos de temperatura y humedad del suelo procedentes de 
+sensores IoT (\textit{Internet of Things}) desplegados en un viñedo situado en la zona sur de la provincia de Burgos, para, de esta forma,
+obtener modelos predictivos que nos permitan conocer el comportamiento de ciertas variables en función de otras
+y anticipar su evolución futura a corto plazo.
 
 \section{Estructura de la memoria}
 La memoria del proyecto cuenta con la siguiente estructura:
@@ -46,7 +68,13 @@ Además de la memoria, se incluyen una serie de anexos:
     \item Manual de usuario: guía de usuario para el manejo de la aplicación asociada al proyecto
 \end{itemize}
 
-% \section{Materiales adjuntos}
-% El proyecto incluye 
-
-
+\section{Materiales adjuntos}
+El proyecto incluye el siguiente contenido:
+\begin{itemize}
+    \item Python Notebook con el pre-procesamiento de datos y las diferentes expliciones.
+    \item Python Notebook con el modelado de la Red Neuronal Artificial empleada para la regresión
+        de humedad y temperatura y las explicaciones correspondientes.
+    \item Conjunto de datos de los sensores desplegados en el viñedo.
+    \item Conjunto de datos del pluviómetro desplegado en el viñedo.
+\end{itemize}
+Los recursos mencionados se encuentran disponibles en GitHub \cite{gabriel:2023}.
