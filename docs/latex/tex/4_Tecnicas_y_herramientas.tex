@@ -8,21 +8,36 @@ que surge como antítesis a la gestión de proyectos predictiva (centrada en la 
 presupuestos y los plazos de entrega) \cite{enwiki:scrum2023,book:palacio2021}.
 
 \section{Control de versiones}
+El control de versiones se realizará mediante \href{https://git-scm.com/}{Git} puesto que a 
+diferencia de otras herramientas de control de versiones, provee de una administración del
+repositorio distribuida en lugar de centralizada, lo que permite a los desarrolladores
+tener un clon del repositorio en su equipo local \cite{git:2023}. 
 
 \section{Alojamiento del repositorio}
-\begin{itemize}
-    \item Herramientas consideradas: \href{https://github.com/}{GitHub}, 
+Para el \textit{hosting} del repositorio se ha barajado emplear: \href{https://github.com/}{GitHub}, 
         \href{https://bitbucket.org/product/es/}{Bitbucket},
-        \href{https://about.gitlab.com/}{GitLab}
-    \item Herramienta escogida: \href{https://github.com/}{GitHub}
-\end{itemize}
+        \href{https://about.gitlab.com/}{GitLab}.
+
+Se ha optado por emplear \href{https://github.com/}{GitHub} debido a la facilidad de uso
+que ofrece y las múltiples funcionalidades disponibles, sumado a la destreza adquirida
+durante el desarrollo del grado con esta plataforma de alojamiento de repositorios.
 
 \section{Gestión del proyecto}
+Para la gestión del proyecto se ha considerado emplear \href{https://www.zenhub.com/}{ZenHub},
+por su integración completa con GitHub.
+
+Esta herramienta proporciona un \textit{canvas} que permite gestionar las 
+tareas (\textit{issues}) en el \textit{sprint} ordenándolas en columnas según sea su 
+estado y priorizandolas según se encuentren en esta, además de permitir una 
+estimación de su duración, asignar su desarrollo a uno o más
+desarrolladores e indicar el \textit{milestone} y el \textit{srpint} al que pertenecen
+las tareas.
 
 \section{Comunicación}
 La comunicación durante desarrollo del proyecto se realiza via e-mail, debido a la rapidez,
 versatilidad y facilidad de la comunicación, además de la familiaridad de las partes con el 
 medio de comunicación.
+
 Para las tutorías telemáticas se escogió emplear 
 \href{https://www.microsoft.com/es-es/microsoft-teams/log-in}{Microsoft Teams} por la existencia 
 de forma predefinida de una cuenta de usuario de la Suite Office de Microsoft proporcionada
@@ -46,16 +61,19 @@ ninguna configuración explícita.
 
 \section{Librerías}
 \subsection{Pandas}
-Pandas es una herramienta de análisis de datos escrita en Python que ofrece estructuras 
+\textit{Pandas} es una herramienta de análisis de datos escrita en Python que ofrece estructuras 
 de datos y operaciones para manipular tablas numéricas y series temporales 
 \cite{eswiki:pandas2023}.
 
 \subsection{Tensorflow}
-Tensorflow es una librería de código abierto para aprendizaje automático desarrollada
+\textit{Tensorflow} es una librería de código abierto para aprendizaje automático desarrollada
 por Google \cite{eswiki:tensorflow2021}.
 
+En concreto se ha optado por emplear su \textit{API}: \href{https://keras.io/}{\textit{Keras}}, 
+debido a su modularidad y extensibilidad \cite{eswiki:keras2022}.
+
 \subsection{Matplotlib}
-Matplotlib es una librería para generar gráficos bidimensionales en Python a partir de 
+\textit{Matplotlib} es una librería para generar gráficos bidimensionales en Python a partir de 
 diferentes estructuras de datos como listas \cite{eswiki:matplotlib2022}.
 
 \subsection{Json}
