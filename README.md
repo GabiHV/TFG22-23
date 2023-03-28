@@ -24,8 +24,17 @@ El proyecto cuenta con la siguiente estructura de directorios y ficheros:
 >.</br>
 >|-LICENSE.md -> fichero con licencia de uso de la aplicación.</br>
 >|-README.md -> fichero con la información del proyecto.</br>
->|-data-preprocessing.ipynb -> fichero notebook con el pre-procesamiento del conjunto de datos.</br>
->|-graficas_datos.py -> script Python que permite graficar los datos procesados de los sensores.</br>
+>|-src -> Directorio con los codigos fuente</br>
+>|&emsp;&emsp;|-data-preprocessing.ipynb -> fichero notebook con el pre-procesamiento del conjunto de datos.</br>
+>|&emsp;&emsp;|-ann-modeling.ipynb -> fichero notebook con el modelado de la RNA.</br>
+>|&emsp;&emsp;|-env-paths.py -> script Python con los _paths_ de los diferentes recursos.</br>
+>|&emsp;&emsp;|-pluviometer-plot.py -> script Python con función para graficar los datos del pluviometro.</br>
+>|&emsp;&emsp;|-processed_pluviometer.py -> scripy Python para graficar los datos procesados del pluviómetro.</br>
+>|&emsp;&emsp;|-processed_sensor.py -> scripy Python para graficar los datos procesados de los sensores.</br>
+>|&emsp;&emsp;|-raw_pluviometer.py -> scripy Python para graficar los datos sin procesar del pluviómetro.</br>
+>|&emsp;&emsp;|-raw_sensor.py -> scripy Python para graficar los datos sin procesar de los sensores.</br>
+>|&emsp;&emsp;|-raw_pluviometer.py -> scripy Python para graficar los datos sin procesar del pluviómetro.</br>
+>|&emsp;&emsp;|-sensor-plot.py -> script Python con función para graficar los datos de los sensores.</br>
 >|-scripts/</br>
 >|&emsp;&emsp;|-requeriments.txt -> módulos requeridos para ejecutar los scripts de Python</br>
 >|&emsp;&emsp;|-virtual_env.bat -> script para instalación del entorno virtual de Python junto con los módulos requeridos en CMD. </br>
@@ -46,9 +55,11 @@ El proyecto cuenta con la siguiente estructura de directorios y ficheros:
 >|&emsp;&emsp;|-README.md -> fichero con la información de la memoria del proyecto.</br>
 >|-data/</br>
 >&emsp;&emsp;|-raw_data/</br>
->&emsp;&emsp;|&emsp;&emsp;|-sensores/ -> directorio que alberga los muestreos de los diferentes datos.</br>
+>&emsp;&emsp;|&emsp;&emsp;|-sensores/ -> directorio que alberga los muestreos de los diferentes sensores.</br>
 >&emsp;&emsp;|&emsp;&emsp;|-pluviometro/ -> directorio que alberga los muestreos del pluviómetro.</br>
 >&emsp;&emsp;|-classified_data/ -> directorio con los datos procesados.</br>
+>&emsp;&emsp;&emsp;&emsp;|-sensores/ -> directorio que alberga los datos procesados de los diferentes sensores.</br>
+>&emsp;&emsp;&emsp;&emsp;|-pluviometro/ -> directorio que alberga los datos procesados del pluviómetro.</br>
 </font>
 
 ## Requisitos e instalación:
