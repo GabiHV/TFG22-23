@@ -2,13 +2,52 @@
 El desarrollo del proyecto cuenta con diferentes fases desde el pre-procesamiento de los muestreos de los sensores y el pluviómetro,
 continuando con la selección del modelo de Red Neuronal Artificial que se empleará en la predicción a corto plazo, así como su 
 modelado para ser empleada en este problema concreto y su validación.
+
 En esta sección se presentarán los conceptos teóricos en cada etapa para facilitar su comprensión.
 
 \section{Pre-procesamiento de datos}
 En el pre-procesamiento de datos se pretende realizar la integración y limpieza de datos, de forma que disminuyan los posibles problemas
 de calidad que puedan surgir en los diferentes sistemas de información.
-Como norma general el proceso de integración debe ser realizado durante la fase de recopilación de los datos.
+
+Como norma general el \textbf{proceso de integración} debe ser realizado durante la fase de recopilación de los datos.
 La limpieza permite la detección y corrección de los problemas no resueltos en la fase anterior como los valores anómalos (\textit{Outliers}) o faltantes 
 \cite{book:hernandez2004}.  
 
+Tras la integración de los datos de las diferentes fuentes (v.g. bases de datos), se pueden realizar un resumen de características de atributos, en la que
+se mostrarán las características generales de estos como medias, mínimos, máximos y valores posibles. 
+
+En esta tabla que proporciona diferente información podríamos obtener información trascendental para proceso de análisis de datos, sobre todo para atributos categóricos.
+En el caso de atributos numéricos un mecanismo visual que es especialmente útil es la gráfica de dispersión, que es la técnica de visualización
+de datos que se empleará mayoritariamente durante el desarrollo del proyecto \cite{book:hernandez2004}.
+
+En el conjuto de datos podemos encontrar \textbf{valores faltantes}, perdidos o ausentes que pueden ser reemplazados por diferentes razones. Una de ellas es que
+el modelo que empleemos puede no tratar bien estos valores o que utilice un mecanismo de tratamiento que no sea adecuado al contexto.
+Un problema asociado a la detección de los valores faltantes es que estos no estén representados como nulos, lo que puede introducir sesgo en el conocimiento
+extraido \cite{book:hernandez2004}.
+
+Ante esta situación se puede actuar de diferentes maneras:
+\begin{itemize}
+    \item Ignorarlos (ciertos algoritmos son tolerantes a los valores faltantes).
+    \item Eliminar la columna que contiene valores faltantes.
+    \item Filtrar las filas: eliminar las filas afectadas, lo que introduce cierto sesgo en muchas ocasiones.
+    \item Reemplazar el valor por otro que preserve la media y la varianza del conjunto de datos en caso de atributos numéricos y la moda en atributos
+        catregóricos.
+        Una forma de reemplazar los valores faltantes es la imputación de datos perdidos, que consiste en predecirlos a partir de otros ejemplos. Existen también
+        algoritmos que se emplean tradicionalmente para este fin.
+    \item Segmentar: se segmentan las filas por los valores disponibles y se obtiene un modelo por cada uno de los segmentos y se combinan.
+    \item Modificar la política de calidad de datos y esperar a que los faltantes estén disponibles.
+\end{itemize}
+
+Además de las situaciones anteriores, es posible que el conjunto de datos cuente con \textbf{valores erróneos} que 
+se deben detectar y tratar.
+La detección de estos campos puede realizarse de diferentes maneras dependiendo de su formato y origen.
+
+En el caso que nos atañe se deben buscar los valores extremos, que no significa que estos sean erróneos, sino que 
+estadísticamente se clasifican como anómalos, aunque representen un estado genuino de la realidad.
+Con todo y con eso, estos valores pueden suponer un problema para algunos métodos que se basan en el ajuste de pesos
+como las redes neuronales.
+En otras ocasiones pueden haber datos erróneos que caen en la normalidad, por lo que no pueden ser detectados \cite{book:hernandez2004}.
+
+La falta de detección de estos valores puede resultar en problemas si posteriormente se normalizan los datos, puesto
+que la mayoria de datos estarían en un rango muy pequeño y puede haber poca precisión en algunos modelos ante estas situaciones.
 
