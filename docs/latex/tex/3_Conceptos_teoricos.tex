@@ -1,9 +1,27 @@
 \capitulo{3}{Conceptos teóricos}
-El desarrollo del proyecto cuenta con diferentes fases desde el pre-procesamiento de las muestras de los sensores y el pluviómetro,
-continuando con la selección del modelo de Red Neuronal Artificial que se empleará en la predicción a corto plazo, así como su 
-modelado para ser empleada en este problema concreto y su validación.
+El desarrollo del proyecto cuenta con diferentes fases siguiendo el proceso de \textit{descubrimiento de conocimiento
+en bases de datos, KDD}, compuesto por la comprensión del negocio, la comprensión de los datos, la preparación de datos,
+el modelado, la evaluación del modelo y el despliegue del producto software \cite{book:witten2017}.
 
-\imagen{data_mining_process.jpg}{Extraido de \cite{book:witten2017}}{0.5}
+\imagen{data_mining_process.jpg}{\textit{Proceso KDD}. Extraido de \cite{book:witten2017}}{0.5}
+
+El desarrollo del proyecto contempla las 5 primeras fases, puesto que el alcance de este no incluye
+el despliegue del resultado en un producto.
+
+En lo referente a la fase de comprensión del negocio se analizan los objetivos y requisitos del proyecto \cite{book:witten2017}. 
+En este caso quedan bien marcados en la descripción del proyecto y la introducción.
+
+En la etapa de comprensión de los datos se crea el conjunto de datos inical y se comprueba si este es adecuado,
+de forma que si se determina que no lo es se deberán recopilar más datos \cite{book:witten2017}.
+En el caso que nos atañe como estamos sujetos a los plazos del curso la recopilación de más datos puede complicarse.
+
+En la preparación de los datos se realiza el pre-procesamiento de estos, de forma que puedan ser empleados en el modelado \cite{book:witten2017}.
+
+En el modelado se crean los modelos, lo que irá de la mano con la fase de preparación, puesto que algunas herramientas de 
+pre-procesamiento incluyen un modelo interno de los datos para transformarlos \cite{book:witten2017}.
+
+En la fase de la evaluación se estima el rendimiento del modelo y se reconsideran los objetivos, de forma que si los modelos son poco efectivos
+se vuelve a la fase del conocimiento del negocio \cite{book:witten2017}.
 
 En esta sección se presentarán los conceptos teóricos en cada etapa para facilitar su comprensión.
 
