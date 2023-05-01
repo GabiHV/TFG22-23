@@ -1,6 +1,7 @@
 # Rutas de directorios
 RAW_FILES_PATH = '../data/raw_data'
 CLASSIFIED_FILES_PATH = '../data/classified_data'
+INTEGRATED_FILES_PATH = '../data/integrated_data'
 SENSOR_DIR = '/sensores/'
 PLUVIOMETER_DIR = '/pluviometro/'
 SENSOR_FILES_DIRECTORY = RAW_FILES_PATH + SENSOR_DIR
