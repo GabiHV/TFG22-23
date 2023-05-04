@@ -5,11 +5,8 @@ el modelado, la evaluación del modelo y el despliegue del producto software \ci
 
 \imagen{data_mining_process.jpg}{\textit{Proceso KDD}. Extraido de \cite{book:witten2017}}{0.5}
 
-El desarrollo del proyecto contempla las 5 primeras fases, puesto que el alcance de este no incluye
-el despliegue del resultado en un producto.
-
 En lo referente a la fase de comprensión del negocio se analizan los objetivos y requisitos del proyecto \cite{book:witten2017}. 
-En este caso quedan bien marcados en la descripción del proyecto y la introducción.
+En este caso quedan bien marcados en la descripción del proyecto y la introducción, así como en la sección de los objetivos.
 
 En la etapa de comprensión de los datos se crea el conjunto de datos inical y se comprueba si este es adecuado,
 de forma que si se determina que no lo es se deberán recopilar más datos \cite{book:witten2017}.
@@ -23,17 +20,19 @@ pre-procesamiento incluyen un modelo interno de los datos para transformarlos \c
 En la fase de la evaluación se estima el rendimiento del modelo y se reconsideran los objetivos, de forma que si los modelos son poco efectivos
 se vuelve a la fase del conocimiento del negocio \cite{book:witten2017}.
 
-En esta sección se presentarán los conceptos teóricos en cada etapa para facilitar su comprensión.
+No se contempla realizar un despliegue de los modelos resultantes en ninguna aplicación, puesto que se sale del alcance del proyecto.
+
+En esta sección se presentarán los conceptos teóricos relevantes en cada etapa para facilitar su comprensión.
 
 \section{Pre-procesamiento de datos}
-En el pre-procesamiento de datos se pretende realizar la integración y limpieza de datos, de forma que disminuyan los posibles problemas
+En el pre-procesamiento de datos se pretende realizar la integración y limpieza de estos, de forma que disminuyan los posibles problemas
 de calidad que puedan surgir en los diferentes sistemas de información.
 
 Como norma general el \textbf{proceso de integración} debe ser realizado durante la fase de recopilación de los datos.
 La \textbf{limpieza} permite la detección y corrección de los problemas no resueltos en la fase anterior como los valores anómalos (\textit{Outliers}) o faltantes 
 \cite{book:hernandez2004}.  
 
-Tras la integración de los datos de las diferentes fuentes (v.g. bases de datos), se pueden realizar un resumen de características de atributos, en la que
+Tras la integración de los datos de las diferentes fuentes (e.g. bases de datos), se pueden realizar un resumen de características de atributos, en la que
 se mostrarán las características generales de estos como medias, mínimos, máximos y valores posibles. 
 
 En esta tabla que proporciona diferente información podríamos obtener información trascendental para proceso de análisis de datos, sobre todo para atributos categóricos.
@@ -85,5 +84,53 @@ Los atributos con valores erróneos serán mas graves cuando este sea empleado c
 
 \section{Modelado}
 
-Para la creación de los modelos emplearemos diferentes modelos de \textit{Redes Neuronales Recurrentes}, 
-más concretamente modelos con arquitecturas recurrentes, puesto que  
+Para la creación de los modelos emplearemos diferentes tipos de \textit{Redes Neuronales Artificiales}, como 
+el perceptrón multicapa (\textit{MLP}), \textit{Gated Recurrent Unit} y \textit{Long Short-Term Memory}.
+
+\subsection{MLP}
+El perceptrón multicapa además de la capa de entrada y salida contiene varias capas intermedias
+llamadas ocultas (\textit{hidden layers}), denominadas de este modo puesto que los cálculos
+internos están ocultos al usuario \cite{book:aggarwal2018}.
+
+En este tipo de redes las señales se propagan inicialmente hacia adelante para obtener un resultado, 
+de forma que las neuronas de una capa se encuentran interconectadas con las de la capa
+siguiente y así sucesivamente en todas ellas.
+
+Cada una de estas conexiones cuenta con un peso, que se inicializa generalmente de forma aleatoria. Estos pesos son
+empleados para el cálculo de las señales de activación de cada neurona, que se emplearán en la función de activación:
+
+\begin{equation}
+    \begin{aligned}
+    & \bar{h}_1=\Phi\left(W_1^T \bar{x}\right) \\
+    & \bar{h}_{p+1}=\Phi\left(W_{p+1}^T \bar{h}_p\right) \quad \forall p \in\{1 \ldots k-1\}\\
+    & \bar{o}=\Phi\left(W_{k+1}^T \bar{h}_k\right)
+    \end{aligned}
+\end{equation}
+
+Donde \begin{math}\bar{h}_1\end{math} será el resultado de aplicar la función de activación en la primera capa oculta (la capa de entrada
+actua de intermedio entre las entradas y la \textit{RNA}), \begin{math}\bar{h}_{p+1}\end{math} serán los resultados de la función de activación
+en la capa p-ésima y \begin{math}\bar{o}\end{math} en la capa de salida.
+
+\imagen{mlp.png}{Perceptrón Multicapa. Extraido de \cite{book:aggarwal2018}}{0.5}
+
+Existen diversas funciones de activación entre las que destacan las sigmoides por ser aplicadas de forma 
+elemental \cite{book:aggarwal2018}.
+
+\subsection{Redes Neuronales Recurrentes (\textit{RNN})}
+Las redes neuronales convencionales (véase por ejemplo los \textit{MLP}, las redes neuronales de base radial, etc.) están diseñadas para
+datos multidimensionales cuyos atributos son independiente de otros.
+Sin embargo, existen datos que contienen dependencias secuenciales entre atributos como los datos de series temporales, biológicos o 
+cadenas de texto \cite{book:aggarwal2018}.
+
+Las redes neuronales recurrentes pueden ser empleadas en este tipo de datos y además cuentan con ventajas con respecto a las redes convencionales.
+A diferencia de estas recibe y procesa las entradas en el orden de llegada y las trata de igual manera que los instantes anteriores.
+Por otro lado, en luagar de un número variable de entradas, contienen un número variable de capas, y cada una de estas se corresponde con un 
+instante de tiempo, lo que permite a cada una de las neuronas interactuar con otras más cercanas a la salida \cite{book:aggarwal2018}.
+
+\imagen{rnn.png}{Red Neuronal Recurrente.}{0.25}
+\imagen{rnn_tiempo.png}{Representación de la RNN en el tiempo.}{0.55}
+
+\subsubsection{LSTM}
+
+\subsubsection{GRU}
+
