@@ -1,7 +1,70 @@
 \capitulo{5}{Aspectos relevantes del desarrollo del proyecto}
 
-Este apartado pretende recoger los aspectos más interesantes del desarrollo del proyecto, comentados por los autores del mismo.
-Debe incluir desde la exposición del ciclo de vida utilizado, hasta los detalles de mayor relevancia de las fases de análisis, diseño e implementación.
-Se busca que no sea una mera operación de copiar y pegar diagramas y extractos del código fuente, sino que realmente se justifiquen los caminos de solución que se han tomado, especialmente aquellos que no sean triviales.
-Puede ser el lugar más adecuado para documentar los aspectos más interesantes del diseño y de la implementación, con un mayor hincapié en aspectos tales como el tipo de arquitectura elegido, los índices de las tablas de la base de datos, normalización y desnormalización, distribución en ficheros3, reglas de negocio dentro de las bases de datos (EDVHV GH GDWRV DFWLYDV), aspectos de desarrollo relacionados con el WWW...
-Este apartado, debe convertirse en el resumen de la experiencia práctica del proyecto, y por sí mismo justifica que la memoria se convierta en un documento útil, fuente de referencia para los autores, los tutores y futuros alumnos.
+En este apartado se describirán los aspectos más importantes surgidos a partir del desarrollo del proyecto,
+estos incluyen las complicaciones encontradas, así como las decisiones tomadas para solucionar todos los
+problemas surgidos y sus implicaciones.
+
+El apartado se orientará siguiendo una estructura parecida a la introducida en \textit{Conceptos teóricos}, 
+es decir, desarrollando los aspectos relevantes según la fase del proyecto en la que se produjo.
+
+\section{Inicio del Proyecto}
+Una de las motivaciones que se tuvo en cuenta para el desarrollo del proyecto fue la cercanía del tema tratado
+con el lugar que se desarrolló. Y es que la ciudad de Burgos se encuentra en la denominación de
+origen ``Ribera del Duero'', una de las regiones que cuenta con algunos de los mejores vinos del mundo \cite{misc:abc2021}.
+
+Otro impulso que llevó a realizar el Trabajo Final de Grado con este tema fue de igual forma la importancia 
+del vino en la familia, pues el sustento de parte de esta es gracias a la viticultura, además de la historia
+e importancia de la cultura del vino en el todo el territorio español.
+
+Tras contactar con los docentes, se proporcionó el conjunto de datos empleado en el proyecto. En estas conversaciones
+iniciales se consideró que estos datos contaban con ciertas características que debían tenerse en cuenta: en primer lugar,
+los datos contaban con valores faltantes debidos a la posible desconexión de los sensores de la red, lo que provocaba
+que estos dejaran de enviar datos al servidor. Por otro lado, las labores del campo podían haber afectado a la calidad
+de estos por la extracción de las sondas de los sensores de sus posiciones originales.
+
+Además, el pluviómetro instalado en un orígen se encontraba anclado de forma débil, lo que propiciaba que el viento 
+produjera lecturas erróneas en el movimiento del balancín empleado en el registro de las precipitaciones.
+
+Tras estas reuniones se inició el proceso de la comprensión del negocio, es decir, se comenzó con la definición de los 
+objetivos del proyecto y los requisitos de los mismos. Simplificando lo mencionado en la introducción y los objetivos,
+la finalidad era realizar un análisis de los datos proporcionados (centrándose en la temperatura y humedad) realizando
+las visualizaciones pertinentes y encontrar modelos predictivos que intenten anticipar la evolución a corto plazo
+empleando diferentes técnicas como las Redes Neuronales Artificiales.
+
+\section{Fase de preparación de los datos}
+La fase de preparación se determinó que los datos proporcionados contaban con diferentes situaciones. En algunos
+de los sensores la calidad de estos era bastante adecuada a pesar de contar con valores faltantes, en otros, en cambio,
+existían numerosos problemas.
+
+Por un lado, contaban con valores extremos que debían tenerse en cuenta para que los modelos que se desarrollasen no 
+encontraran problemas al generalizar desviándose de ese propósito por el posible ruido introducido.
+Para solucionar este problema se empleó el mecanismo de detección de \textit{outliers} mediante el rango intercuartílico
+y sustituyendo los datos identificados como valores extremos con la mediana del día en el que se realizó la muestra.
+
+Por otro lado, algunos de los sensores contaban con valores matemáticamente correctos (dentro de límites lógicos de las 
+diferentes variables) pero que contextualmente eran incorrectos. Un ejemplo de esto eran las lecturas artificiales de 
+diferentes variables como la temperatura cuando el nivel de la batería de los sensores caía por debajo de 3,3V, lo que
+probocaba un desbordamiento de la variable en el controlador correspondiente.
+
+Ante esta situación se decidió eliminar aquellas muestra cuyo nivel de batería se encontrara por debajo del mencionado
+y por encima de los 4,1V (el máximo de la batería). Sin embargo, tras realizar esta operación se observó que ciertas 
+muestras continuaban siendo contextualmente incorrectas arrojando datos inverosímiles (bajadas de temperatura y/o 
+humedad extremas en periodos de tiempo cortos) debidas en gran medida, como se confirmó posteriormente, 
+a la extracción de las sondas de la situación original, por lo que se acordó con los docentes la eliminación de estos 
+valores que continuaban siendo erróneos.
+
+El proceso se realizó a mano teniendo en cuenta las situaciones localizadas con anterioridad y con las nuevas necesidades,
+marcando en los diferentes ficheros la validez de la entrada (cabe destacar que la recuperación de estos datos no era viable 
+por las condiciones en la que se encontraban, puesto que el recorrido temporal era demasiado elevado).
+
+Además de estas condiciones, alguno de los sensores contaban con muestras con discontinuidades con saltos inexplicables 
+mediante los datos, por lo que se acordó el intento de la recuperación de estos. Para ello, se observaron los muestreos
+de los datos de los sensores geográficamente más cercanos al afectado, de forma que se pudiera conocer de forma más 
+precisa cúal de las series era la que contaba con la lecura correcta y acutar en consecuencia.
+
+A pesar de que se haya podido introducir algún sesgo debido a la modificación de los valores plasmados en los muestreos, 
+los valores reales serán más cercanos a los nuevos valores asignados que a las lecturas anteriores, es decir, aún si 
+estos valores fueran incorrectos serían menos incorrectos que anteriormente.
+
+Ante la premura de los plazos del proyecto, realizar el muestreo de los datos suficientes para crear un modelo predictivo
+eficiente no era viable, por lo que se tuvo que trabajar con la cantidad proporcionada.
