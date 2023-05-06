@@ -3,9 +3,9 @@ Repositorio del Trabajo Fin de Grado "Análisis de datos de temperatura y huemed
 
 Estado del proceso de desarrollo del TFG:
 - [x] Preprocesamiento de datos 
-- [ ] Selección del modelo de RNA :arrow_left:
+- [x] Selección del modelo de RNA
 - [ ] Modelado de la red :arrow_left:
-- [ ] Entrenamiento de la red
+- [ ] Entrenamiento de la red :arrow_left:
 - [ ] Evaluación del modelo
 
 Autor:
