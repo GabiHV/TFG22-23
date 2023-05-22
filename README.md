@@ -4,9 +4,9 @@ Repositorio del Trabajo Fin de Grado "Análisis de datos de temperatura y huemed
 Estado del proceso de desarrollo del TFG:
 - [x] Preprocesamiento de datos 
 - [x] Selección del modelo de RNA
-- [ ] Modelado de la red :arrow_left:
+- [x] Modelado de la red
 - [ ] Entrenamiento de la red :arrow_left:
-- [ ] Evaluación del modelo
+- [ ] Evaluación del modelo :arrow_left:
 
 Autor:
 - Gabriel Hernábdez Vallejo.
