@@ -68,3 +68,47 @@ estos valores fueran incorrectos serían menos incorrectos que anteriormente.
 
 Ante la premura de los plazos del proyecto, realizar el muestreo de los datos suficientes para crear un modelo predictivo
 eficiente no era viable, por lo que se tuvo que trabajar con la cantidad proporcionada.
+
+\section{Fase de creación de modelos}
+Tras realizar una investigación preliminar acerca de los modelos con mayor precisión 
+en la regresión de series temporales, se llegó a la conclusión de emplear
+redes neuronales recurrentes con memoria como primer objetivo de modelado, 
+puesto que sobre datos con variación no cíclica como la meteorología contaban 
+con un buen rendimiento.
+
+Por ese motivo, se escogió utilizar las redes neuronales con memoria a corto y medio
+plazo como son \textit{GRU} y \textit{LSTM}, empleando los mismos hiperparámetros y,
+de esta manera, poder realizar una comparativa para tener una idea de cómo se 
+ajustan estos modelos a las diferentes funciones objetivo.
+
+Además, otra opción a emplear fue la tradicional \textit{MLP} para poder observar
+cómo la linealidad de este modelo impide obtener unos resultados aceptables en comparación
+de sus contrapartes recurrentes.
+
+El primer reto consistía en preparar los datos de entrada a la red neuronal y los 
+correspondientes datos de salida de forma que estos fueran muestras homogéneas
+sin saltos temporales que impidiearan a los modelos ajustarse a las funciones objetivo.
+
+En primer lugar, en un espacio de 10 minutos podías encontrar 2 o 3 muestras según fuera 
+el \textit{offset} del controlador de muestreos de los sensores.
+Además, como en la fase de preparación de los datos se realizaron descartes, se generaron, de esta manera,
+saltos temporales que podían afectar a la predicción de la tendencia.
+
+Una solución fue recorrer el conjunto de datos del sensor con una ventana deslizante del tamaño
+equivalente a las instancias de entrada (establecido por parámetro) y el dato de salida (se realizó una 
+aproximación preliminar realizando una única predicción, que posteriormente se modificó para 
+que los modelos fuesen capaces de realizar varias), de esta forma en ventanas en las que 
+no habían datos suficientes para la entrada se descartaban.
+
+\imagen{window.png}{Esquema del proceso de preparación de datos}{0.5}
+
+Cabe destacar que inicialmente se emplearon todos los datos para entrenamiento y validación, no estableciendo
+el conjunto de test, pero esto fue alterado más tarde añadiendo el tercer conjunto, lo que 
+permitía reducir el sesgo en la validación del modelo, pues, a diferencia de las instancias de validación, se tratan
+de datos que no han sido empleados por el modelo tanto para ser entrenado como validado.
+
+Tras la preparación de los datos de entrada de la red se comenzó a realizar el modelo \textit{GRU}, de forma
+que se debían establecer sus capas ocultas y las neuronas de estas.
+Para construir los modelos y verificar su funcionamiento se estableció inicialmente 3 capas en todos ellos, con
+36, 16 y 8 neuronas sucesivamente.
+
