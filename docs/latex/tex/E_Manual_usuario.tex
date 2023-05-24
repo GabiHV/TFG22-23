@@ -1,11 +1,44 @@
 \apendice{Documentación de usuario}
 
 \section{Introducción}
+En esta sección se presentará la forma de cargar los modelos resultantes en un fichero Python para poder ser desplegados en un producto software, 
+así como la forma que deberá tener el tensor de entrada a la red y la que tendrán los datos de salida.
 
 \section{Requisitos de usuarios}
+En cuanto a los requisitos del usuario, se deberá tener instalado \textbf{Python 3.9.13} \cite{misc:python2023}, junto con la versión 2.11.0 de \textbf{TensorFlow} \cite{misc:tensorflow2023},
+de forma que se puedan cargar los modelos almacenados empleando la función de la \textit{API} \textbf{Keras} correspondiente.
 
 \section{Instalación}
+En cuanto a la instalación de la versión concreta del intérprete de Python puede realizarse en \cite{misc:python2023}, mientras que para instalar la dependencia concreta de la \textit{API},
+se puede introducir el comando:
+\begin{lstlisting}[language=Bash]
+    pip3 install tensorflow=2.11.0
+\end{lstlisting}
+
+Para cargar un modelo con la librería mencionada, se debe emplear \cite{misc:tensorflow_save2023}:
+\begin{lstlisting}[language=Python]
+    from tensorflow import keras
+    keras.models.load_model('<path_del_modelo>')
+\end{lstlisting}
 
 \section{Manual del usuario}
+Para realizar predicciones con el modelo pertinente, las entradas deben tener una estructura concreta que dependerá de cómo se haya entrenado a cada una de las diferentes redes neuronales.
+Es decir, el tamaño del número de muestras de entrada dependerá de la cantidad de ``\textit{backtracking}'' que se haya establecido en el entrenamiento.
 
+En este caso se debe introducir un tensor bidimensional de 6 muestras (se han obtenido modelos que aceptan 6 horas) con 7 variables de entrada cada una que se corresponde a:
+\begin{itemize}
+    \item \textbf{t\_ext:} temperatura exterior media en una hora (-50, 50).
+    \item \textbf{h\_ext:} humedad exterior media en una hora (0, 100).
+    \item \textbf{t\_C\_cal:} temperatura media de la sonda de temperatura más superficial en una hora (-50, 50).
+    \item \textbf{h\_C\_cal:} humedad media de la sonda de humedad más superficial en una hora (0, 100).
+    \item \textbf{t\_L\_cal:} temperatura media de la sonda de temperatura interna en una hora (-50, 50).
+    \item \textbf{h\_L\_cal:} humedad media de la sonda de humedad interna en una hora (0, 100).
+    \item \textbf{sensor:} sensor al que se corresponde los datos (0, 7).
+\end{itemize}
 
+Por otro lado, las variables deberán estar normalizadas en el rango 0-1, con los máximos y mínimos especificados anteriormente.
+
+En el caso del modelo \textit{MLP}, en lugar de un tensor tridimensional, se deberá modificar para que se corresponda con un vector del número de variables por el de muestras.
+
+La salida será igualmente un tensor bidimensional del número de predicciones establecidas en el entrenamiento del modelo con 6 variables cada una que se corresponden a las mencionadas
+anteriormente a excepción del número de sensor. De forma inversa, el modelo proporcionará datos normalizados, por lo que para obtener cada atributo en un rango correcto deberá de denormalizarse.

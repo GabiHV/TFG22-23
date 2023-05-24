@@ -8,6 +8,7 @@
 \usepackage{lmodern} % scalable font
 \usepackage{microtype}
 \usepackage{placeins}
+\usepackage{listings}
 
 \RequirePackage{booktabs}
 \RequirePackage[table]{xcolor}
@@ -36,12 +37,16 @@
 % Evitar solapes en el header
 \nouppercaseheads
 
-% Imagenes
+% Comando para insertar una imagen en un lugar concreto.
+% Los parámetros son:
+% 1 --> Ruta absoluta/relativa de la figura
+% 2 --> Texto a pie de figura
+% 3 --> Tamaño en tanto por uno relativo al ancho de página
 \usepackage{graphicx}
-\newcommand{\imagen}[2]{
+\newcommand{\imagen}[3]{
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=0.9\textwidth]{#1}
+		\includegraphics[width=#3\textwidth]{#1}
 		\caption{#2}\label{fig:#1}
 	\end{figure}
 	\FloatBarrier
@@ -401,7 +406,7 @@
 \include{./tex/E_Manual_usuario}
 
 
-\bibliographystyle{plain}
+\bibliographystyle{IEEEtran}
 \bibliography{bibliografiaAnexos}
 
 \end{document}
