@@ -1,10 +1,177 @@
-\apendice{Plan de Proyecto Software}
+\apendice{Plan de Proyecto}
 
 \section{Introducción}
+En la sección se introduce la fase de planificación del proyecto, tanto la planificación temporal, como
+la viabilidad económica y legal.
 
 \section{Planificación temporal}
+La planificación del desarrollo del proyecto se realizó siguiendo la metodología ágil \textit{Scrum}, aunque no en su definición completa, puesto
+que al ser una única persona en el desarrollo, no permite realizar todos los procedimientos recogidos dentro de los manuales de gestión de proyectos
+con metodologías ágiles \cite{book:palacio2021}, como las reuniones diarias ``daily'' para recoger diferentes cuestiones como cúales son los 
+problemas que ralentizan el proceso de desarrollo del proyecto.
+
+Por otro lado, la herramienta software que apoyaba su aplicación (ZenHub \cite{misc:zenhub2023}) dejó de estar disponible de forma abierta, de forma
+que no pudo seguirse con el modelo \textit{Canvas} que aplicaba la metodología recogiendo en un tablero con varias columnas, según fuera su estado, las 
+tareas por cada uno de los \textit{sprints}.
+
+Aun así, se ha continuado aplicando la filosofía ágil en líneas generales:
+\begin{itemize}
+    \item Se continuó con el desarrollo iterativo incremental mediante los \textit{sprints}.
+    \item La duración media de estas iteraciones fueron de dos semanas al comienzo del proyecto y durante
+        la mayor parte de su realización, reduciendo el tiempo al final de este.
+    \item En la terminación de los \textit{sprints} se realizaba un incremento, manteniendo reuniones con los 
+        tutores para la planificación de la iteración entrante y la revisión de posibles errores en el desarrollo.
+    \item Las tareas surgidas de la reunión se creaba, estimaban y priorizaban, en un inicio añadiéndolas al tablero
+        \textit{Canvas}.
+\end{itemize}
+
+La estimación fue realizada empleando los \textit{story points} disponibles en ZenHub, de forma que estos iban de las 
+tareas más sencillas de implementar y rápidas, a las más complejas y que requerían de mayor tiempo
+de desarrollo.
+
+\subsection{Sprint 0 (18/01/2023 - 31/01/2023)}
+En este \textit{sprint} se presentó el proyecto, indicándose los primeros objetivos, lo que se enmarca en la fase de comprensión
+del negocio.
+Las primeras tareas se correspondían con la fase de comprensión de datos y a su vez la preparación de los mismos, 
+puesto que el conjunto proporcionado contaba con diferentes casuísticas de las que en un comienzo se tenía constancia.
+
+Entre los problemas encontrados previos al análisis en profundidad de los datos se encontraban lecturas incorrectas (valores erróneos) 
+debido a problemas de \textit{overflow} de variables en los controladores de cada sensor, de forma que cuando la batería bajaba
+de los 3.1V, las lecturas en el conjunto de datos se trataban de errores en su mayoría.
+
+Además, en ciertos periodos de tiempo los sensores habían estado desconectados, por lo que se produjeron lecturas nulas (valores faltantes)
+que necesitaban ser tratadas.
+
+Por otro lado, las lecturas en el pluviómetro instalado en las dependencias del viñedo en algunas de las muestras arrojaban valores
+inverosímiles debido a la forma en la que este se encontraba instalado, de manera que el balancín empleado para medir las diferencias de 
+precipitaciones entre instantes se activaba artificialmente.
+
+Durante el desarrollo de la iteración se comenzó con el tratamiento de los datos nulos, tomando la decisión de eliminar las entradas, pues se
+contaba con un número elevado de muestras y realizar la recuperación de estas no parecía viable debido a la naturaleza de los datos.
+Por otro lado, para los problemas relacionados con el pluviómetro se solicitaron claves \textit{API} para poder acceder a los registros 
+de estaciones meteorológicas cercanas a la zona y poder comprobar los registros.
+
+Por otro lado, se comenzó a realizar las gráficas de los datos para intentar encontrar correlaciones en los datos y poder hallar diferentes 
+errores en el conjunto de datos.
+
+\subsection{Sprint 1 (31/01/2023 - 14/02/2023)}
+En este \textit{sprint} se presentaron los avances de la primera iteración y se acordó la continuación del proceso de comprensión de datos y 
+preparación de los mismos.
+
+Los esfuerzos se centraron entonces en modificar las gráficas de visualización de datos para continuar con la inspección visual de los sensores 
+y comenzar con los datos del pluviómetro.
+Con estas inspecciones se consigue encontrar anomalías en ciertos sensores como en el caso del segundo y cuarto.
+
+\subsection{Sprint 2 (14/02/2023 - 28/02/2023)}
+En la reunión de la iteración se propusieron diferentes objetivos:
+\begin{itemize}
+    \item En el sensor 2 eliminar con variación excesiva en temperatura, corrigiendo los datos ruidosos.
+    \item En el sensor 3 se encontró que el salto de humedad no era genuino.
+    \item En el sensor 4 intentar realizar una media móvil para arreglar variables como la temperatura al emplear variaciones diarias en lugar de 
+        muestreos cada 5 minutos.
+\end{itemize}
+
+Durante el desarrollo del \textit{sprint} se continuó con la selección de datos, encontrando que el efecto de la lluvia provocaba ciertos cambios 
+bruscos en los datos como en el caso del sensor 5, pero estando algunos aparentemente no relacionados con este fenómeno.
+Se comenzó, por otro lado con la selección y limpieza de los datos mediante una columna adicional de validez en los ficheros correspondientes.
+
+Además, se implementó la detección de \textit{Outliers} mediante el rango intercuartílico, para eliminar el posible ruido del conjunto de datos
+de los sensores.
+
+\subsection{Sprint 3 (28/02/2023 - 14/03/2023)}
+En la reunión de la iteración se acordó realizar la recuperación de los datos del sensor 8 hasta la variabilidad excesiva de los valores de las
+variables observadas, así como el intento de mejorar la calidad del conjunto de datos en otros sensores realizando procesos similares.
+Por otro lado, se propuso emplear WeatherBit como \textit{API} meteorológica para eliminar los datos que más distaran de las lecturas del 
+pluviómetro desplegado.
+
+Durante el desarrollo del \textit{sprint} se modificaron los umbrales empleados en la detección y manejo de valores extremos, para eliminar la mayoría
+cantidad de ruido posible en todos los sensores.
+Por otro lado, se fueron finalizando las selecciones de datos de los sensores, de forma que se realizó la recuperación de los datos en sensores cuyas 
+variabilidades se debían a factores externos (fueron sacados de sus posiciones originales).
+
+En lo referente del sensor 8 se llegó a la conclusión de que buena parte de los datos eran irrecuperables debido a las variabilidades aleatorias 
+con las que parecía contar.
+
+Por otro lado, se comenzó con la limpieza de los datos de los sensores empleando los datos de varias \textit{API}, en primer lugar se trató de emplear
+la mencionada anteriormente, siendo el \textit{endpoint} ideal de licencia de pago.
+Probando con OpenWeatherMap se presentó el caso al soporte, ampliando la licencia de usuario para poder acceder a l utilidad requerida, sin embargo no
+se permitía retrotraerse en más de un año en las lecturas registradas.
+
+Finalmente se decide emplear los servicios de la AEMET, debido principalmente a que permitía obtener los datos de hacía más de un año, sin embargo, contaba
+con inconvenientes, y es que no permitía obtener datos por hora, sino por día y la estación meteorológica más cercana se encontraba a unos 15 Kilómetros
+del despliegue.
+
+\subsection{Sprint 4 (14/03/2023 - 28/03/2023)}
+En la reunión del \textit{sprint} se acuerda comenzar con la fase del modelado a la vista de la aparente correcta selección y limpieza de los datos 
+proporcionados.
+Se plantea la creación de una matriz de correlación para observar cúales de los atributos seleccionar para la creación del modelo.
+
+Durante el desarrollo de la iteración los esfuerzos se centran en la creación del entorno virtual con las dependencias correspondientes que permitan 
+realizar los modelados, además de dejar el fichero de pre-procesamiento de datos comentado con las explciaciones pertinentes.
+
+Por otro lado, se realizan avances sustanciales en la memoria del proyecto añadiendo información el la introducción, objetivos y técnicas y herramientas,
+además de realizar una reestructuración de ficheros y una modificación de la forma en la que se realizan las gráficas de los datos.
+
+Se comienza con la creación tentativa del modelo neuronal en busca de conocimiento del dominio, que permita profundizar en los módulos empleados para tal
+propósito, realizando regresión simple.
+Se investiga sobre las redes neruonales recurrentes, más concretamente sobre la aplicación de modelos como \textit{GRU} y \textit{LSTM} en problemas
+similares (predicciones de tiempo atmosférico).
+
+\subsection{Sprint 5 (28/03/2023 - 11/04/2023)}
+En la reunión de la iteración se muestran los avances en memoria y en la creación de modelos, por otro lado, se plantea la forma de realizar la regresión
+empleando Keras.
+
+Durante el \textit{sprint} se modifica la manera en la que se crean los datos de entrada a los modelos, empleando medias diarias para tal propósito y 
+dividiendo los datos en dos conjuntos: entrenamiento y validación. Además, se crean las gráficas de dispersión que permiten comparar visualmente
+las predicciones y valores reales.
+
+Por otro lado, se continúa con el desarrollo de la memoria, añadiendo conceptos teóricos sobre el proceso de extracción de conocimiento de bases de datos 
+(\textit{KDD}), así como modificando algunos apartados.
+
+\subsection{Sprint 6 (11/04/2023 - 25/04/2023)}
+En la planificación se considera entrenar a los modelos neuronales únicamente con valores adecuados, pues hasta ahora pueden existir saltos temporales que
+pueden afectar a la regresión, realizando medias temporales cada cierto periodo de tiempo para eliminar los posibles problemas de \textit{offset} de los 
+muestreos originales.
+
+En el desarrollo del \textit{sprint}, se modificó la selección en los datos de entrada a los modelos, de forma que se realizaban las medias diarias de los
+diferentes atributos y se les aplicaba el filtro de Hodrick-Presscott, un filtro de tendencias, que permite obtener las tendencias en una serie temporal,
+de manera que los modelos sean capaces de generalizar de forma más adecuada.
+
+Por otro lado, se continuó con la memoria, en concreto con los conceptos teóricos relacionados con la fase de modelado.
+
+\subsection{Sprint 7 (25/04/2023 - 09/05/2023)}
+En la reunión de la iteración se revisan los cambios realizados, llegando a la consideración de emplear varios dias previos como entrada a los modelos,
+utilizando una ventana deslizante para seleccionar datos, de manera que se eviten los saltos temporales y estudiar la incorporación de una componente temporal 
+como entrada en la regresión.
+
+De esta forma, en el desarrollo se aplicó la ventana deslizante para la selección de datos de entrada en el modelo, de manera que se pudieran evitar los saltos
+temporales.
+
+\subsection{Sprint 8 (09/05/2023 - 16/05/2023)}
+En la planificación se acordó intentar rebajar los periodos de tiempo, y que se emplearan datos medios por hora en lugar de diarios y probar los hiperparámetros
+de las redes, intentando variar las neuronas por capa, el número de estas, el ratio de aprendizaje, etc. para observar el comportamiento de los modelos y
+determinar tanto si continúan generalizando como si es necesario realizar cambios en el proceso de conocimiento de datos y preparación de estos.
+
+De esta manera, se redujo la frecuencia de las medias de los datos, realizando la integración de los datos de los sensores en un único fichero, para poder
+entrenar los modelos empleando un único conjunto. Esto obligó a cambiar la forma en la que se graficaban los resultados, mostrando las gráficas de 
+dispersión por sensor y atributo.
+
+Por otro lado, se dividió el conjunto de datos en tres subconjuntos diferentes: un conjunto para entrenamiento, otro para validación y el restante para test, 
+permitiendo la parametrización en la división de estos.
+
+\subsection{Sprint 9 (16/05/2023 - 23/05/2023)}
+En la reunión de la iteración se acordó tratar de predecir tiempos más largos en lugar de un único instante como realizaban los modelos hasta el momento;
+previsiblemente el error sería mayor, por lo que se mencionó permitir parametrizar este valor.
+
+Ante el objetivo principal planteado hubo que realizar diferentes modificaciones en la selección de los datos de salida y los parámetros, penalizando el rendimiento
+general de los modelos.
+
+Se avanzó en la memoria en los conceptos teóricos y se realizaron algunas correcciones.
+
+\subsection{Sprint 10 (23/05/2023 - 30/05/2023)}
 
 \section{Estudio de viabilidad}
+
 
 \subsection{Viabilidad económica}
 
