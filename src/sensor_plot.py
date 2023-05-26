@@ -4,7 +4,7 @@ import pandas as pd
 # Etiquetas de las graficas de la figura
 LABELS = {"t_ext" : "Temp Ext", "h_ext" : "Humedad Ext", "t_C_cal" : "Temp Corta", "h_C_cal" : "Huemdad Corta", "t_L_cal" : "Temp Larga", "h_L_cal" : "Humedad Larga"}
 
-def sensor_plot(files, path):
+def sensor_plot(files, path, save_path):
 
     for file_counter, file in enumerate(files, start=1):
         dataset = pd.read_csv(path + file)
@@ -14,7 +14,7 @@ def sensor_plot(files, path):
         ts_final = max(x)
         ts_inicial = min(x)
 
-        plt.figure(num = "Graficas " + file, figsize=(15, 7.5))
+        fig = plt.figure(num = "Graficas " + file, figsize=(15, 7.5))
         plt.suptitle("Graficas del sensor " + str(file_counter))
 
         # Por cada etiqueta habra una grafica correspondiente con la columna X del DataFrame
@@ -26,3 +26,5 @@ def sensor_plot(files, path):
             plt.ylabel(LABELS[key])
 
         plt.show()
+
+        fig.savefig(save_path + f'sensor{file_counter}.png')

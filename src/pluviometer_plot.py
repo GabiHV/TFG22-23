@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 # Etiquetas de las graficas de la figura
 LABELS = {"pluv" : "Balancin", "pluv_delta" : "Pluv_actual - Pluv_anterior", "pluv_deltaMM" : "litros/m^2"}
 
-def pluviometer_plot(path):
+def pluviometer_plot(path, save_path):
     dataset = pd.read_csv(path + "pluviometro.csv")
 
-    plt.figure(num="Graficas del pluviometro", figsize=(15, 7.5))
+    fig = plt.figure(num="Graficas del pluviometro", figsize=(15, 7.5))
     plt.suptitle("Graficas del pluviometro")
 
     # Por cada etiqueta habra una grafica correspondiente con la columna X del DataFrame
@@ -18,3 +18,5 @@ def pluviometer_plot(path):
         plt.ylabel(LABELS[key])
     
     plt.show()
+
+    fig.savefig(save_path + 'pluviometro.png')
