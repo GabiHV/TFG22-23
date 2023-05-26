@@ -169,12 +169,102 @@ general de los modelos.
 Se avanzó en la memoria en los conceptos teóricos y se realizaron algunas correcciones.
 
 \subsection{Sprint 10 (23/05/2023 - 30/05/2023)}
+En la planificación básicamente se indicó la continuación en los esfuerzos de realización de memoria y anexos.
+De esta manera, este \textit{sprint} se centró en la finalización de los mismos.
 
 \section{Estudio de viabilidad}
-
+En esta sección se desglosarán la viabilidad económica y legal del proyecto, en cuanto a la primera indicará los costes derivados del desarrollo en un enotorno real.
+En lo referente la segunda, se presentarán las licencias empleadas en el proyecto y su implicación con librerías de terceros.
 
 \subsection{Viabilidad económica}
+En términos de viabilidad económoca es necesario hacer una diferenciación entre los costes y los beneficios que lleva realizar el proyecto.
+
+\subsubsection{Costes}
+Los costes que pueden surgir del proyecto en un entorno empresarial pueden desglosarse en los siguientes:
+
+\textbf{Costes de personal:}
+
+El desarrollo se ha realizado con un única persona empleada a tiempo completo en aproximadamente 4 meses, de forma que se consideran los siguientes 
+costes:
+\tablaSmallSinColores{Costes de Hardware}{l l}{Coste Hardware}{\textbf{Concepto} & \textbf{Coste} \\}
+{Salario mensual neto & 1.080€ \\
+Retención I.R.P.F(12\%) & 185,46€ \\
+Seguridad Social(31,1\%) & 480,64€ \\
+\hline
+Salario mensual bruto & 1.545€ \\
+\hline
+\textbf{Total 4 meses} & 6.181,92€ \\
+}
+
+El porcentaje mensual de aporte a la Segurida Social se calcula como el 0,2\% al Fondo de Garantía Salarial (FOGASA), más el 0,6\%, el 6,7\% de
+la prestación por desempleo y el 23,6\% de contingencias comunes \cite{misc:ss2023}.
+
+\textbf{Costes de hardware:}
+
+El hardware empleado tiene un tiempo de amortización aproximado de 4 años.
+\tablaSmallSinColores{Costes de Hardware}{l l l}{Coste Hardware}{\textbf{Concepto} & \textbf{Coste} & \textbf{Coste amortizado} \\}
+{Ordenador portátil & 900€ & 45€ \\
+\hline
+\textbf{Total} & 900€ & 45€ \\
+}
+
+\textbf{Costes de software:}
+
+En cuanto a los costes de software, hay ciertos programas o herramientas empleadas durante el desarrollo que requieren de licencia de pago,
+estos contarán con un tiempo de amortización estimado de 2 años.
+\tablaSmallSinColores{Costes de Software}{l l l}{Coste Software}{\textbf{Concepto} & \textbf{Coste} & \textbf{Coste amortizado} \\}
+{Windows 10 Home & 148€ & 18,5€ \\
+\hline
+\textbf{Total} & 148€ & 18,5€ \\
+}
+
+\textbf{Costes varios:}
+
+Al igual que en otras situaciones empresariales, en los desarrollos de software surgen tanto costes inesperados, como fijos.
+Se reflejarán aquellos costes variados que aparentemente se tratarían de costes fijos.
+\tablaSmallSinColores{Costes varios}{l l}{Coste varios}{\textbf{Concepto} & \textbf{Coste} \\}
+{Memoria y anexos & 50€ \\
+Alquiler de espacio de trabajo & 592€ \\
+Internet & 120€ \\
+\hline
+\textbf{Total} & 762€ \\
+}
+
+\textbf{Costes totales:}
+
+Los costes del desarrollo del proyecto son los siguientes:
+\tablaSmallSinColores{Costes totales}{l l}{Coste totales}{\textbf{Concepto} & \textbf{Coste} \\}
+{Personal & 6.181,92€ \\
+Hardware & 900€ \\
+Software & 148€ \\
+Varios & 762€ \\
+\hline
+\textbf{Total} & 7.991,92€ \\
+}
+
+\subsubsection{Beneficios}
+En cuanto a los beneficios generados, en el \textit{scope} del proyecto no había cabida a un despliegue en los meses de desarrollo de los 
+modelos, por lo que a corto plazo no habría ningún beneficio aparente.
+
+Sin embargo, la forma de obtener los beneficios entraría dentro de una segunda fase, cuando se realice el despliegue del resultados
+en algún producto.
 
 \subsection{Viabilidad legal}
+En esta sección se desglosarán los temas relacionados con las licencias de uso de los productos software.
 
+En primer lugar se analizará la licencia más conveniente en el desarrollo del proyecto, teniendo en cuenta las dependencias empleadas y 
+sus respectivas licencias, puesto que la selección estará limitada por las restricciones de estas principalmente.
 
+\tablaSmallSinColores{Licencias de las dependencias utilizadas}{m{6em} m{5em} m{12em} m{5em}}{Licencias dependencias}{\textbf{Dependencia} & \textbf{Versión} & \textbf{Descripción} & \textbf{Licencia}\\}
+{TensorFlow & 2.11.0 & Biblioteca de aprendizaje automático & Apache v2.0 \\
+Pandas & 1.5.3 & Biblioteca especializada en manipulación y análisis de datos & BSD \\
+Matplotlib & 2.11.0 & Biblioteca para generación de gráficos & BSD \\
+IPython Kernel for Jupyter & 6.21.3 & Biblioteca para manipulación de Python Notebooks & BSD \\
+Statsmodel & 0.13.5 & Biblioteca con modelos y funciones estadísticas & BSD \\
+}
+
+De esta forma, se debe seleccionar una licencia compatible con Apache v2.0 y BSD, siendo la primera la más restrictiva de las licencias, que requiere la conservación del aviso de derecho
+de autor y un descargo de responsabilidad, sin embargo, no es \textit{copyleft} \cite{misc:apache2}.
+
+Por su versatilidad se escoge una licencia MIT, de forma que el se trata de una licencia permisiva de software libre, imponiendo muy poocas restricciones y otorgando una
+buena compatibilidad con otras licencias.
