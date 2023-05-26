@@ -1,0 +1,74 @@
+\apendice{Preparación de los datos}
+
+\section{Introducción}
+En la fase de preparación de los datos se realiza la limpieza de los mismos para 
+que posteriormente puedan ser empleados por los modelos y obtener resultados adecuados
+para ser empleados en un posterior despliegue.
+
+Esta fase está compuesta por la detección y el tratamiento de varias casuísticas en 
+los datos, como los valores faltantes, que se tratan de valores de los que no tenemos
+registros por diferentes motivos y los valores extremos, que son aquellos
+estadísticamente lejanos al resto, lo que no quiere decir que sean erróneos.
+
+Por otro lado, también se pueden encontrar valores erróneos, que pueden ser 
+estadísticamente correctos, pero son datos que no tienen sentido contextual, en este
+caso concreto se tratará de subidas o bajadas inverosímiles de temperaturas 
+y/o humedades del suelo, que se encuentran dentro de los valores naturales,
+pero que no se pueden producir a la velocidad a la que tienen lugar.
+En este caso, se empleará una exploración visual para realizar su tratamiento. 
+
+\section{Valores faltantes}
+En cuanto a los valores faltantes, la decisión fue elimiar las muestras que tuvieran
+indeterminados en alguna de sus columnas, puesto que la recuperación empleando técnicas
+como la imputación de valores era prácticamente inviable y por otro lado, se contaban
+con ejemplos suficientes como para poder suprimir parte de estos.
+
+\section{Valores extremos}
+En cuanto a la detección y el tratamiento de los valores faltantes, se empleó el 
+rango intercuertílico para realizar la primera de las tareas, sustituyendo las variables
+del atributo concreto de los ejemplos detectados con la mediana diaria.
+
+%% Explicar gráficamente IQR1.75
+
+De esta manera se eliminaba el ruido presente en alguno de los sensores, a la par 
+que no se producían cambios bruscos en el conjunto de datos gracias a emplear la 
+mediana del grupo.
+
+\section{Valores erróneos}
+En lo referente a los valores erróneos se trata de una de las tareas más arduas 
+del proyecto, puesto que parte de este se desarrolló de forma visual diréctamente
+sobre el conjunto de datos de los diferentes sensores y el pluviómetro, siendo, 
+de esta manera, en su mayoría un proceso manual.
+
+Para tal propósito se estableció una columna adicional al conjunto de datos original
+que indicaba la validez de la muestra concreta.
+
+% Sensor 1
+\imagen{processed_data/sensor1.png}{Datos procesados: sensor 1}{1}
+
+% Sensor 2
+\imagen{processed_data/sensor2.png}{Datos procesados: sensor 2}{1}
+
+% Sensor 3
+\imagen{processed_data/sensor3.png}{Datos procesados: sensor 3}{1}
+
+% Sensor 4
+\imagen{processed_data/sensor4.png}{Datos procesados: sensor 4}{1}
+
+% Sensor 5
+\imagen{processed_data/sensor5.png}{Datos procesados: sensor 5}{1}
+
+% Sensor 6
+\imagen{processed_data/sensor6.png}{Datos procesados: sensor 6}{1}
+
+% Sensor 7
+\imagen{processed_data/sensor7.png}{Datos procesados: sensor 7}{1}
+
+% Sensor 8
+\imagen{processed_data/sensor8.png}{Datos procesados: sensor 8}{1}
+
+Hablándo en términos de sesgos, es posible que al realizar la recuperación de estos
+valores en los sensores mencionados, puedan haberse sesgado en cierta medida
+los conjuntos de datos, sin embargo, los datos no dejarán de estar más cercanos a los
+valores reales y, por tanto, contener un error más reducido que las muestras originales
+que contenían esta casuística.

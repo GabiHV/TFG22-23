@@ -1,0 +1,78 @@
+\apendice{Comprensión de los datos}
+
+\section{Introducción}
+En la etapa de comprensión de los datos se creará el conjunto inicial y se comprobará
+si este es adecuado, para, en caso contrario, poder seguir recopilando.
+
+Los plazos del proyecto impiden realizar esta fase en toda su extensión, puesto que
+a pesar de ser el proceso de análisis de datos un proceso iterativo, se encuentra 
+sujeto a unos plazos inamovibles.
+
+\section{Descripción de los datos}
+Se proporcionan un conjunto de datos compuesto por varios sensores (en concreto 8 
+sensores \textit{IoT}) y un pluviómetro desplegados en un viñedo.
+
+Los datos de los sensores proporcionados cuentan con los siguientes atributos:
+
+\tablaSmallSinColores{Atributos de los datos: sensores}{m{5em} m{15em} m{10em}}{Atributos sensores}{\textbf{Atributo} & \textbf{Descripción}  & \textbf{Medida} \\}
+{
+ts          & \textit{Timestamp} de la muestra                    & ms \\
+fecha       & Fecha de la muestra                                 & Fecha en formato yy/mm/dd, hh:mm:ss \\
+batería     & Nivel de batería del sensor                         & V \\
+t\_ext      & Temperatura ambiental                               & ºC \\
+h\_ext      & Humedad ambiental                                   & \% \\
+t\_C\_cal   & Temperatura superficial a 20cm.                     & ºC \\
+h\_C\_cal   & Humedad superficial a 20cm.                         & \% \\
+t\_L\_cal   & Temperatura a profundidad mayor a t\_C\_cal         & ºC \\
+h\_L\_cal   & Humedad superficial a profundiad mayor a h\_C\_cal  & \% \\
+h\_C        & Humedad superficial sin calibrar                    & Valor relacionado con capacitancias \\
+h\_L        & Humedad profunda sin calibrar                       & Valor relacionado con capacitancias \\
+}
+
+Los datos del pluviómetro cuentan con los siguientes atributos:
+\tablaSmallSinColores{Atributos de los datos: pluviómetro}{m{7em} m{13em} m{10em}}{Atributos pluviómetro}{\textbf{Atributo} & \textbf{Descripción}  & \textbf{Medida} \\}
+{
+ts              & \textit{Timestamp} de la muestra                      & ms \\
+fecha           & Fecha de la muestra                                   & Fecha en formato yy/mm/dd, hh:mm:ss \\
+batería         & Nivel de batería del sensor                           & V \\
+pluv            & Contador del incremento de activación del balancín    & N/A \\
+pluv\_delta     & Incremento de activación del balancín                 & N/A \\
+pluv\_deltaMM   & Precipitaciones registradas desde la última lectura   & litros/\(m^2\) \\
+}
+
+\subsection{Visualización de los datos}
+Para dar una idea del estado de los datos se proporcionan unas gráficas de dispersión
+con las lecturas realizadas en cada uno de los sensores y el pluviómetro.
+En estas podrán observarse los valores \textbf{sin procesar} de cada atributo 
+en función del tiempo.
+
+En el caso de los sensores, los atributos \textit{h\_C} y \textit{h\_L} se obviarán debido
+a que se tratan de datos redundantes con las respectivas humedades calibradas. 
+Además, los datos de batería y fecha tampoco se emplearán en la creación de las gráficas.
+
+% Sensor 1
+\imagen{raw_data/sensor1.png}{Datos no procesados: sensor 1}{1}
+
+% Sensor 2
+\imagen{raw_data/sensor2.png}{Datos no procesados: sensor 2}{1}
+
+% Sensor 3
+\imagen{raw_data/sensor3.png}{Datos no procesados: sensor 3}{1}
+
+% Sensor 4
+\imagen{raw_data/sensor4.png}{Datos no procesados: sensor 4}{1}
+
+% Sensor 5
+\imagen{raw_data/sensor5.png}{Datos no procesados: sensor 5}{1}
+
+% Sensor 6
+\imagen{raw_data/sensor6.png}{Datos no procesados: sensor 6}{1}
+
+% Sensor 7
+\imagen{raw_data/sensor7.png}{Datos no procesados: sensor 7}{1}
+
+% Sensor 8
+\imagen{raw_data/sensor8.png}{Datos no procesados: sensor 8}{1}
+
+% Pluviómetro
+\imagen{raw_data/pluviometro.png}{Datos no procesados: pluviómetro}{1}
