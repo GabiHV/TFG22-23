@@ -1,11 +1,11 @@
 # Análisis de datos de temperatura y humedad de suelo procedentes de los sensores IoT desplegados en un viñedo
-Repositorio del Trabajo Fin de Grado "Análisis de datos de temperatura y huemedad de suelo procedentes de sensores IoT desplegados en un viñedo".
+Repositorio del Trabajo Fin de Grado _"Análisis de datos de temperatura y huemedad de suelo procedentes de sensores IoT desplegados en un viñedo"_.
 
 Estado del proceso de desarrollo del TFG:
 - [x] Preprocesamiento de datos 
 - [x] Selección del modelo de RNA
 - [x] Modelado de la red
-- [ ] Entrenamiento de la red :arrow_left:
+- [x] Entrenamiento de la red 
 - [ ] Evaluación del modelo :arrow_left:
 
 Autor:
@@ -96,4 +96,4 @@ En sistemas Linux:
 chmod +x virtual_env.sh && ./virtual_env.sh
 ```
 
-Tras la ejecución de los scripts podemos cerrar el terminal y proceder a la ejecución de los programas empleando el entorno virtual generado.
+Tras la ejecución de los scripts podemos proceder a la ejecución de los programas empleando el entorno virtual generado.
