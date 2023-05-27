@@ -3,7 +3,7 @@
 \section{Introducción}
 En la fase de preparación de los datos se realiza la limpieza de los mismos para 
 que posteriormente puedan ser empleados por los modelos y obtener resultados adecuados
-para ser empleados en un posterior despliegue.
+para ser utilizados en un posterior despliegue.
 
 Esta fase está compuesta por la detección y el tratamiento de varias casuísticas en 
 los datos, como los valores faltantes, que se tratan de valores de los que no tenemos
@@ -17,6 +17,13 @@ y/o humedades del suelo, que se encuentran dentro de los valores naturales,
 pero que no se pueden producir a la velocidad a la que tienen lugar.
 En este caso, se empleará una exploración visual para realizar su tratamiento. 
 
+Cabe destacar que a todos los conjuntos de datos se les ha aplicado un filtro de 
+tendencias (en este caso el filtro de Hodrick-Presscot \cite{misc:wikipediaHodrick2023}), 
+puesto que no existe un interés específico en los datos concretos, sino en las posibles 
+tendencias de las diferentes variables, que nos permitan obtener una predicción adecuada 
+en cada circunstancia.
+De esta manera, se ha establecido la tendencia diaria de los datos.
+
 \section{Valores faltantes}
 En cuanto a los valores faltantes, la decisión fue elimiar las muestras que tuvieran
 indeterminados en alguna de sus columnas, puesto que la recuperación empleando técnicas
@@ -25,10 +32,10 @@ con ejemplos suficientes como para poder suprimir parte de estos.
 
 \section{Valores extremos}
 En cuanto a la detección y el tratamiento de los valores faltantes, se empleó el 
-rango intercuertílico para realizar la primera de las tareas, sustituyendo las variables
+rango intercuartílico para realizar la primera de las tareas, sustituyendo las variables
 del atributo concreto de los ejemplos detectados con la mediana diaria.
 
-%% Explicar gráficamente IQR1.75
+\imagen{iqr.png}{Representación gráfica del método del rango intercuartílico}{0.75}
 
 De esta manera se eliminaba el ruido presente en alguno de los sensores, a la par 
 que no se producían cambios bruscos en el conjunto de datos gracias a emplear la 
@@ -43,32 +50,112 @@ de esta manera, en su mayoría un proceso manual.
 Para tal propósito se estableció una columna adicional al conjunto de datos original
 que indicaba la validez de la muestra concreta.
 
+\section{Visualización de los datos}
+En esta sección se explicará el tratamiento realizado en cada uno de los sensores, y,
+de esta forma, poner en contexto cómo se han resuelto los problemas detectados
+en la fase anterior.
+
+\subsection{Sensor 1}
 % Sensor 1
 \imagen{processed_data/sensor1.png}{Datos procesados: sensor 1}{1}
 
+Como puede observarse en la Figura \ref{fig:processed_data/sensor1.png}, 
+se ha tratado el ruido presente en el conjunto de datos original, sustituyendo los 
+respectivos valores por la mediana diaria.
+
+Por otro lado, se ha determinado la supresión de las muestras que indicaban una 
+variabilidad brusca de las humedades del suelo debidas a el agotamiento de la batería.
+Esta decisión estuvo motivada por la pérdida moderada de datos, además de la 
+falta de las muestras siguientes.
+
+\newpage
+
+\subsection{Sensor 2}
 % Sensor 2
 \imagen{processed_data/sensor2.png}{Datos procesados: sensor 2}{1}
 
+En este caso, como puede observarse en la Figura \ref{fig:processed_data/sensor2.png},
+se aplicó de nuevo la detección y tratamiento de ruido empleando la mediana como 
+valor sustitutorio, además, ante la aparente imposibilidad de obtener una adecuada
+recuperación de los datos con alta variabilidad, se optó por no utilizarlos.
+
+\newpage
+
+\subsection{Sensor 3}
 % Sensor 3
 \imagen{processed_data/sensor3.png}{Datos procesados: sensor 3}{1}
 
+Como puede observarse en la Figura \ref{fig:processed_data/sensor3.png}, en este caso
+concreto, el conjunto de datos se modifica, en cuanto a la invalidez de ejemplos se refiere,
+visiblemente menos que los sensores anteriores y los siguientes.
+
+En este caso solo fue necesario retirar del conjunto de datos una porción moderada de las
+muestras totales que había resultado del agotamiento de la batería del sensor.
+
+\newpage
+
+\subsection{Sensor 4}
 % Sensor 4
 \imagen{processed_data/sensor4.png}{Datos procesados: sensor 4}{1}
 
+En este sensor se optó, como refleja la Figura \ref{fig:processed_data/sensor4.png}, 
+por la eliminación de los datos a partir del comienzo de las lecturas que ya
+se conocían que eran incorrectas, lo que dejaba un conjunto de datos preparado
+para ser empleado por los modelos. 
+
+\newpage
+
+\subsection{Sensor 5}
 % Sensor 5
 \imagen{processed_data/sensor5.png}{Datos procesados: sensor 5}{1}
 
+En este caso, a diferencia del resto de sensores, no fue necesario una modificación
+tan exhaustiva del conjunto de datos, puesto que los únicos tratamientos fueron la 
+detección de \textit{outliers} o valores extremos y la eliminación de los ejemplos
+con valores faltantes.
+
+\newpage
+
+\subsection{Sensor 6}
 % Sensor 6
 \imagen{processed_data/sensor6.png}{Datos procesados: sensor 6}{1}
 
+En el caso del sensor 6, como puede apreciarse en la Figura 
+\ref{fig:processed_data/sensor6.png}, se ha tratado y eliminado el ruido presente 
+mediante la detección de valores extremos. Además, la anomalía de la humedad ha sido
+eliminada al tratarse de una situación que no podía corregirse, por ejemplo, con los
+métodos mencionados.
+
+\newpage
+
+\subsection{Sensor 7}
 % Sensor 7
 \imagen{processed_data/sensor7.png}{Datos procesados: sensor 7}{1}
 
+En este caso existían dos problemas principales en el conjunto de datos original:
+las sondas de temperatura y humedad comenzaban a realizar lecturas de variaciones
+muy elevadas para su profundidad en cortos periodos de tiempo y a la par
+existían atributos que no contaban con valores, además, al igual que en otros casos,
+el agotamiento de la batería producía lecturas incorrectas en las humedades.
+
+Ante estos problemas las soluciones tomadas fueron las de eliminar los ejemplos 
+afectados. En el primer caso porque se trataban de periodos de tiempo moderados y 
+en el segundo porque se había producido el desplazamiento del sensor de su posición 
+original.
+
+\newpage
+
+\subsection{Sensor 8}
 % Sensor 8
 \imagen{processed_data/sensor8.png}{Datos procesados: sensor 8}{1}
+
+Como puede observarse en la Figura \ref{fig:processed_data/sensor8.png}, en este caso
+no ha sido posible recuperar los datos de gran parte del periodo muestreado.
+Los aumentos de humedad mostrados en la figura indicada están contrastados como 
+provocados por las altas precipitaciones.
 
 Hablándo en términos de sesgos, es posible que al realizar la recuperación de estos
 valores en los sensores mencionados, puedan haberse sesgado en cierta medida
 los conjuntos de datos, sin embargo, los datos no dejarán de estar más cercanos a los
 valores reales y, por tanto, contener un error más reducido que las muestras originales
-que contenían esta casuística.
+con esta casuística.
