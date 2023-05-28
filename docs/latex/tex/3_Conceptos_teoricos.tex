@@ -127,36 +127,106 @@ que los gradientes calculados se emplearán posteriormente para actualizar los p
 \subsection{Redes Neuronales Recurrentes (\textit{RNN})}
 Las redes neuronales convencionales (véase por ejemplo los \textit{MLP}, las redes neuronales de base radial, etc.) están diseñadas para
 datos multidimensionales cuyos atributos son independientes de otros.
-Sin embargo, existen datos que contienen dependencias secuenciales entre atributos como los datos de series temporales, biológicos o 
-cadenas de texto \cite{book:aggarwal2018}.
+Sin embargo, existen datos que contienen dependencias de atributos previos como los datos de series temporales, 
+biológicos o cadenas de texto \cite{book:aggarwal2018}.
 
 Las redes neuronales recurrentes pueden ser empleadas en este tipo de datos y además cuentan con ventajas con respecto a las redes convencionales.
 A diferencia de estas recibe y procesa las entradas en el orden de llegada y las trata de igual manera que los instantes anteriores.
-Por otro lado, en luagar de un número variable de entradas, contienen un número variable de capas, y cada una de estas se corresponde con un 
-instante de tiempo, lo que permite a cada una de las neuronas interactuar con otras más cercanas a la salida \cite{book:aggarwal2018}.
+Por otro lado, se considera unidad básica a las estructuras denominadas celdas.
 
-Cada una de las celdas de este tipo de modelos (operaciones con dos entradas y dos salidas) se calculará en cada instante de tiempo \textit{t} como:
+Además, en luagar de un número variable de entradas, contienen un número variable de celdas, y cada una de estas se corresponde con un 
+instante de tiempo, lo que permite a cada una de estas interactuar con otras más cercanas a la salida \cite{book:aggarwal2018}.
+
+Cada una de las celdas de este tipo de modelos realiza operaciones con dos entradas y dos salidas que se calculará en cada instante de tiempo \textit{t} como:
 \begin{equation}
     \begin{aligned}
     f: \quad \mathbb{R}^{m+n} & \rightarrow \mathbb{R}^{n+l} \\
-    \left(x_t, s_{t-1}\right) & \mapsto\left(h_t, s_t\right)
+    \left(x_t, s_{t-1}\right) & \mapsto\left(y_t, s_t\right)
     \end{aligned}
 \end{equation}
 
-Donde \(x_t\) es el vector de entrada de dimensión \textit{m} a la celda en el instante \textit{t}, \(h_{t}\) es el vector de salida de 
+Donde \(x_t\) es el vector de entrada de dimensión \textit{m} a la celda en el instante \textit{t}, \(y_{t}\) es el vector de salida de 
 dimensión \textit{n} y \(s_{t}\) es el vector de dimensión \textit{l} que representa el estado actual de la red.
 Estas celdas compartirán los parámetros internos, por lo que la diferencia entre un instante u otro será las entradas a la celda.
 
 \imagen{rnn.png}{Red Neuronal Recurrente.}{0.25}
+
+En la Figura \ref{fig:rnn.png} puede observarse la representación de una celda de una red recurrente. En
+esta puede verse cómo dada una secuencia en el instante \textit{t}, se produce una salida 
+\textit{y} que generará una secuencia en el tiempo compartiendo parámetros (pesos sinápticos) como puede apreciarse
+en la Figura \ref{fig:rnn_tiempo.png}.
+
 \imagen{rnn_tiempo.png}{Representación de la RNN en el tiempo.}{0.55}
 
+La salida del modelo en un instante de tiempo se calculará, de esta forma cómo:
+\begin{equation}
+    y^t = f(W^{yx}x^t + U^{yy} y^{t-1} + b) 
+\end{equation}
+
+Donde \(W^{yx}\) son los pesos sinápticos en el instante actual en la celda, mientras que \(U^{yy}\) se
+trata de los pesos de la conexión recurrente, es decir, depende de la sinapsis del instante anterior.
+La primera matriz de pesos, de esta forma, tendrá un tamaño de \(|x| \cdot |y|\), mientras que la segunda
+será de tamaño \(|y| \cdot  |y|\). De manera similar \(|b| = |y|\), tratándose este del vector de sesgo.
+
 A diferencia del modelo expuesto con anterioridad, las redes neuronales recurrentes no pueden aplicar el algoritmo de retropropagación (\textit{Backpropagation})
-directamente, puesto que en este caso las neuronas de capas posteriores se encontrarán directamente conectadas con las anteriores.
+directamente, puesto que en este caso las celdas de instantes posteriores se encontrarán directamente conectadas con las anteriores.
 En este caso se emplea una adaptación conocida como \textit{Backpropagation through time}, que consiste en ``desenrollar'' la red recurrente, convirtiéndola
 en una red \textit{feed-forward} y posteriormente aplicar el algoritmo de retropropagación, teniendo en cuenta que dependiendo los instantes 
 que se consideren como salidas de la red el gradiente puede afectar a un mismo parámetro de la red de forma repetida \cite{book:rue2019}.
 
 \subsubsection{LSTM}
+Las redes neuronales recurrentes tradicionales pueden encontrar problemas en capturar y recordar información
+a largo plazo debido al problema denominado \textit{desvanecimiento o explosión del gradiente}, que ocurre
+cuando los gradientes disminuyen o aumentan excesivamente a medida que se retropropagan a través
+del tiempo, produciendo problemas en el aprendizaje a largo plazo.
+
+Para abordar estos problemas, \textit{LSTM} introduce una estructura de memoria adicional denominada
+celda de memoria que permite al modelo recordar información durante largos periodos de tiempo. Estos 
+modelos emplearán para ello puertas que controlan el flujo de información dentro de la red.
+
+Cada celda cuenta con tres puertas: la puerta de entrada \textit{Input Gate}, la puerta de salida 
+(\textit{Output Gate}) y la puerta de olvido (\textit{Forget Gate}). La primera decide
+cuánta información nueva debe debe agregar a la memoria, la segunda cuánta transmitir como salida y 
+la tercera cuánta información antigua se debe de descartar.
+
+En las celdas del modelo se calculan 3 funciones:
+\begin{equation}
+    f_t = \sigma (W^{f} x_t + U^{f} y_{t-1} + b_f)
+\end{equation}
+\begin{equation}
+    i_t = \sigma (W^{i} x_t + U^{i} y_{t-1} + b_i)
+\end{equation}
+\begin{equation}    
+    o_t = \sigma (W^{o} x_t + U^{o} y_{t-1} + b_o)
+\end{equation}
+
+La función \(f_t\) se corresponde con la puerta de olvido (\textit{Forget Gate}), mientras que 
+\(i_t\) con la compuerta de entrada (\textit{Input Gate}) y \(o_t\) con la de salida (\textit{Output
+Gate})
+
+De esta manera, cada una de estas empleará dos matrices de pesos diferentes (\(W\) y \(U\)), que se compartirán
+en cada instante de tiempo.
+
+Con los diferentes valores de las compuertas, posteriormente se calcula un candidato de la cantidad de información
+a añadirse:
+\begin{equation}
+    \widetilde{c}_t = tanh (W^{c} x_t + U^{c} y_{t-1} + b_c) 
+\end{equation}
+
+Finalmente el estado de la red se actualiza de la siguiente forma:
+\begin{equation}
+    c_t = f_t \odot  c_{t-1} + i_{t} \odot \widetilde{c}_t 
+\end{equation}
+
+Una vez calculado el nuevo estado, se emplea la puerta de salida, junto con la tangente hiperbólica
+del nuevo estado oculto de la celda para obtener la nueva salida de la celda:
+\begin{equation}
+    y_t =  o_t \odot tanh(c_t)
+\end{equation}
+
+En la Figura \ref{fig:lstm_cell_mem.png} puede observarse el diagrama con las operaciones mencionadas
+para producir la salida de la celda en el modelo \textit{LSTM}
+\imagen{lstm_cell_mem.png}{Celda de memoria de LSTM}{1}
 
 \subsubsection{GRU}
 
