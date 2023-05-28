@@ -58,6 +58,14 @@ empleando, de igual manera, modelos por defecto.
 
 \imagen{LSTM_cell.png}{Representación celda LSTM. Extraido de \cite{wiki:lstm2022}}{0.70}
 
+A diferencia de \textit{GRU} en cada celda cuenta con 3 puertas diferentes, 
+la puerta de olvido (\textit{Forget Gate}), de entrada (\textit{Input Gate}), 
+de salida (\textit{Output Gate}) y un estado oculto (\textit{Cell Satate}), mientras que 
+el modelo mencionado únicamente cuenta con dos (\textit{Reset Gate} y \textit{Update Gate}).
+De esta forma, en los modelos \textit{LSTM}, se necesitarán realizar más operaciones
+por celda que en \textit{GRU}, de manera que el tiempo de entrenamiento será mayor.
+
+
 \section{MLP}
 El perceptrón multicapa, a diferencia de los otros dos modelos, no acepta
 la entrada de secuencias variables, por lo que se establecerá una neurona de entrada
@@ -68,9 +76,15 @@ por cada uno de los atributos de las muestras, es decir, la red contendrá
 De forma similar, contará con \(a * m\) número de neuronas en la capa de salida, siendo
 \(m\) el número de muestras de salida.
 
-\imagen{mlp_anexos.png}{Diagrama de entradas y salidas MLP}{0.60}
+\imagen{mlp_anexos.png}{Diagrama de entradas y salidas MLP}{0.75}
 
-Se establece una función \textit{ReLU} como función de activación en las neuronas del
-modelo.
+Se establece una función \textit{ReLU} (Figura \ref{fig:relu.png}) como función
+de activación en las neuronas del modelo.
 
-\imagen{relu.png}{Función ReLU}{0.50}
+\imagen{relu.png}{Función ReLU}{0.70}
+
+A pesar de que el modelo no acepta entradas secuenciales y que por tanto requiere 
+tantas neuronas de entrada como número de valores hay en la secuencia de entrada,
+el tiempo de entrenamiento de estos modelos será menor generalmente que el de los
+modelos recurrentes, puesto que se realizan menos operaciones por término medio,
+además de necesitar de menos memoria para almacenar los pesos sinápticos.

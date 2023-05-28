@@ -19,48 +19,57 @@ Por otro lado, se ha establecido el conjunto de datos de entrenamiento al 75\% d
 por sensor, 15\% para el conjunto de validación siendo el restante para test.
 
 Con respecto al número de muestras de entrada se emplerarán 6 horas previas para realizar
-una predicción a una hora vista, empleando un tamaño de bloque de 512 ejemplos (los modelos 
+una predicción a una hora vista, empleando un tamaño de bloque de 256 ejemplos (los modelos 
 no se entranan con todos los datos en todas las iteraciones, sino que se emplean un subconjunto).
+
+Por otro lado, se establece un planificador de la tasa de aprendizaje, de forma
+que en la época 50 disminuye a razón de \(lr * e^{-0.1}\), para de esta manera,
+centrar los esfuerzos en la región explorada.
 
 Para cada una de las pruebas se realizarán 5 ejecuciones diferentes con 100 iteraciones cada una, 
 tomando como medida comparativa el error cuadrático medio de validación.
 
 \section{Resultados de GRU}
+En la Tabla \ref{tabla:Evaluación GRU} se presentan los errores cuadráticos medios
+que se obtendrán por término medio con el modelo. 
 
 \tablaSmallSinColores{Evaluación GRU}{l l l l}{Evaluación GRU}{\textbf{Capas} & \textbf{Tamaño capa} & \textbf{Learning rate} & \textbf{MSE GRU} \\}
 {
-    1 & 8 & 0.001 & 1.60897E-05 \\
-    1 & 8 & 0.01 & \\
-    1 & 8 & 0.1 & \\
-    1 & 16 & 0.001 & \\
-    1 & 16 & 0.01 & \\
-    1 & 16 & 0.1 & \\
-    1 & 32 & 0.001 & \\
-    1 & 32 & 0.01 & \\
-    1 & 32 & 0.1 & \\
+    1 & 8 & 0.001 & 1.72183E-05 \\
+    1 & 8 & 0.01 & 3.37952E-06\\
+    1 & 8 & 0.1 & 0.00551\\
+    1 & 16 & 0.001 & 9.1907E-06\\
+    1 & 16 & 0.01 & 9.55771E-07\\
+    1 & 16 & 0.1 & 0.00474\\
+    1 & 32 & 0.001 & 4.50204E-06\\
+    \textbf{1} & \textbf{32} & \textbf{0.01} & \textbf{5.96471E-07}\\
+    1 & 32 & 0.1 & 0.00297\\
 
     % 2 capas ocultas
-    2 & 8 & 0.001 & \\
-    2 & 8 & 0.01 & \\
-    2 & 8 & 0.1 & \\
-    2 & 16 & 0.001 & \\
-    2 & 16 & 0.01 & \\
-    2 & 16 & 0.1 & \\
-    2 & 32 & 0.001 & \\
-    2 & 32 & 0.01 & \\
-    2 & 32 & 0.1 & \\
+    2 & 8 & 0.001 & 1.56769E-05\\
+    2 & 8 & 0.01 & 1.65277E-06\\
+    2 & 8 & 0.1 & 0.00965\\
+    2 & 16 & 0.001 & 5.07987E-06\\
+    \textbf{2} & \textbf{16} & \textbf{0.01} & \textbf{5.66822E-07}\\
+    2 & 16 & 0.1 & 0.01148\\
+    2 & 32 & 0.001 & 2.18717E-06\\
+    \textbf{2} & \textbf{32} & \textbf{0.01} & \textbf{2.69205E-07}\\
+    2 & 32 & 0.1 & 0.01727\\
 
     % 3 capas ocultas
-    3 & 8 & 0.001 & \\
-    3 & 8 & 0.01 & \\
-    3 & 8 & 0.1 & \\
-    3 & 16 & 0.001 & \\
-    3 & 16 & 0.01 & \\
-    3 & 16 & 0.1 & \\
-    3 & 32 & 0.001 & \\
-    3 & 32 & 0.01 & \\
-    3 & 32 & 0.1 & \\
+    3 & 8 & 0.001 & 1.61179E-05\\
+    3 & 8 & 0.01 & 1.42658E-06\\
+    3 & 8 & 0.1 & 0.00706\\
+    3 & 16 & 0.001 & 5.18860E-06\\
+    \textbf{3} & \textbf{16} & \textbf{0.01} & \textbf{4.66034E-07}\\
+    3 & 16 & 0.1 & 0.02418\\
+    3 & 32 & 0.001 & 2.36664E-06\\
+    3 & 32 & 0.01 & 8.90246E-07\\
+    3 & 32 & 0.1 & 0.00976\\
 }
+
+Como puede observarse, los mejores resultados en términos generales les obtendremos 
+con un \textit{learning rate} de 0.01.
 
 \section{Resultados de LSTM}
 
