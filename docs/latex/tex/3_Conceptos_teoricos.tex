@@ -1,7 +1,7 @@
-\capitulo{3}{Conceptos teóricos \cite{book:witten2017}}
+\capitulo{3}{Conceptos teóricos}
 El desarrollo del proyecto cuenta con diferentes fases siguiendo el proceso de \textit{descubrimiento de conocimiento
 en bases de datos, KDD}, compuesto por la comprensión del negocio, la comprensión de los datos, la preparación de datos,
-el modelado, la evaluación del modelo y el despliegue del producto software.
+el modelado, la evaluación del modelo y el despliegue del producto software \cite{book:witten2017}.
 
 \imagen{data_mining_process.jpg}{\textit{Proceso KDD}. Extraido de \cite{book:witten2017}}{0.5}
 
@@ -115,7 +115,7 @@ Donde \begin{math}\bar{h}_1\end{math} será el resultado de aplicar la función 
 actua de intermedio entre las entradas y la \textit{RNA}), \begin{math}\bar{h}_{p+1}\end{math} serán los resultados de la función de activación
 en la capa p-ésima y \begin{math}\bar{o}\end{math} en la capa de salida.
 
-\imagen{mlp.png}{Perceptrón Multicapa. Extraido de \cite{book:aggarwal2018}}{0.5}
+\imagen{mlp.png}{Perceptrón Multicapa. Extraido de \cite{book:aggarwal2018}}{0.75}
 
 Existen diversas funciones de activación entre las que destacan las sigmoides por ser aplicadas de forma 
 elemental \cite{book:aggarwal2018}.
@@ -134,7 +134,7 @@ Las redes neuronales recurrentes pueden ser empleadas en este tipo de datos y ad
 A diferencia de estas recibe y procesa las entradas en el orden de llegada y las trata de igual manera que los instantes anteriores.
 Por otro lado, se considera unidad básica a las estructuras denominadas celdas.
 
-Además, en luagar de un número variable de entradas, contienen un número variable de celdas, y cada una de estas se corresponde con un 
+Además, en lugar de un número variable de entradas, contienen un número variable de celdas, y cada una de estas se corresponde con un 
 instante de tiempo, lo que permite a cada una de estas interactuar con otras más cercanas a la salida \cite{book:aggarwal2018}.
 
 Cada una de las celdas de este tipo de modelos realiza operaciones con dos entradas y dos salidas que se calculará en cada instante de tiempo \textit{t} como:
@@ -160,10 +160,10 @@ en la Figura \ref{fig:rnn_tiempo.png}.
 
 La salida del modelo en un instante de tiempo se calculará, de esta forma cómo:
 \begin{equation}
-    y^t = f(W^{yx}x^t + U^{yy} y^{t-1} + b) 
+    y_t = f(W_{yx}x_t + U_{yy} y_{t-1} + b) 
 \end{equation}
 
-Donde \(W^{yx}\) son los pesos sinápticos en el instante actual en la celda, mientras que \(U^{yy}\) se
+Donde \(W_{yx}\) son los pesos sinápticos en el instante actual en la celda, mientras que \(U_{yy}\) se
 trata de los pesos de la conexión recurrente, es decir, depende de la sinapsis del instante anterior.
 La primera matriz de pesos, de esta forma, tendrá un tamaño de \(|x| \cdot |y|\), mientras que la segunda
 será de tamaño \(|y| \cdot  |y|\). De manera similar \(|b| = |y|\), tratándose este del vector de sesgo.
@@ -171,7 +171,7 @@ será de tamaño \(|y| \cdot  |y|\). De manera similar \(|b| = |y|\), tratándos
 A diferencia del modelo expuesto con anterioridad, las redes neuronales recurrentes no pueden aplicar el algoritmo de retropropagación (\textit{Backpropagation})
 directamente, puesto que en este caso las celdas de instantes posteriores se encontrarán directamente conectadas con las anteriores.
 En este caso se emplea una adaptación conocida como \textit{Backpropagation through time}, que consiste en ``desenrollar'' la red recurrente, convirtiéndola
-en una red \textit{feed-forward} y posteriormente aplicar el algoritmo de retropropagación, teniendo en cuenta que dependiendo los instantes 
+en una red \textit{feed-forward} y posteriormente aplicar el algoritmo de retropropagación, teniendo en cuenta que dependiendo de los instantes 
 que se consideren como salidas de la red el gradiente puede afectar a un mismo parámetro de la red de forma repetida \cite{book:rue2019}.
 
 \subsubsection{LSTM}
@@ -191,13 +191,13 @@ la tercera cuánta información antigua se debe de descartar.
 
 En las celdas del modelo se calculan 3 funciones:
 \begin{equation}
-    f_t = \sigma (W^{f} x_t + U^{f} y_{t-1} + b_f)
+    f_t = \sigma (W_{f} x_t + U_{f} y_{t-1} + b_f)
 \end{equation}
 \begin{equation}
-    i_t = \sigma (W^{i} x_t + U^{i} y_{t-1} + b_i)
+    i_t = \sigma (W_{i} x_t + U_{i} y_{t-1} + b_i)
 \end{equation}
 \begin{equation}    
-    o_t = \sigma (W^{o} x_t + U^{o} y_{t-1} + b_o)
+    o_t = \sigma (W_{o} x_t + U_{o} y_{t-1} + b_o)
 \end{equation}
 
 La función \(f_t\) se corresponde con la puerta de olvido (\textit{Forget Gate}), mientras que 
@@ -210,7 +210,7 @@ en cada instante de tiempo.
 Con los diferentes valores de las compuertas, posteriormente se calcula un candidato de la cantidad de información
 a añadirse:
 \begin{equation}
-    \widetilde{c}_t = tanh (W^{c} x_t + U^{c} y_{t-1} + b_c) 
+    \widetilde{c}_t = tanh (W_{c} x_t + U_{c} y_{t-1} + b_c) 
 \end{equation}
 
 Finalmente el estado de la red se actualiza de la siguiente forma:
@@ -229,4 +229,35 @@ para producir la salida de la celda en el modelo \textit{LSTM}
 \imagen{lstm_cell_mem.png}{Celda de memoria de LSTM}{1}
 
 \subsubsection{GRU}
+A diferencia de \textit{LSTM}, este modelo contará con dos compuertas en lugar 
+de tres. Estas serán la puerta de \textit{reset} y la de actualización.
 
+Al igual que antes, los valores en la salida de la puerta se calculan de forma similar,
+con unas matrices de pesos diferentes en cada caso.
+La puerta de actualización se calcula entonces como:
+\begin{equation}
+    z_t = \sigma(W_z x_t + U_z y_{t-1} + b_z)
+\end{equation}
+
+De forma análoga la puerta de \textit{reset} se obtiene con la fórmula:
+\begin{equation}
+    r_t = \sigma(W_r x_t + U_r y_{t-1} + b_r)
+\end{equation}
+
+De nuevo se calcula la información candidata a añadirse a la memoria:
+\begin{equation}
+    \widetilde{c}_t = tanh(W_c x_t + U_c (r_t \odot y_{t-1}) + b_c)
+\end{equation}
+
+Por último se calcula el nuevo estado de la celda empleando una media ponderada
+entre el estado anterior y la nueva información:
+\begin{equation}
+    c_t = (1 - z_t) \odot y_{t-1} + z_t \odot \widetilde{c}_t
+\end{equation}
+
+Los modelos \textit{GRU} se contemplan como una simplificación de \textit{LSTM},
+en la que se fusionan los estados con la respuesta de la red y se fuerza para que estos
+sean una media ponderada, llevando a obtener resultados similares que con las redes
+mencionadas \cite{book:rue2019}
+
+\imagen{gru_cell_mem.png}{Celda de memoria de GRU}{1}
