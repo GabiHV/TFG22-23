@@ -5,22 +5,26 @@ el modelado, la evaluación del modelo y el despliegue del producto software \ci
 
 \imagen{data_mining_process.jpg}{\textit{Proceso KDD}. Extraido de \cite{book:witten2017}}{0.5}
 
-En lo referente a la fase de comprensión del negocio se analizan los objetivos y requisitos del proyecto. 
+En la fase de comprensión del negocio se analizan los objetivos y requisitos del proyecto. 
 En este caso quedan bien marcados en la descripción del proyecto y la introducción, así como en la sección de los objetivos.
 
 En la etapa de comprensión de los datos se crea el conjunto de datos inical y se comprueba si este es adecuado,
-de forma que si se determina que no lo es se deberán recopilar más.
+de forma que si se determina que no lo es se deberá continuar con la recopilación.
 En el caso que nos atañe como estamos sujetos a los plazos del curso la recopilación de más datos puede complicarse.
 
 En la preparación de los datos se realiza el pre-procesamiento de estos, de forma que puedan ser empleados en el modelado.
 
-En la fase de modelado se crean los modelos, lo que irá de la mano con la fase de preparación, puesto que algunas herramientas de 
-pre-procesamiento incluyen un modelo interno de los datos para transformarlos.
+En la fase de modelado, como su propio nombre indica, se crean los modelos, lo que se encuentra relacionado extrechamente con
+la fase de preparación, puesto que algunas herramientas de pre-procesamiento incluyen un modelo interno 
+de los datos para transformarlos \cite{book:witten2017}.
 
-En la fase de la evaluación se estima el rendimiento del modelo, reconsiderándose en su caso los objetivos, de forma que si los modelos son poco efectivos
-se vuelve a la primera fase.
+En la fase de la evaluación se estima el rendimiento del modelo, reconsiderándose en su caso los objetivos, de forma 
+que si los modelos son poco efectivos se vuelve a la primera fase, ya que se trata de
+un proceso iterativo.
 
-No se contempla realizar un despliegue de los modelos resultantes en ninguna aplicación, puesto que se sale del alcance del proyecto.
+No se contempla realizar un despliegue de los modelos resultantes en ninguna aplicación, puesto que se sale del alcance del proyecto,
+sin embargo, se obtendrán resultados que pueden ser empleados en posteriores desarrollos de diferentes
+índoles.
 
 En esta sección se presentarán los conceptos teóricos relevantes en cada etapa para facilitar su comprensión.
 
@@ -32,14 +36,16 @@ Como norma general el \textbf{proceso de integración} debe ser realizado durant
 La \textbf{limpieza} permite la detección y corrección de los problemas no resueltos en la fase anterior como los valores anómalos (\textit{Outliers}) o faltantes 
 \cite{book:hernandez2004}.  
 
-Tras la integración de los datos de las diferentes fuentes (e.g. bases de datos), se pueden realizar un resumen de características de atributos, en la que
-se mostrarán las características generales de estos como medias, mínimos, máximos y valores posibles. 
+En este caso, los datos si bien no se encontrarán integrados de forma completa, estarán en formatos compatibles, de forma que no es necesario
+realizar un proceso exhaustivo, simplificando las operaciones a añadir exclusivamente una clase identificativa de los sensores concretos.
 
-En esta tabla podríamos obtener información trascendental para proceso de análisis de datos, sobre todo para atributos categóricos.
+Tras la integración de las diferentes fuentes (e.g. bases de datos), se puede realizar un resumen de los atributos, en la que
+se mostrarán las características generales de estos como medias, mínimos, máximos y valores posibles. 
+En esta tabla podríamos obtener información trascendental para proceso de análisis, sobre todo para atributos categóricos.
 En el caso de atributos numéricos un mecanismo visual que es especialmente útil es la gráfica de dispersión \cite{book:hernandez2004}, que es la técnica de visualización
 de datos que se empleará mayoritariamente durante el desarrollo del proyecto.
 
-En el conjuto de datos podemos encontrar \textbf{valores faltantes}, perdidos o ausentes que pueden ser reemplazados por diferentes razones. Una de ellas es que
+En el conjuto de datos podemos encontrar \textbf{valores faltantes}, que pueden ser reemplazados por diferentes razones. Una de ellas es que
 el modelo que empleemos puede no tratar bien estos valores o que utilice un mecanismo de tratamiento que no sea adecuado.
 Un problema asociado a su detección es que estos no estén representados como nulos, lo que puede introducir sesgo en el conocimiento
 extraido \cite{book:hernandez2004}.
@@ -47,7 +53,7 @@ extraido \cite{book:hernandez2004}.
 Ante esta situación se puede actuar de diferentes maneras \cite{book:hernandez2004}:
 \begin{itemize}
     \item Ignorarlos (ciertos algoritmos son tolerantes a los valores faltantes).
-    \item Eliminar la columna que contiene valores faltantes.
+    \item Eliminar el atributo que contiene valores faltantes.
     \item Filtrar las filas: eliminar las filas afectadas, lo que introduce cierto sesgo en muchas ocasiones.
     \item Reemplazar el valor por otro que preserve la media y la varianza del conjunto de datos en caso de atributos numéricos y la moda en atributos
         catregóricos.
@@ -65,18 +71,20 @@ En el caso que nos atañe se deben buscar los \textbf{valores extremos}, que no 
 estadísticamente se clasifican como anómalos, aunque representen un estado genuino de la realidad.
 Con todo y con eso, estos valores pueden suponer un problema para algunos métodos que se basan en el ajuste de pesos
 como las redes neuronales.
-En otras ocasiones pueden haber datos erróneos que caen en la normalidad, por lo que no pueden ser detectados \cite{book:hernandez2004}.
+En otras ocasiones pueden haber datos erróneos que caen en la normalidad, por lo que no pueden ser detectados estadísticamente sin 
+conocimiento explícito del dominio del problema \cite{book:hernandez2004}.
 
-La falta de detección de estos valores puede resultar en problemas si posteriormente se normalizan los datos, puesto
-que la mayoria de datos estarían en un rango muy pequeño, lo que puede producir una falta precisión en algunos modelos \cite{book:hernandez2004}.
+No detectar estos valores puede resultar en problemas si posteriormente se normalizan los datos, puesto
+que la mayoria de datos estarían en un rango muy pequeño \cite{book:hernandez2004}, mientras que unos pocos 
+se encontrarán en rangos más grandes y alejados de estos, lo que puede introducir problemas de eficiencia y precisión.
 
 El tratamiento de los datos erróneos o anómalos pueden ser tratados de forma similar a los faltantes \cite{book:hernandez2004}:
 \begin{itemize}
     \item Ignorarlos (ciertos algoritmos son robustos a datos anómalos).
-    \item Eliminar la columna que contiene los datos anómalos, por ejemplo si esta situación se produce
-        continuamente en el atributo (es preferible reemplazarla por otra columna con valores discretos
+    \item Eliminar el atributo que contiene los datos anómalos, por ejemplo si esta situación se produce
+        continuamente (es preferible reemplazarla por otra columna con valores discretos
         estableciendo la corrección o no del valor).
-    \item Filtrar las filas: eliminar las filas afectadas, lo que puede introducir cierto sesgo.
+    \item Filtrar las filas: eliminar las filas afectadas, lo que, de nuevo, puede introducir cierto sesgo.
     \item Reemplazar el valor por nulo, por los máximos o mínimos del atributo o por
         las medias (se debe tener en cuenta que los modelos sean capaces de procesar los valores
         nulos, ya que en caso contrario se deberá hacer frente a un nuevo problema en el conjunto
@@ -92,13 +100,13 @@ Para la creación de los modelos emplearemos diferentes tipos de \textit{Redes N
 el perceptrón multicapa (\textit{MLP}), \textit{Gated Recurrent Unit} y \textit{Long Short-Term Memory}.
 
 \subsection{MLP}
-El perceptrón multicapa además de la capa de entrada y salida contiene varias capas intermedias
+El perceptrón multicapa además de una capa de entrada y salida contiene varias capas intermedias
 llamadas ocultas (\textit{hidden layers}), denominadas de este modo puesto que los cálculos
 internos están ocultos al usuario \cite{book:aggarwal2018}.
 
 En este tipo de redes las señales se propagan inicialmente hacia adelante para obtener un resultado, 
 de forma que las neuronas de una capa se encuentran interconectadas con las de la capa
-siguiente y así sucesivamente en todas ellas.
+siguiente y así sucesivamente en todas ellas (\textit{feed-forward}).
 
 Cada una de estas conexiones cuenta con un peso, que se inicializa generalmente de forma aleatoria. Estos pesos son
 empleados para el cálculo de las señales de activación de cada neurona, que se emplearán en la función de activación:
@@ -126,18 +134,18 @@ que los gradientes calculados se emplearán posteriormente para actualizar los p
 
 \subsection{Redes Neuronales Recurrentes (\textit{RNN})}
 Las redes neuronales convencionales (véase por ejemplo los \textit{MLP}, las redes neuronales de base radial, etc.) están diseñadas para
-datos multidimensionales cuyos atributos son independientes de otros.
-Sin embargo, existen datos que contienen dependencias de atributos previos como los datos de series temporales, 
+datos multidimensionales cuyos ejemplos son independientes unos otros (no tienen en cuenta estados anteriores).
+Sin embargo, existen datos que contienen dependencias de valores previos como los datos de series temporales, 
 biológicos o cadenas de texto \cite{book:aggarwal2018}.
 
-Las redes neuronales recurrentes pueden ser empleadas en este tipo de datos y además cuentan con ventajas con respecto a las redes convencionales.
-A diferencia de estas recibe y procesa las entradas en el orden de llegada y las trata de igual manera que los instantes anteriores.
-Por otro lado, se considera unidad básica a las estructuras denominadas celdas.
+Las redes neuronales recurrentes pueden ser empleadas en este tipo de datos y, además, a diferencia de estas recibe y procesa las 
+entradas en el orden de llegada y las trata de igual manera que los instantes anteriores.
 
-Además, en lugar de un número variable de entradas, contienen un número variable de celdas, y cada una de estas se corresponde con un 
-instante de tiempo, lo que permite a cada una de estas interactuar con otras más cercanas a la salida \cite{book:aggarwal2018}.
+Además, en lugar de un número variable de entradas, contienen un número variable de celdas (operaciones sobre los datos de entrada, 
+para obtener las predicciones), y cada una de estas se corresponde con un 
+instante de tiempo, lo que permite a cada una interactuar con otras más cercanas a la salida \cite{book:aggarwal2018}.
 
-Cada una de las celdas de este tipo de modelos realiza operaciones con dos entradas y dos salidas que se calculará en cada instante de tiempo \textit{t} como:
+Cada una de las celdas realiza operaciones con dos entradas y dos salidas que se calculará en cada instante de tiempo \textit{t} como:
 \begin{equation}
     \begin{aligned}
     f: \quad \mathbb{R}^{m+n} & \rightarrow \mathbb{R}^{n+l} \\
@@ -158,14 +166,14 @@ en la Figura \ref{fig:rnn_tiempo.png}.
 
 \imagen{rnn_tiempo.png}{Representación de la RNN en el tiempo.}{0.55}
 
-La salida del modelo en un instante de tiempo se calculará, de esta forma cómo:
+La salida del modelo en un instante de tiempo se calculará, de esta forma cómo \cite{book:rue2019}:
 \begin{equation}
     y_t = f(W_{yx}x_t + U_{yy} y_{t-1} + b) 
 \end{equation}
 
 Donde \(W_{yx}\) son los pesos sinápticos en el instante actual en la celda, mientras que \(U_{yy}\) se
-trata de los pesos de la conexión recurrente, es decir, depende de la sinapsis del instante anterior.
-La primera matriz de pesos, de esta forma, tendrá un tamaño de \(|x| \cdot |y|\), mientras que la segunda
+trata de los pesos de la conexión recurrente, es decir, depende de la salida del instante anterior.
+La primera matriz, de esta forma, tendrá un tamaño de \(|x| \cdot |y|\), mientras que la segunda
 será de tamaño \(|y| \cdot  |y|\). De manera similar \(|b| = |y|\), tratándose este del vector de sesgo.
 
 A diferencia del modelo expuesto con anterioridad, las redes neuronales recurrentes no pueden aplicar el algoritmo de retropropagación (\textit{Backpropagation})
@@ -175,16 +183,16 @@ en una red \textit{feed-forward} y posteriormente aplicar el algoritmo de retrop
 que se consideren como salidas de la red el gradiente puede afectar a un mismo parámetro de la red de forma repetida \cite{book:rue2019}.
 
 \subsubsection{LSTM}
-Las redes neuronales recurrentes tradicionales pueden encontrar problemas en capturar y recordar información
-a largo plazo debido al problema denominado \textit{desvanecimiento o explosión del gradiente}, que ocurre
-cuando los gradientes disminuyen o aumentan excesivamente a medida que se retropropagan a través
+Las redes neuronales recurrentes tradicionales pueden encontrar dificultades en capturar y recordar información
+a largo plazo debido al problema denominado \textit{desvanecimiento del gradiente}, que ocurre
+cuando los gradientes disminuyen excesivamente a medida que se retropropagan a través
 del tiempo, produciendo problemas en el aprendizaje a largo plazo.
 
 Para abordar estos problemas, \textit{LSTM} introduce una estructura de memoria adicional denominada
 celda de memoria que permite al modelo recordar información durante largos periodos de tiempo. Estos 
-modelos emplearán para ello puertas que controlan el flujo de información dentro de la red.
+modelos emplearán para ello puertas que controlan el flujo de información dentro de estas.
 
-Cada celda cuenta con tres puertas: la puerta de entrada \textit{Input Gate}, la puerta de salida 
+Cada celda en \textit{LSTM} cuenta con tres puertas: la puerta de entrada \textit{Input Gate}, la puerta de salida 
 (\textit{Output Gate}) y la puerta de olvido (\textit{Forget Gate}). La primera decide
 cuánta información nueva debe debe agregar a la memoria, la segunda cuánta transmitir como salida y 
 la tercera cuánta información antigua se debe de descartar.
@@ -204,16 +212,16 @@ La función \(f_t\) se corresponde con la puerta de olvido (\textit{Forget Gate}
 \(i_t\) con la compuerta de entrada (\textit{Input Gate}) y \(o_t\) con la de salida (\textit{Output
 Gate})
 
-De esta manera, cada una de estas empleará dos matrices de pesos diferentes (\(W\) y \(U\)), que se compartirán
-en cada instante de tiempo.
+De esta manera, cada una de estas empleará dos matrices de pesos diferentes (\(W\) y \(U\)) en cada caso, que se compartirán
+en distintos instantes de tiempo.
 
-Con los diferentes valores de las compuertas, posteriormente se calcula un candidato de la cantidad de información
+Con los valores de las compuertas, posteriormente se calcula un candidato de la cantidad de información
 a añadirse:
 \begin{equation}
     \widetilde{c}_t = tanh (W_{c} x_t + U_{c} y_{t-1} + b_c) 
 \end{equation}
 
-Finalmente el estado de la red se actualiza de la siguiente forma:
+Finalmente el estado de la red se actualiza siguiendo la ponderación:
 \begin{equation}
     c_t = f_t \odot  c_{t-1} + i_{t} \odot \widetilde{c}_t 
 \end{equation}
@@ -233,7 +241,7 @@ A diferencia de \textit{LSTM}, este modelo contará con dos compuertas en lugar
 de tres. Estas serán la puerta de \textit{reset} y la de actualización.
 
 Al igual que antes, los valores en la salida de la puerta se calculan de forma similar,
-con unas matrices de pesos diferentes en cada caso.
+con matrices de pesos diferentes en cada caso.
 La puerta de actualización se calcula entonces como:
 \begin{equation}
     z_t = \sigma(W_z x_t + U_z y_{t-1} + b_z)
@@ -249,7 +257,7 @@ De nuevo se calcula la información candidata a añadirse a la memoria:
     \widetilde{c}_t = tanh(W_c x_t + U_c (r_t \odot y_{t-1}) + b_c)
 \end{equation}
 
-Por último se calcula el nuevo estado de la celda empleando una media ponderada
+Por último, se calcula el nuevo estado de la celda empleando una media ponderada
 entre el estado anterior y la nueva información:
 \begin{equation}
     c_t = (1 - z_t) \odot y_{t-1} + z_t \odot \widetilde{c}_t
