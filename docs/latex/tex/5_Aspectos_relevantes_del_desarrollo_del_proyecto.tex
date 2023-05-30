@@ -4,7 +4,7 @@ En este apartado se describirán los aspectos más importantes surgidos a partir
 estos incluyen las complicaciones encontradas, así como las decisiones tomadas para solucionar todos los
 problemas surgidos y sus implicaciones.
 
-El apartado se orientará siguiendo una estructura parecida a la introducida en \textit{Conceptos teóricos}, 
+La sección se orientará siguiendo una estructura parecida a la introducida en \textit{Conceptos teóricos}, 
 es decir, desarrollando los aspectos relevantes según la fase del proyecto en la que se produjo.
 
 \section{Inicio del Proyecto}
@@ -12,13 +12,13 @@ Una de las motivaciones que se tuvo en cuenta para el desarrollo del proyecto fu
 con el lugar que se desarrolló. Y es que la provincia de Burgos se encuentra en la denominación de
 origen ``Ribera del Duero'', una de las regiones que cuenta con algunos de los mejores vinos del mundo \cite{misc:abc2021}.
 
-Otro impulso que llevó a realizar el Trabajo Final de Grado con este tema fue de igual forma la importancia 
+Otro impulso que llevó a realizar el Trabajo Final de Grado con este tema fue, de igual forma, la importancia 
 del vino en la familia, pues el sustento de parte de esta es gracias a la viticultura, además de la historia
 e importancia de la cultura del vino en el todo el territorio español.
 
 Tras contactar con los docentes, se proporcionó el conjunto de datos empleado en el proyecto. En estas conversaciones
-iniciales se consideró que estos datos contaban con ciertas características que debían tenerse en cuenta: en primer lugar,
-los datos contaban con valores faltantes debidos a la posible desconexión de los sensores de la red, lo que provocaba
+iniciales se consideró que estos contaban con ciertas características que debían tenerse en cuenta: en primer lugar,
+los presentaban valores faltantes debidos a la posible desconexión de los sensores de la red, lo que provocaba
 que estos dejaran de enviar datos al servidor. Por otro lado, las labores del campo podían haber afectado a la calidad
 de estos por la extracción de las sondas de los sensores de sus posiciones originales.
 
@@ -26,28 +26,28 @@ Además, el pluviómetro instalado en un orígen se encontraba anclado de forma 
 produjera lecturas erróneas en el movimiento del balancín empleado en el registro de las precipitaciones.
 
 Tras estas reuniones se inició el proceso de la comprensión del negocio, es decir, se comenzó con la definición de los 
-objetivos del proyecto y los requisitos de los mismos. Simplificando lo mencionado en la introducción y los objetivos,
-la finalidad era realizar un análisis de los datos proporcionados (centrándose en la temperatura y humedad) realizando
+objetivos del proyecto y los requisitos. Simplificando lo mencionado en la introducción y los objetivos,
+la finalidad era analizar los datos proporcionados (centrándose en la temperatura y humedad) realizando
 las visualizaciones pertinentes y encontrar modelos predictivos que intenten anticipar la evolución a corto plazo
 empleando diferentes técnicas como las Redes Neuronales Artificiales.
 
 \section{Fase de preparación de los datos}
-La fase de preparación se determinó que los datos proporcionados contaban con diferentes situaciones. En algunos
+En la fase de preparación se determinó que los datos proporcionados contaban con diferentes situaciones. En algunos
 de los sensores la calidad de estos era bastante adecuada a pesar de contar con valores faltantes, en otros, en cambio,
 existían numerosos problemas.
 
 Por un lado, contaban con valores extremos que debían tenerse en cuenta para que los modelos que se desarrollasen no 
-encontraran problemas al generalizar desviándose de ese propósito por el posible ruido introducido.
-Para solucionar este problema se empleó el mecanismo de detección de \textit{outliers} mediante el rango intercuartílico
-y sustituyendo los datos identificados como valores extremos con la mediana del día en el que se realizó la muestra.
+encontraran problemas al generalizar, desviándose de ese propósito por el posible ruido introducido.
+Para solucionar este problema se empleó el mecanismo de detección de \textit{outliers} mediante el rango intercuartílico,
+sustituyendo los datos identificados como extremos con la mediana del día en el que se realizó la muestra.
 
 Por otro lado, algunos de los sensores contaban con valores matemáticamente correctos (dentro de límites lógicos de las 
 diferentes variables) pero que contextualmente eran incorrectos. Un ejemplo de esto eran las lecturas artificiales de 
-diferentes variables como la temperatura cuando el nivel de la batería de los sensores caía por debajo de 3,3V, lo que
+distintas variables como la temperatura cuando el nivel de la batería de los sensores caía por debajo de 3,3V, lo que
 probocaba un desbordamiento de la variable en el controlador correspondiente.
 
-Ante esta situación se decidió eliminar aquellas muestra cuyo nivel de batería se encontrara por debajo del mencionado
-y por encima de los 4,1V (el máximo de la batería). Sin embargo, tras realizar esta operación se observó que ciertas 
+Ante esta situación se decidió eliminar aquellas muestras cuyo nivel de batería se encontrara por debajo del mencionado
+y por encima de los 4,1V (el máximo). Sin embargo, tras realizar esta operación se observó que ciertas 
 muestras continuaban siendo contextualmente incorrectas arrojando datos inverosímiles (bajadas de temperatura y/o 
 humedad extremas en periodos de tiempo cortos) debidas en gran medida, como se confirmó posteriormente, 
 a la extracción de las sondas de la situación original, por lo que se acordó con los docentes la eliminación de estos 
@@ -55,26 +55,25 @@ valores que continuaban siendo erróneos.
 
 El proceso se realizó a mano teniendo en cuenta las situaciones localizadas con anterioridad y con las nuevas necesidades,
 marcando en los diferentes ficheros la validez de la entrada (cabe destacar que la recuperación de estos datos no era viable 
-por las condiciones en la que se encontraban, puesto que el recorrido temporal era demasiado elevado).
+por las condiciones en la que se encontraban, puesto que el lapso temporal era demasiado elevado).
 
-Además de estas condiciones, alguno de los sensores contaban con muestras con discontinuidades con saltos inexplicables 
+Además de estas condiciones, algunos de los sensores contaban con muestras con discontinuidades inexplicables 
 mediante los datos, por lo que se acordó el intento de la recuperación de estos. Para ello, se observaron los muestreos
-de los datos de los sensores geográficamente más cercanos al afectado, de forma que se pudiera conocer de forma más 
+de los sensores geográficamente más cercanos al afectado, de forma que se pudiera conocer de manera más 
 precisa cúal de las series era la que contaba con la lecura correcta y acutar en consecuencia.
 
 A pesar de que se haya podido introducir algún sesgo debido a la modificación de los valores plasmados en los muestreos, 
-los valores reales serán más cercanos a los nuevos valores asignados que a las lecturas anteriores, es decir, aún si 
-estos valores fueran incorrectos serían menos incorrectos que anteriormente.
+los datos reales serán más cercanos a los nuevos valores asignados que a las lecturas anteriores, es decir, aún si 
+estos fueran incorrectos serían menos incorrectos que anteriormente.
 
-Ante la premura de los plazos del proyecto, realizar el muestreo de los datos suficientes para crear un modelo predictivo
+Ante la premura de los plazos del proyecto, realizar de nuevo el muestreo de los datos suficientes para crear un modelo predictivo
 eficiente no era viable, por lo que se tuvo que trabajar con la cantidad proporcionada.
 
 \section{Fase de creación de modelos}
 Tras realizar una investigación preliminar acerca de los modelos con mayor precisión 
 en la regresión de series temporales, se llegó a la conclusión de emplear
 redes neuronales recurrentes con memoria como primer objetivo de modelado, 
-puesto que sobre datos con variación no cíclica como la meteorología contaban 
-con un buen rendimiento.
+puesto que sobre datos meteorologicos contaban con un buen rendimiento.
 
 Por ese motivo, se escogió utilizar las redes neuronales con memoria a corto y medio
 plazo como son \textit{GRU} y \textit{LSTM}, empleando los mismos hiperparámetros y,
@@ -82,14 +81,14 @@ de esta manera, poder realizar una comparativa para tener una idea de cómo se
 ajustan estos modelos a las diferentes funciones objetivo.
 
 Además, otra opción a emplear fue la tradicional \textit{MLP} para poder observar
-cómo la linealidad de este modelo impide obtener unos resultados aceptables en comparación
-de sus contrapartes recurrentes.
+cómo la linealidad de este modelo (no tiene en cuenta instantes anteriores) impide obtener unos 
+resultados aceptables en comparación de sus contrapartes recurrentes.
 
 El primer reto consistía en preparar los datos de entrada a la red neuronal y los 
-correspondientes datos de salida de forma que estos fueran muestras homogéneas
-sin saltos temporales que impidiearan a los modelos ajustarse a las funciones objetivo.
+correspondientes salidas de forma que estos fueran muestras homogéneas
+sin saltos temporales que impidiearan a los modelos ajustarse adecuadamente.
 
-En primer lugar, en un espacio de 10 minutos podías encontrar 2 o 3 muestras según fuera 
+En primer lugar, en un espacio de 10 minutos se podían encontrar 2 o 3 muestras según fuera 
 el \textit{offset} del controlador de muestreos de los sensores.
 Además, como en la fase de preparación de los datos se realizaron descartes, se generaron, de esta manera,
 saltos temporales que podían afectar a la predicción de la tendencia.
@@ -103,13 +102,35 @@ no habían datos suficientes para la entrada se descartaban.
 \imagen{window.png}{Esquema del proceso de preparación de datos}{0.5}
 
 Cabe destacar que inicialmente se emplearon todos los datos para entrenamiento y validación, no estableciendo
-el conjunto de test, pero esto fue alterado más tarde añadiendo el tercer conjunto, lo que 
-permitía reducir el sesgo en la validación del modelo, pues, a diferencia de las instancias de validación, se tratan
+el conjunto de test, lo que fue modificado más tarde añadiendo el tercer conjunto, permitiendo reducir el sesgo en 
+la evaluación del modelo, pues, a diferencia de las instancias de validación, se tratan
 de datos que no han sido empleados por el modelo tanto para ser entrenado como validado.
 
 Tras la preparación de los datos de entrada de la red se comenzó a realizar el modelo \textit{GRU}, de forma
-que se debían establecer sus capas ocultas y las neuronas de estas.
-Para construir los modelos y verificar su funcionamiento se estableció inicialmente 3 capas en todos ellos, con
-36, 16 y 8 neuronas sucesivamente.
+que se debían establecer sus capas y las celdas en estas. Posteriormente se realizaron los modelos
+\textit{LSTM} y \textit{MLP}.
+Para agilizar la construcción y verificar su funcionamiento se estableció inicialmente 3 capas en todos ellos, con
+36, 16 y 8 unidades sucesivamente.
+
+A diferencia de los dos primeros, \textit{MLP} requería de una ligera modificación, puesto que no aceptaba secuencias, 
+por lo que se estableció una neurona de entrada por cada valor en la serie de tiempo y de igual forma una 
+neurona en la capa de salida por cada predicción. 
 
 \section{Fase de evaluación de modelos}
+En la fase de evaluación se estableció realizar pruebas sobre los modelos modificando ciertos hiperparámetros como 
+el número de capas ocultas, el número de unidades (celdas o neuronas dependiendo del contexto) por capa y
+ratio de aprendizaje.
+
+De esta forma, los modelos empleados tendrán las especificaciones estándar en el caso de
+\textit{GRU} y \textit{LSTM}, modificando la función de activación de las neuronas en las capas ocultas en 
+\textit{MLP} por una función \textit{ReLU}, que aportará la no linealidad al modelo, lo que presumiblemente
+mejoraría el rendimiento concreto con los datos empleados.
+
+\imagen{relu.png}{Función ReLU}{1}
+
+Se realizarán, entonces, combinaciones con diferentes valores:
+\begin{itemize}
+    \item Capas: 1, 2 y 3 capas.
+    \item Tamañdo de capa: 8, 16 y 32 celdas/neuronas.
+    \item Ratio de aprendizaje: 0.1, 0.01 y 0.001.
+\end{itemize}
