@@ -1,5 +1,5 @@
 import os
-from plot_paths import *
+from env_paths import *
 from sensor_plot import *
 
 if __name__ == "__main__":
