@@ -1,39 +1,39 @@
 \apendice{Preparación de los datos}
 
 \section{Introducción}
-En la fase de preparación de los datos se realiza la limpieza de los mismos para 
+En la fase de preparación de los datos se realiza la limpieza de estos para 
 que posteriormente puedan ser empleados por los modelos y obtener resultados adecuados
 para ser utilizados en un posterior despliegue.
 
-Esta fase está compuesta por la detección y el tratamiento de varias casuísticas en 
+Este proceso se compone de la detección y el tratamiento de varias casuísticas en 
 los datos, como los valores faltantes, que se tratan de valores de los que no tenemos
 registros por diferentes motivos y los valores extremos, que son aquellos
 estadísticamente lejanos al resto, lo que no quiere decir que sean erróneos.
 
-Por otro lado, también se pueden encontrar valores erróneos, que pueden ser 
-estadísticamente correctos, pero son datos que no tienen sentido contextual, en este
-caso concreto se tratará de subidas o bajadas inverosímiles de temperaturas 
+Por otro lado, también es posible encontrar valores erróneos, que pueden ser 
+estadísticamente correctos, pero no tener sentido contextual. En este
+caso concreto se tratarán de incrementos o bajadas inverosímiles de temperaturas 
 y/o humedades del suelo, que se encuentran dentro de los valores naturales,
-pero que no se pueden producir a la velocidad a la que tienen lugar.
-En este caso, se empleará una exploración visual para realizar su tratamiento. 
+pero que es dificil que tengan lugar a la velocidad a la que se producen.
+Se empleará una exploración visual para realizar su tratamiento. 
 
 Cabe destacar que a todos los conjuntos de datos se les ha aplicado un filtro de 
 tendencias (en este caso el filtro de Hodrick-Presscot \cite{misc:wikipediaHodrick2023}), 
-puesto que no existe un interés específico en los datos concretos, sino en las posibles 
+puesto que no existe un interés específico en los valores concretos, sino en las posibles 
 tendencias de las diferentes variables, que nos permitan obtener una predicción adecuada 
 en cada circunstancia.
-De esta manera, se ha establecido la tendencia diaria de los datos.
+De esta manera, se calcula la tendencia diaria de cada periodo temporal.
 
 \section{Valores faltantes}
 En cuanto a los valores faltantes, la decisión fue elimiar las muestras que tuvieran
-indeterminados en alguna de sus columnas, puesto que la recuperación empleando técnicas
+nulos en alguna de sus columnas, puesto que la recuperación empleando técnicas
 como la imputación de valores era prácticamente inviable y por otro lado, se contaban
 con ejemplos suficientes como para poder suprimir parte de estos.
 
 \section{Valores extremos}
-En cuanto a la detección y el tratamiento de los valores faltantes, se empleó el 
-rango intercuartílico para realizar la primera de las tareas, sustituyendo las variables
-del atributo concreto de los ejemplos detectados con la mediana diaria.
+En cuanto a la detección y el tratamiento de los valores extremos, se empleó el 
+rango intercuartílico para realizar la primera de las tareas, sustituyendo las lecturas
+del atributo concreto de los ejemplos detectados empleando la mediana diaria.
 
 \imagen{iqr.png}{Representación gráfica del método del rango intercuartílico}{0.75}
 
@@ -43,7 +43,7 @@ mediana del grupo.
 
 \section{Valores erróneos}
 En lo referente a los valores erróneos se trata de una de las tareas más arduas 
-del proyecto, puesto que parte de este se desarrolló de forma visual diréctamente
+del proyecto, puesto que parte de esta detección se desarrolló de forma visual diréctamente
 sobre el conjunto de datos de los diferentes sensores y el pluviómetro, siendo, 
 de esta manera, en su mayoría un proceso manual.
 
@@ -60,13 +60,13 @@ en la fase anterior.
 \imagen{processed_data/sensor1.png}{Datos procesados: sensor 1}{1}
 
 Como puede observarse en la Figura \ref{fig:processed_data/sensor1.png}, 
-se ha tratado el ruido presente en el conjunto de datos original, sustituyendo los 
+se ha tratado el ruido presente en el conjunto original, sustituyendo los 
 respectivos valores por la mediana diaria.
 
 Por otro lado, se ha determinado la supresión de las muestras que indicaban una 
 variabilidad brusca de las humedades del suelo debidas a el agotamiento de la batería.
 Esta decisión estuvo motivada por la pérdida moderada de datos, además de la 
-falta de las muestras siguientes.
+falta de los valores siguientes.
 
 \newpage
 
@@ -89,8 +89,8 @@ Como puede observarse en la Figura \ref{fig:processed_data/sensor3.png}, en este
 concreto, el conjunto de datos se modifica, en cuanto a la invalidez de ejemplos se refiere,
 visiblemente menos que los sensores anteriores y los siguientes.
 
-En este caso solo fue necesario retirar del conjunto de datos una porción moderada de las
-muestras totales que había resultado del agotamiento de la batería del sensor.
+En este caso solo fue necesario retirar una porción moderada de las
+muestras totales que habían resultado del agotamiento de la batería del sensor.
 
 \newpage
 
@@ -98,10 +98,10 @@ muestras totales que había resultado del agotamiento de la batería del sensor.
 % Sensor 4
 \imagen{processed_data/sensor4.png}{Datos procesados: sensor 4}{1}
 
-En este sensor se optó, como refleja la Figura \ref{fig:processed_data/sensor4.png}, 
+Como refleja la Figura \ref{fig:processed_data/sensor4.png}, se optó
 por la eliminación de los datos a partir del comienzo de las lecturas que ya
-se conocían que eran incorrectas, lo que dejaba un conjunto de datos preparado
-para ser empleado por los modelos. 
+se conocían que eran incorrectas, lo que dejaba un conjunto preparado
+para ser empleado en los modelos. 
 
 \newpage
 
@@ -110,7 +110,7 @@ para ser empleado por los modelos.
 \imagen{processed_data/sensor5.png}{Datos procesados: sensor 5}{1}
 
 En este caso, a diferencia del resto de sensores, no fue necesario una modificación
-tan exhaustiva del conjunto de datos, puesto que los únicos tratamientos fueron la 
+tan exhaustiva del conjunto de datos, puesto que los únicos tratamientos realizados fueron la 
 detección de \textit{outliers} o valores extremos y la eliminación de los ejemplos
 con valores faltantes.
 
@@ -135,11 +135,11 @@ métodos mencionados.
 En este caso existían dos problemas principales en el conjunto de datos original:
 las sondas de temperatura y humedad comenzaban a realizar lecturas con variaciones
 muy elevadas para su profundidad en cortos periodos de tiempo y a la par
-existían atributos que no contaban con valores, además, al igual que en otros casos,
-el agotamiento de la batería producía lecturas incorrectas en las humedades.
+habían atributos que no contaban con valores, además, al igual que en otros casos,
+el agotamiento de la batería producía sondeos incorrectos en las humedades.
 
-Ante estos problemas las soluciones tomadas fueron las de eliminar los ejemplos 
-afectados. En el primer caso porque se trataban de periodos de tiempo moderados y 
+Ante estos problemas la solución tomada fue eliminar los ejemplos 
+afectados. En el primer caso puesto se trataban de periodos de tiempo moderados y 
 en el segundo porque se había producido el desplazamiento del sensor de su posición 
 original.
 
@@ -151,11 +151,11 @@ original.
 
 Como puede observarse en la Figura \ref{fig:processed_data/sensor8.png}, en este caso
 no ha sido posible recuperar los datos de gran parte del periodo muestreado.
-Los aumentos de humedad mostrados en la figura indicada están contrastados como 
+Los aumentos de humedad mostrados están contrastados como 
 provocados por las altas precipitaciones.
 
-Hablándo en términos de sesgos, es posible que al realizar la recuperación de estos
+Hablándo en términos de sesgos, es posible que al realizar la recuperación de los
 valores en los sensores mencionados, puedan haberse sesgado en cierta medida
-los conjuntos de datos, sin embargo, los datos no dejarán de estar más cercanos a los
+los conjuntos de datos, sin embargo, estos no dejarán de estar más cercanos a los
 valores reales y, por tanto, contener un error más reducido que las muestras originales
 con esta casuística.

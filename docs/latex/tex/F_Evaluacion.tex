@@ -5,28 +5,28 @@ En esta fase se estima el rendimiento de los diferentes modelos, y, en su caso,
 se reconsideran los objetivos del proyecto, de manera que si estos son poco efectivos,
 se vuelve a la primera fase.
 
-En todos los modelos se ha empleado validación cruzada externa y, además, se realizarán
-diferentes ejecuciones con diversos parámetros para conocer el rendimiento de estos, a 
+En todas las redes neuronales se ha empleado validación cruzada externa y, además, se realizarán
+diferentes ejecuciones con diversos parámetros para conocer el rendimiento de estas, a 
 la par que poder eliminar en cierta medida el efecto del azar en los modelos 
-neuronales resultantes.
+resultantes.
 
-Para poder validarlos se realizarán pruebas variando el números de capas
-ocultas, así como el número de celdas en cada una de estas y el ratio de aprendizaje.
-De esta manera, se realizarán pruebas con 1, 2 y 3 capas ocultas en cada uno de los modelos, 
+Para validarlos se realizarán pruebas variando el número de capas
+ocultas, así como el de celdas/neuronas en cada una de estas y el ratio de aprendizaje.
+De esta manera, se realizarán combinaciones con 1, 2 y 3 capas en cada uno de los modelos, 
 así como 32, 16 y 8 celdas/neuronas y 0.1, 0.01 y 0.001 de ratio de aprendizaje. 
 
-Por otro lado, se ha establecido el conjunto de datos de entrenamiento al 75\% de los disponibles
-por sensor, 15\% para el conjunto de validación siendo el restante para test.
+Por otro lado, se ha dividido el conjunto de datos original en un conjunto de entrenamiento del 75\% de los disponibles
+por sensor, 15\% para validación siendo el restante de test.
 
 Con respecto al número de muestras de entrada se emplerarán 6 horas previas para realizar
 una predicción a una hora vista, empleando un tamaño de bloque de 256 ejemplos (los modelos 
 no se entranan con todos los datos en todas las iteraciones, sino que se emplean un subconjunto).
 
-Por otro lado, se establece un planificador de la tasa de aprendizaje, de forma
-que en la época 50 disminuye a razón de \(lr * e^{-0.1}\), para de esta manera,
+Además, se emplea un planificador de la tasa de aprendizaje, de forma
+que en la época 50 disminuye multiplicando \(lr * e^{-0.1}\), para, de esta manera,
 centrar los esfuerzos en la región explorada.
 
-Para cada una de las pruebas se realizarán 5 ejecuciones diferentes con 100 iteraciones cada una, 
+Para cada una de las pruebas se realizarán 5 ejecuciones diferentes con 100 iteraciones, 
 tomando como medida comparativa el error cuadrático medio de validación.
 
 \section{Resultados de GRU}

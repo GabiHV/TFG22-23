@@ -1,12 +1,12 @@
 \apendice{Documentación de usuario}
 
 \section{Introducción}
-En esta sección se presentará la forma de cargar los modelos resultantes en un fichero Python para poder ser desplegados en un producto software, 
-así como la forma que deberá tener el tensor de entrada a la red y la que tendrán los datos de salida.
+En esta sección se presentará la manera de cargar los modelos resultantes en un fichero Python para poder ser desplegados en un producto software, 
+así como la forma que deberá tener el tensor de entrada a la red y los datos de salida.
 
 \section{Requisitos de usuarios}
-En cuanto a los requisitos del usuario, se deberá tener instalado \textbf{Python 3.9.13} \cite{misc:python2023}, junto con la versión 2.11.0 de \textbf{TensorFlow} \cite{misc:tensorflow2023},
-de forma que se puedan cargar los modelos almacenados empleando la función de la \textit{API} \textbf{Keras} correspondiente.
+En cuanto a los requisitos del usuario, será necesario tener instalado \textbf{Python 3.9.13} \cite{misc:python2023}, junto con la versión 2.11.0 de \textbf{TensorFlow} \cite{misc:tensorflow2023},
+de manera que se puedan cargar los modelos almacenados empleando la función de la \textit{API} \textbf{Keras} para tal propósito.
 
 \section{Instalación}
 En cuanto a la instalación de la versión concreta del intérprete de Python puede realizarse en \cite{misc:python2023}, mientras que para instalar la dependencia de la \textit{API},
@@ -41,4 +41,6 @@ Por otro lado, las variables deberán estar normalizadas en el rango 0-1, con lo
 En el caso del modelo \textit{MLP}, en lugar de un tensor tridimensional, se deberá modificar para que se corresponda con un vector del número de variables por el de muestras.
 
 La salida será igualmente un tensor bidimensional del número de predicciones establecidas en el entrenamiento del modelo con 6 variables cada una que se corresponden a las mencionadas
-anteriormente a excepción del número de sensor. De forma inversa, el modelo proporcionará datos normalizados, por lo que para obtener cada atributo en un rango correcto deberá de denormalizarse.
+anteriormente a excepción del número de sensor. 
+
+De forma inversa, el modelo proporcionará datos normalizados, por lo que para obtener cada atributo en un rango correcto deberá de denormalizarse.

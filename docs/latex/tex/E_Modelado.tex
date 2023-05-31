@@ -2,7 +2,7 @@
 
 \section{Introducción}
 En la fase del modelado, como su nombre indica, se crearán los modelos, de forma que al ser
-este proceso (\textit{KDD}) iterativo, se podrá unir con la etapa anterior, pues existen
+este proceso (\textit{KDD}) iterativo, se podrá considerar con la etapa anterior, pues existen
 herramientas que aunan estos procedimientos.
 
 En este caso, se toman por separado, teniendo en cuenta que los resultados en una
@@ -12,34 +12,34 @@ Se estableció el desarrollo de tres redes neuronales diferentes, \textit{MLP},
 \textit{LSTM} y \textit{GRU}, tratándose las dos últimas de modelos recurrentes.
 
 En esta sección se explicará la transformación del conjunto de datos para poder
-realizar el entrenamiento de los modelos y las respectivas predicciones, así como
+realizar el entrenamiento y las respectivas predicciones, así como
 las diferentes características de cada uno de los modelos.
 
 \section{Transformación del conjunto de datos}
-El primer problema que es necesario afrontar es que los modelos deberán aceptar varias
-entradas de ejemplares, es decir, se necesitarán \(n\) muestras sucesivas para realizar las
-predicciones.
+El primer problema que es necesario afrontar es que estos deberán aceptar varias
+entradas de ejemplares, es decir, se necesitarán \(n\) muestras sucesivas para realizar la
+regresión.
 
 Por otro lado, también deben ser capaces de realizar \(m\) predicciones, de forma que 
-se deben crear modelos con \(n\) muestras de entrada y \(m\) predicciones diferentes.
+es preciso crear modelos con \(n\) muestras de entrada y \(m\) salidas diferentes.
 
 El segundo problema deriva de la falta de datos en instantes concretos por el procesamiento
 realizado previamente, tanto por la supresión de muestras con valores erróneos, como
 la de ejemplares con valores faltantes.
 
-Por tanto, es necesario recorrer los datos en busca de los saltos temporales, para obtener
-los subconjuntos completos, y de esta manera, asegurar que dentro de estos estas situaciones
+Por tanto, se necesita recorrer los datos en busca de los saltos temporales, para obtener
+los subconjuntos completos, y de esta manera, asegurar que dentro de éstos estas situaciones
 no se producen.
 
 \imagen{window.png}{Selección de la serie de tiempo}{0.75}
 
 En la Fiugura \ref{fig:window.png} puede observarse el proceso esquematizado.
-De esta manera, cada uno de los subconjuntos que no tienen saltos, se recorrerá 
+De esta forma, cada uno de los subconjuntos que no tienen saltos, se recorrerá 
 mediente ventanas deslizantes formando los datos de entrada (\textit{inputs}) a los 
 modelos y las salidas (\textit{targets}).
 
-Cabe destacar que tanto los subconjuntos como las ventanas deberán tener datos 
-suficientes, es decir, \(n + m\) muestras.
+Cabe destacar que tanto los subconjuntos como las ventanas deberán contener muestras 
+suficientes, es decir, \(n + m\) ejemplos.
 
 \newpage
 
@@ -53,28 +53,29 @@ es decir, se emplearán los modelos por defecto como puede observars en la Figur
 
 \section{LSTM}
 Al igual que en \textit{GRU}, \textit{LSTM} empleará funciones sigmoides y la 
-tangente hiperbólica como funciones de activación eb las celdas (Figura \ref{fig:LSTM_cell.png}),
+tangente hiperbólica como funciones de activación en las compuertas de las celdas (Figura \ref{fig:LSTM_cell.png}),
 empleando, de igual manera, modelos por defecto.
 
 \imagen{LSTM_cell.png}{Representación celda LSTM. Extraido de \cite{wiki:lstm2022}}{0.70}
 
-A diferencia de \textit{GRU} en cada celda cuenta con 3 puertas diferentes, 
-la puerta de olvido (\textit{Forget Gate}), de entrada (\textit{Input Gate}), 
+A diferencia de \textit{GRU}, \textit{LSTM} cuenta con 3 puertas diferentes en cada celda, 
+la compuerta de olvido (\textit{Forget Gate}), de entrada (\textit{Input Gate}), 
 de salida (\textit{Output Gate}) y un estado oculto (\textit{Cell Satate}), mientras que 
-el modelo mencionado únicamente cuenta con dos (\textit{Reset Gate} y \textit{Update Gate}).
-De esta forma, en los modelos \textit{LSTM}, se necesitarán realizar más operaciones
-por celda que en \textit{GRU}, de manera que el tiempo de entrenamiento será mayor.
+el primer modelo únicamente dispone de dos (\textit{Reset Gate} y \textit{Update Gate}).
 
+De esta forma, en los modelos \textit{LSTM}, se necesitarán realizar más operaciones
+que en \textit{GRU}, además de almacenar más información por celda, 
+de manera que el tiempo de entrenamiento será generalmente mayor.
 
 \section{MLP}
 El perceptrón multicapa, a diferencia de los otros dos modelos, no acepta
-la entrada de secuencias variables, por lo que se establecerá una neurona de entrada
-por cada uno de los atributos de las muestras, es decir, la red contendrá
-\(a * n\) neuronas de entrada, siendo \(a\) el número de atributos de las muestras y
+la entrada de secuencias variables, por lo que se debe establecer una neurona de entrada
+por cada uno de los atributos, es decir, la red contendrá
+\(a * n\) neuronas de entrada, siendo \(a\) el número de características de los ejemplos y
 \(n\) el número de muestras de entrada.
 
 De forma similar, contará con \(a * m\) número de neuronas en la capa de salida, siendo
-\(m\) el número de muestras de salida.
+\(m\) el número de ejemplares de salida.
 
 \imagen{mlp_anexos.png}{Diagrama de entradas y salidas MLP}{0.75}
 
@@ -83,8 +84,8 @@ de activación en las neuronas del modelo.
 
 \imagen{relu.png}{Función ReLU}{0.70}
 
-A pesar de que el modelo no acepta entradas secuenciales y que por tanto requiere 
+A pesar de que \textit{MLP} no acepta entradas secuenciales y que por tanto requiere de
 tantas neuronas de entrada como número de valores hay en la secuencia de entrada,
 el tiempo de entrenamiento de estos modelos será menor generalmente que el de los
-modelos recurrentes, puesto que se realizan menos operaciones por término medio,
-además de necesitar de menos memoria para almacenar los pesos sinápticos.
+recurrentes, puesto que se realizan menos operaciones por término medio,
+además de necesitar de una cantidad de memoria menor para almacenar los pesos sinápticos.

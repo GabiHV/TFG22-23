@@ -6,11 +6,11 @@ la viabilidad económica y legal.
 
 \section{Planificación temporal}
 La planificación del desarrollo del proyecto se realizó siguiendo la metodología ágil \textit{Scrum}, aunque no en su definición completa, puesto
-que al ser una única persona en el desarrollo, no permite realizar todos los procedimientos recogidos dentro de los manuales de gestión de proyectos
-con metodologías ágiles \cite{book:palacio2021}, como las reuniones diarias ``daily'' para recoger diferentes cuestiones como cúales son los 
-problemas que ralentizan el proceso de desarrollo del proyecto.
+que al ser una única persona desarrollando, no permite realizar todos los procedimientos recogidos dentro de los manuales de gestión de proyectos
+con metodologías ágiles \cite{book:palacio2021}, como las reuniones diarias ``daily'' para atender diferentes cuestiones como cúales son los 
+problemas que ralentizan el avance del proyecto.
 
-Por otro lado, la herramienta software que apoyaba su aplicación (ZenHub \cite{misc:zenhub2023}) dejó de estar disponible de forma abierta, de forma
+Por otro lado, la herramienta software que apoyaba su aplicación (ZenHub \cite{misc:zenhub2023}) dejó de estar disponible de forma abierta, de modo
 que no pudo seguirse con el modelo \textit{Canvas} que aplicaba la metodología recogiendo en un tablero con varias columnas, según fuera su estado, las 
 tareas por cada uno de los \textit{sprints}.
 
@@ -32,26 +32,26 @@ de desarrollo.
 \subsection{Sprint 0 (18/01/2023 - 31/01/2023)}
 En este \textit{sprint} se presentó el proyecto, indicándose los primeros objetivos, lo que se enmarca en la fase de comprensión
 del negocio.
-Las primeras tareas se correspondían con la fase de comprensión de datos y a su vez la preparación de los mismos, 
+Las tareas inciales se correspondían con la fase de comprensión de datos y a su vez con la preparación de estos, 
 puesto que el conjunto proporcionado contaba con diferentes casuísticas de las que en un comienzo se tenía constancia.
 
 Entre los problemas encontrados previos al análisis en profundidad de los datos se encontraban lecturas incorrectas (valores erróneos) 
 debido a problemas de \textit{overflow} de variables en los controladores de cada sensor, de forma que cuando la batería bajaba
-de los 3.1V, las lecturas en el conjunto de datos se trataban de errores en su mayoría.
+de los 3.1V, las lecturas se trataban de errores en su mayoría.
 
 Además, en ciertos periodos de tiempo los sensores habían estado desconectados, por lo que se produjeron lecturas nulas (valores faltantes)
 que necesitaban ser tratadas.
 
-Por otro lado, el pluviómetro instalado en las dependencias del viñedo en algunas de las muestras arrojaba valores
+Por otro lado, el pluviómetro en las dependencias del viñedo en algunas de las muestras arrojaba valores
 inverosímiles debido a la forma en la que se encontraba instalado, de manera que el balancín empleado para medir las diferencias de 
-precipitaciones entre instantes se activaba artificialmente por el viento.
+precipitaciones entre instantes se activaba artificialmente por acción del viento.
 
 Durante el desarrollo de la iteración se comenzó con el tratamiento de los datos nulos, tomando la decisión de eliminar las entradas, pues se
 contaba con un número elevado de muestras y realizar la recuperación de estas no parecía viable debido a su naturaleza.
 Por otro lado, para los problemas relacionados con el pluviómetro se solicitaron claves \textit{API} para poder acceder a los registros 
-de estaciones meteorológicas cercanas a la zona y comprobar las muestras obtenidas.
+de estaciones meteorológicas cercanas a la zona y comprobar los valores obtenidos en los conjuntos.
 
-Por otro lado, se comenzó a realizar las gráficas de los datos para intentar encontrar correlaciones en estos y poder hallar diferentes 
+Además, se comenzó a realizar las gráficas de los datos para intentar encontrar correlaciones en estos y poder hallar diferentes 
 errores en el conjunto.
 
 \subsection{Sprint 1 (31/01/2023 - 14/02/2023)}
@@ -65,8 +65,8 @@ Con estas inspecciones se consigue, de esta forma, encontrar anomalías en ciert
 \subsection{Sprint 2 (14/02/2023 - 28/02/2023)}
 En la reunión de la iteración se propusieron diferentes objetivos:
 \begin{itemize}
-    \item En el sensor 2 eliminar con variación excesiva en temperatura, corrigiendo el ruido presente.
-    \item En el sensor 3 se encontró que el salto de humedad no era genuino, por lo que había que realizar un estudio para acordar su viabilidad.
+    \item En el sensor 2 eliminar la variación excesiva en temperatura, corrigiendo el ruido presente.
+    \item En el sensor 3 se encontró que el salto de humedad no era genuino, por lo que había que realizar un estudio para determinar su viabilidad.
     \item En el sensor 4 intentar realizar una media móvil para arreglar variables como la temperatura al emplear variaciones diarias en lugar de 
         muestreos cada 5 minutos.
 \end{itemize}
@@ -80,36 +80,35 @@ de los sensores.
 
 \subsection{Sprint 3 (28/02/2023 - 14/03/2023)}
 En la reunión de la iteración se acordó realizar la recuperación de los datos del sensor 8 hasta la variabilidad excesiva de los valores de las
-variables observadas, así como el intento de mejorar la calidad de los conjutnos de otros sensores realizando procesos similares.
+variables observadas, así como el intento de mejorar la calidad de los conjuntos de otros sensores realizando procesos similares.
 Por otro lado, se propuso emplear WeatherBit como \textit{API} meteorológica para eliminar las muestras que más distaran de las lecturas del 
 pluviómetro desplegado.
 
-Durante el desarrollo del \textit{sprint} se modificaron los umbrales empleados en la detección y manejo de valores extremos, para eliminar la mayoría
+Durante el desarrollo del \textit{sprint} se modificaron los umbrales empleados en la detección y manejo de valores extremos, para eliminar la mayor
 cantidad de ruido posible en todos los sensores.
-Por otro lado, se fueron finalizando las selecciones de datos de los sensores, realizando de igual forma una recuperación de valores en sensores cuyas 
+Por otro lado, se fueron finalizando las selecciones de los datos, realizando de igual forma una recuperación de valores en sensores cuyas 
 variabilidades se debían a factores externos (fueron sacados de sus posiciones originales).
 
 En lo referente del sensor 8 se llegó a la conclusión de que buena parte era irrecuperable debido a las variabilidades aleatorias 
 con las que parecía contar.
 
-Así mismo, se comenzó con la limpieza de las muestras del pluviómetro empleando los datos de varias \textit{API}, en primer lugar se trató de emplear
+Así mismo, se comenzó con la limpieza de las muestras del pluviómetro empleando los datos de varias \textit{API}, en primer lugar se trató de utilizar
 la mencionada anteriormente, estando el \textit{endpoint} ideal bajo licencia de pago.
 Probando con OpenWeatherMap se presentó el caso al soporte, consiguiendo ampliar los privilegios de usuario para poder acceder a la utilidad requerida, sin embargo, no
 se permitía retrotraerse en más de un año en las lecturas registradas.
 
-Finalmente se decide emplear los servicios de la AEMET, debido principalmente a que permitía obtener los datos de más de hace año atrás, sin embargo, no permitía obtener 
+Finalmente se decide emplear los servicios de la AEMET, debido principalmente a que permitía acceder a datos de más de hace un año, sin embargo, no permitía obtener 
 registros por hora, sino por día y la estación meteorológica más cercana se encontraba a unos 15 Kilómetros
 del despliegue.
 
 \subsection{Sprint 4 (14/03/2023 - 28/03/2023)}
-En la reunión del \textit{sprint} se acuerda comenzar con la fase del modelado a la vista de la aparente correcta selección y limpieza de los datos 
-proporcionados.
-Se plantea la creación de una matriz de correlación para observar cúales de los atributos seleccionar para la creación del modelo.
+En la reunión del \textit{sprint} se acuerda comenzar con la fase del modelado a la vista de la aparente correcta selección y limpieza realizada.
+Se plantea la implementación de una matriz de correlación para observar cúales de los atributos seleccionar para el entrenamiento.
 
 Durante el desarrollo de la iteración los esfuerzos se centran en la creación del entorno virtual con las dependencias correspondientes que permitan 
-realizar los modelados, además de dejar el fichero de pre-procesamiento comentado con las explciaciones pertinentes.
+realizar los modelados, además de dejar el fichero de pre-procesamiento documentado con las explciaciones pertinentes.
 
-Por otro lado, se realizan avances sustanciales en la memoria del proyecto añadiendo información de la introducción, objetivos y técnicas y herramientas,
+Por otro lado, se realizan avances sustanciales en la memoria del proyecto añadiendo información en la introducción, objetivos y técnicas y herramientas,
 además de realizar una reestructuración de ficheros y una modificación de la forma en la que se realizan las gráficas de los datos.
 
 Se comienza con la creación tentativa del modelo neuronal en busca de conocimiento del dominio, que permita profundizar en los módulos empleados para tal
@@ -121,7 +120,7 @@ similares (predicciones de tiempo atmosférico).
 En la reunión de la iteración se muestran los avances en memoria y en la creación de modelos, por otro lado, se plantea la forma de realizar la regresión
 empleando Keras.
 
-Durante el \textit{sprint} se modifica la manera en la que se crean los datos de entrada a los modelos, empleando medias diarias para tal propósito y 
+Durante el \textit{sprint} se modifica la manera en la que se seleccionan los datos de entrada a los modelos, empleando medias diarias para tal propósito y 
 dividiendo en dos conjuntos: entrenamiento y validación. Además, se crean las gráficas de dispersión que permiten comparar visualmente
 las predicciones y valores reales.
 
@@ -130,12 +129,12 @@ Por otro lado, se continúa con el desarrollo de la memoria, añadiendo concepto
 
 \subsection{Sprint 6 (11/04/2023 - 25/04/2023)}
 En la planificación se considera entrenar a los modelos neuronales únicamente con valores adecuados, pues hasta ahora pueden existir saltos temporales que
-afecten a la regresión, realizando medias temporales cada cierto periodo de tiempo para eliminar los posibles problemas de \textit{offset} de los 
+afecten a la regresión, realizando medias cada cierto periodo de tiempo para eliminar los posibles problemas de \textit{offset} de los 
 muestreos originales.
 
 En el desarrollo del \textit{sprint}, se modificó la selección en los datos de entrada a los modelos, de forma que se realizaban las medias diarias de los
-diferentes atributos y se les aplicaba el filtro de Hodrick-Presscott, un filtro que permite obtener las tendencias de una serie temporal,
-de manera que los modelos sean capaces de generalizar de forma más precisa.
+diferentes atributos y se les aplicaba el filtro de Hodrick-Presscott, que permite obtener las tendencias de una serie temporal,
+de modo que los modelos sean capaces de generalizar de manera más precisa.
 
 Por otro lado, se continuó con la memoria, en concreto con los conceptos teóricos relacionados con la fase de modelado.
 
@@ -144,20 +143,20 @@ En la reunión de la iteración se revisan los cambios realizados, llegando a la
 utilizando una ventana deslizante para seleccionar datos, de manera que se eviten los saltos temporales y estudiar la incorporación de una componente temporal 
 como entrada en la regresión.
 
-De esta forma, en el desarrollo se aplicó la ventana mencionada para la selección de datos de entrada en el modelo, de modo que se pudieran evitar la situación
+De esta forma, en el desarrollo se aplicó el métdodo mencionado para la selección de datos del modelo, de modo que se pudiera evitar la situación
 anterior.
 
 \subsection{Sprint 8 (09/05/2023 - 16/05/2023)}
-En la planificación se acordó intentar rebajar los periodos de tiempo, emplear datos medios por hora en lugar de diarios y probar los hiperparámetros
+En la planificación se acordó intentar rebajar los periodos de tiempo, emplear valores medios por hora en lugar de diarios y probar los hiperparámetros
 de las redes, intentando variar las neuronas por capa, el número de estas, el ratio de aprendizaje, etc. para observar el comportamiento de los modelos y
-determinar tanto si continúan generalizando como si es necesario realizar cambios en el proceso de conocimiento de datos y preparación de estos.
+determinar tanto si continúan generalizando como si es necesario realizar cambios en el proceso de conocimiento de datos y preparación.
 
 De esta manera, se redujo la frecuencia de las medias de los datos, realizando su integración en un único fichero, para poder
 entrenar los modelos empleando un único conjunto. Esto obligó a cambiar la forma en la que se graficaban los resultados, mostrando las gráficas de 
 dispersión por sensor y atributo.
 
 Por otro lado, se dividió el conjunto de datos en tres subconjuntos diferentes: un conjunto para entrenamiento, otro para validación y el restante para test, 
-permitiendo la parametrización en la división de estos.
+permitiendo la parametrización en la división.
 
 \subsection{Sprint 9 (16/05/2023 - 23/05/2023)}
 En la reunión de la iteración se acordó tratar de predecir tiempos más largos en lugar de un único instante como realizaban los modelos hasta el momento;
@@ -166,14 +165,14 @@ previsiblemente el error sería mayor, por lo que se mencionó permitir parametr
 Ante el objetivo principal planteado hubo que realizar diferentes modificaciones en la selección de los datos de salida y los parámetros, penalizando el rendimiento
 general de los modelos.
 
-Se avanzó en la memoria en los conceptos teóricos y se realizaron algunas correcciones.
+Se avanzó en los conceptos teóricos de la memoria y se realizaron algunas correcciones.
 
 \subsection{Sprint 10 (23/05/2023 - 30/05/2023)}
-En la planificación se indicó la continuación en los esfuerzos de realización de memoria y anexos.
-De esta manera, este \textit{sprint} se centró en la finalización de los mismos.
+En la planificación se indicó la continuación en los esfuerzos de realización de memoria y anexos, 
+de forma que este \textit{sprint} se centró en la finalización de los mismos.
 
 \subsection{Sprint 11 (30/05/2023 - 06/06/2023)}
-En este \textit{sprint} se acordó realizar más pruebas cambiando el número de predicciones en las salidas de los modelos,
+En la iteración se acordó la realización de más pruebas cambiando el número de predicciones en las salidas de los modelos,
 empleando para ello herramientas como Google Colab, de manera que pudieran agilizarse los procesos para obtener los resultados.
 
 Se propuso, por otro lado, la utilización nativa de librerías de \textit{IA} empleando \textit{CUDA}.
@@ -259,7 +258,7 @@ en algún producto o servicio posterior.
 En esta sección se desglosarán los temas relacionados con las licencias de uso de los productos software.
 
 En primer lugar se analizará la licencia más conveniente en el desarrollo del proyecto, teniendo en cuenta las dependencias empleadas y 
-sus respectivas licencias, puesto que la selección estará limitada por las restricciones de estas principalmente.
+sus respectivas licencias, puesto que la selección estará limitada por las restricciones en estas principalmente.
 
 \tablaSmallSinColores{Licencias de las dependencias utilizadas}{m{6em} m{5em} m{12em} m{5em}}{Licencias dependencias}{\textbf{Dependencia} & \textbf{Versión} & \textbf{Descripción} & \textbf{Licencia}\\}
 {TensorFlow & 2.11.0 & Biblioteca de aprendizaje automático & Apache v2.0 \\
@@ -269,8 +268,8 @@ IPython Kernel for Jupyter & 6.21.3 & Biblioteca para manipulación de Python No
 Statsmodel & 0.13.5 & Biblioteca con modelos y funciones estadísticas & BSD \\
 }
 
-De esta forma, se debe seleccionar una licencia compatible con Apache v2.0 y BSD, siendo la primera la más restrictiva de las licencias, que requiere la conservación del aviso de derecho
+De esta forma, se debe seleccionar una licencia compatible con Apache v2.0 y BSD, siendo la primera la más restrictiva de las licencias, requieriendo la conservación del aviso de derecho
 de autor y un descargo de responsabilidad, sin embargo, no es \textit{copyleft} \cite{misc:apache2}.
 
-Por su versatilidad se escoge una licencia MIT, que se trata de una licencia permisiva de software libre, imponiendo muy poocas restricciones y otorgando una
+Por su versatilidad se escoge la opción MIT, puesto que se trata de una licencia permisiva de software libre, imponiendo muy pocas restricciones y otorgando una
 buena compatibilidad con otras licencias como la mencionada anteriormente.

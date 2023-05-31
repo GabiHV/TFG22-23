@@ -2,14 +2,14 @@
 
 \section{Introducción}
 En la etapa de comprensión de los datos se creará el conjunto inicial y se comprobará
-si este es adecuado, para, en caso contrario, poder continuar recopilando.
+si es adecuado, para, en caso contrario, poder continuar la recopilación.
 
 Los plazos del proyecto impiden realizar esta fase en toda su extensión, puesto que
 a pesar de ser el proceso de análisis de datos un proceso iterativo, se encuentra 
-sujeto a unos plazos inamovibles.
+sujeto a entregas inamovibles.
 
 \section{Descripción de los datos}
-Se proporcionan un conjunto de datos compuesto por varios sensores (en concreto 8 
+Se proporciona un conjunto de datos compuesto por varios sensores (en concreto 8 
 sensores \textit{IoT}) y un pluviómetro desplegados en un viñedo.
 
 Los datos de los sensores proporcionados cuentan con los siguientes atributos:
@@ -48,7 +48,7 @@ en función del tiempo.
 
 En el caso de los sensores, los atributos \textit{h\_C} y \textit{h\_L} se obviarán debido
 a que se tratan de datos redundantes con las respectivas humedades calibradas. 
-Además, los datos de batería y fecha tampoco se emplearán en la creación de las gráficas,
+De igual manera, los valores de batería y fecha tampoco se emplearán en la creación de las gráficas,
 puesto que no aportan información útil para los objetivos del proyecto más allá de posibles
 errores de muestreo.
 
@@ -59,32 +59,29 @@ errores de muestreo.
 
 En el primer sensor, como puede observarse en la Figura \ref{fig:raw_data/sensor1.png},
 se encuentran varias situaciones que a \textit{priori} son sencillas de solucionar, 
-y es que existe una cantidad importante de muestras para las que no contamos con datos,
-además de existir valores claramente inverosímiles (como en el caso de la humedad
+puesto que existe una cantidad importante de muestras para las que no se cuentan con datos,
+además de valores claramente inverosímiles (como en el caso de la humedad
 más profunda, o el aumento tan repentino de la humedad superficial).
-A pesar de esto, el resto parecen estar dentro de la normalidad, por lo que
-el trabajo en el sensor mencionado será uno de los menos tediosos.
+A pesar de esto, el resto parecen encontrarse dentro de la normalidad, por lo que
+las labores en el sensor mencionado serán de las menos tediosas.
 
-Las subidas tan repentinas como las observadas en la imágen posteriormente se demostró
-que eran debidas al agotamiento de la batería del respetivo sensor, que poco antes
-de producirse arrojaban lecturas artificiales para luego realizar lecturas nulas.
+Los aumentos tan repentinos como los observados en la imágen posteriormente se demostraron
+que eran debidos al agotamiento de la batería, que poco antes
+de producirse provocaba que las sondas arrojaran valores artificiales para luego realizar lecturas nulas.
 
 \subsection{Sensor 2}
 
 % Sensor 2
 \imagen{raw_data/sensor2.png}{Datos no procesados: sensor 2}{1}
 
-En el segundo caso, además de las lecturas para las que no contemos con valores,
-el la Figura \ref{fig:raw_data/sensor2.png} se observa cómo llegado un instante
-las sondas de temperatura y humedad superficiales comienzan a realizar lecturas
+En el segundo caso, además de las muestras para las que no se cuenta con valores,
+el la Figura \ref{fig:raw_data/sensor2.png} se observa cómo llegado un instante en
+las sondas de temperatura y humedad superficiales se comienzan a realizar lecturas
 muy variadas a lo largo del tiempo, para posteriormente dejar de producir datos.
 
 Además, puede observarse la presencia de cierto ruido durante los muestreos previos
 al suceso mencionado en las sondas de humedad, lo que posiblemente sea debido a 
-las capacitancias de estas.
-
-% Una investigación posterior confirmó que el sensor había sido desplazado de su 
-% posición original debido probablemente a las labores realizadas en los viñedos.
+las sus capacitancias.
 
 \newpage
 \subsection{Sensor 3}
@@ -92,9 +89,9 @@ las capacitancias de estas.
 % Sensor 3
 \imagen{raw_data/sensor3.png}{Datos no procesados: sensor 3}{1}
 
-En el este sensor, como puede observarse en la Figura \ref{fig:raw_data/sensor3.png},
+En este sensor, como puede apreciarse en la Figura \ref{fig:raw_data/sensor3.png},
 además de los muestras para los que no tenemos valores (que será la tónica habitual
-en el conjunto de datos), existen unas subidas remarcables de humedades, con unas
+en el conjunto de datos), existen aumentos remarcables en las humedades, con unas
 bajadas que pueden considerarse aceleradas o repentinas.
 
 La mayor parte de estas son genuinas y debidas a las lluvias contrastadas esos días, sin 
@@ -111,12 +108,12 @@ En este caso, pueden observarse en la Figura \ref{fig:raw_data/sensor4.png}, dif
 situaciones. La primera de ellas, como en el resto de sensores son los valores faltantes; la
 segunda es el ruido existente en ciertos periodos de tiempo.
 
-Tras este ruido instantáneo en los datos, puede observarse cómo la variabilidad de las muestras
+Tras esta situación, puede apreciarse cómo la variabilidad de las muestras
 aumenta de forma homogénea en todas y cada una de las sondas, a salvedad de las que recogen
-datos ambientales.
+valores ambientales.
 
-Las posteriores investigaciones indicaron que de nuevo el sensor había sido desplazado
-de su situación inicial.
+Las posteriores investigaciones indicaron que el sensor había sido desplazado
+de su emplazamiento inicial.
 
 \newpage
 \subsection{Sensor 5}
@@ -125,16 +122,16 @@ de su situación inicial.
 \imagen{raw_data/sensor5.png}{Datos no procesados: sensor 5}{1}
 
 En la Figura \ref{fig:raw_data/sensor5.png} puede observarse diferentes situaciones.
-Una de ellas es la repetida falta de valores para algunos instántes de tiempo; la 
-segunda es las aparentes subidas repentinas de humedades.
+Una de ellas es la repetida falta de valores para algunos instantes de tiempo; la 
+segunda son las aparentes aumentos repentinos de humedades.
 
-Estas siguen el mismo patrón en todas las situaciones, aumento que puede clasificarse
+Estos siguen el mismo patrón en todas las situaciones: incremento que puede clasificarse
 como repentino, y un descenso moderado a lo largo del tiempo.
-De esta forma, todas se contrastaron como genuinas observando ciertas situaciones como
-el tiempo atmosférico en los instántes de subida.
+De esta forma, todos se contrastaron como genuinos observando ciertos parámetros como
+el tiempo atmosférico en los instantes de subida.
 
-Este sensor se trata de uno con los datos más limpios de forma predefinida de todo
-el conjunto de datos, sino el que en mejor estado se encuentra.
+Este sensor se trata de uno con el conjunto de datos más limpios de forma predefinida, 
+sino el que en mejor estado se encuentra.
 
 \newpage
 \subsection{Sensor 6}
@@ -143,14 +140,14 @@ el conjunto de datos, sino el que en mejor estado se encuentra.
 \imagen{raw_data/sensor6.png}{Datos no procesados: sensor 6}{1}
 
 En el conjunto de datos que se puede observar en la Figura \ref{fig:raw_data/sensor6.png},
-al igual que en los anteriores sensores, pueden observarse valores faltantes, además de 
+al igual que en los sensores anteriores, existen valores faltantes, además de 
 otras situaciones.
 
-Una de ella es la presencia generalizada de ruido en el conjunto de ejemplos en las lecturas
+Una de ellas es la presencia generalizada de ruido en las lecturas
 de las sondas que miden variables del suelo.
 
 Por otro lado, en un instante de tiempo las humedades aumentan de forma repentina, posiblemente
-por la lluvia, sin embargo en la humedad del suelo a mayor profundidad, hay una variabilidad
+por la lluvia, sin embargo, en la humedad del suelo a mayor profundidad, hay una variabilidad
 que se consideró como irrecuperable por su estado.
 
 \newpage
@@ -159,19 +156,19 @@ que se consideró como irrecuperable por su estado.
 % Sensor 7
 \imagen{raw_data/sensor7.png}{Datos no procesados: sensor 7}{1}
 
-En este caso pueden observarse en la Figura \ref{fig:raw_data/sensor7.png} diferentes
-situaciones, además de la falta ya mencionada en el resto de sensores de valores
-en algunas muestras.
+En este caso pueden apreciarse en la Figura \ref{fig:raw_data/sensor7.png} diferentes
+situaciones, además de la falta de valores en algunas muestras ya mencionada en el 
+resto de sensores.
 
 En primer lugar, en las sondas de humedad no ambientales se comienza a producir un aumento
 que podría considerarse como exponencial en el tiempo debido al agotamiento de la batería.
 
-En segundo lugar, como en el sensor 4, se produce un aumento significativo de la variabilidad
-de la temperatura del suelo, produciéndose, además, un aumento de la sonda de
+En segundo lugar, al igual que en el sensor 4, se observa un incremento significativo de la variabilidad
+de la temperatura del suelo, produciéndose, además, un aumento de las lecturas en la sonda de
 humedad más profunda.
 
-De igual forma que en el sensor mencionado, las labores en los cultivos habían producido un
-cambio en el emplazamiento original del sensor, lo que producía estas situaciones mencionadas.
+De igual manera que en el sensor mencionado, las labores en los cultivos habían provocado un
+cambio en el emplazamiento original del sensor, lo que producía las situaciones mencionadas.
 Con respecto a la falta de los datos de humedad y temperatura más superficiales se 
 comprobará que fue debida a la rotura de las respectivas sondas.
 
@@ -185,12 +182,14 @@ Como puede observarse en la figura \ref{fig:raw_data/sensor8.png}, en este caso 
 múltiples problemas en el conjunto de datos.
 
 En primer lugar, los ya mencionados valores faltantes en diferentes instantes de tiempo.
-En segundo lugar, los aumentos de temperatura debidos al agotamiento de la batería y en tercer
-lugar la alta variabilidad en las temperaturas, que por otro lado, se asemejan en gran medida,
-lo que indica que de nuevo el sensor había sido desplazado de su emplazamiento original.
+En segundo término, los aumentos de temperatura debidos al agotamiento de la batería y finalmente
+la alta variabilidad en las temperaturas, que por otro lado, se asemejan en gran medida a la situación 
+del sensor 4,
+lo que indica que de nuevo las sondas habían sido desplazadas de su emplazamiento original.
 
 Este será uno de los sensores con el conjunto de datos con más problemas de todos los 
-expuestos anteriormente.
+expuestos anteriormente, encontrándose de igual forma con incidencias continuas por los niveles
+de batería.
 
 \newpage
 \subsection{Pluviómetro}
@@ -198,7 +197,7 @@ expuestos anteriormente.
 % Pluviómetro
 \imagen{raw_data/pluviometro.png}{Datos no procesados: pluviómetro}{1}
 
-En el caso del pluviómetro, los datos estarán sujetos a muestras erróneas debido a la forma
-de fijación del mismo, puesto que con las ráfagas de viento se producían oscilaciones
-en el poste al que se encontraba anclado, de forma que se realizaban lecturas incorrectas
-de las precipitaciones.
+En el caso del pluviómetro, los datos estarán sujetos a erróneas debido a su forma
+de fijación, puesto que las ráfagas de viento producían oscilaciones
+en el poste al que se encontraba anclado, de modo que se realizaban lecturas incorrectas
+en las precipitaciones.
