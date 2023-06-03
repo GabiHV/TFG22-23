@@ -14,20 +14,20 @@ Por otro lado, también es posible encontrar valores erróneos, que pueden ser
 estadísticamente correctos, pero no tener sentido contextual. En este
 caso concreto se tratarán de incrementos o bajadas inverosímiles de temperaturas 
 y/o humedades del suelo, que se encuentran dentro de los valores naturales,
-pero que es dificil que tengan lugar a la velocidad a la que se producen.
+pero que es difícil que tengan lugar a la velocidad a la que se producen.
 Se empleará una exploración visual para realizar su tratamiento. 
 
 Cabe destacar que a todos los conjuntos de datos se les ha aplicado un filtro de 
-tendencias (en este caso el filtro de Hodrick-Presscot \cite{misc:wikipediaHodrick2023}), 
+tendencias (en este caso el filtro de Hodrick-Prescott \cite{misc:wikipediaHodrick2023}), 
 puesto que no existe un interés específico en los valores concretos, sino en las posibles 
 tendencias de las diferentes variables, que nos permitan obtener una predicción adecuada 
 en cada circunstancia.
 De esta manera, se calcula la tendencia diaria de cada periodo temporal.
 
 \section{Valores faltantes}
-En cuanto a los valores faltantes, la decisión fue elimiar las muestras que tuvieran
+En cuanto a los valores faltantes, la decisión fue eliminar las muestras que tuvieran
 nulos en alguna de sus columnas, puesto que la recuperación empleando técnicas
-como la imputación de valores era prácticamente inviable y por otro lado, se contaban
+como la imputación de valores era prácticamente inviable y, por otro lado, se contaban
 con ejemplos suficientes como para poder suprimir parte de estos.
 
 \section{Valores extremos}
@@ -43,7 +43,7 @@ mediana del grupo.
 
 \section{Valores erróneos}
 En lo referente a los valores erróneos se trata de una de las tareas más arduas 
-del proyecto, puesto que parte de esta detección se desarrolló de forma visual diréctamente
+del proyecto, puesto que parte de esta detección se desarrolló de forma visual directamente
 sobre el conjunto de datos de los diferentes sensores y el pluviómetro, siendo, 
 de esta manera, en su mayoría un proceso manual.
 
@@ -135,7 +135,7 @@ métodos mencionados.
 En este caso existían dos problemas principales en el conjunto de datos original:
 las sondas de temperatura y humedad comenzaban a realizar lecturas con variaciones
 muy elevadas para su profundidad en cortos periodos de tiempo y a la par
-habían atributos que no contaban con valores, además, al igual que en otros casos,
+había atributos que no contaban con valores, además, al igual que en otros casos,
 el agotamiento de la batería producía sondeos incorrectos en las humedades.
 
 Ante estos problemas la solución tomada fue eliminar los ejemplos 
@@ -154,7 +154,7 @@ no ha sido posible recuperar los datos de gran parte del periodo muestreado.
 Los aumentos de humedad mostrados están contrastados como 
 provocados por las altas precipitaciones.
 
-Hablándo en términos de sesgos, es posible que al realizar la recuperación de los
+Hablando en términos de sesgos, es posible que, al realizar la recuperación de los
 valores en los sensores mencionados, puedan haberse sesgado en cierta medida
 los conjuntos de datos, sin embargo, estos no dejarán de estar más cercanos a los
 valores reales y, por tanto, contener un error más reducido que las muestras originales

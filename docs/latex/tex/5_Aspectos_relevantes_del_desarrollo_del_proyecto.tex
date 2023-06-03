@@ -22,7 +22,7 @@ los presentaban valores faltantes debidos a la posible desconexión de los senso
 que estos dejaran de enviar datos al servidor. Por otro lado, las labores del campo podían haber afectado a la calidad
 de estos por la extracción de las sondas de los sensores de sus posiciones originales.
 
-Además, el pluviómetro instalado en un orígen se encontraba anclado de forma débil, lo que propiciaba que el viento 
+Además, el pluviómetro instalado en un origen se encontraba anclado de forma débil, lo que propiciaba que el viento 
 produjera lecturas erróneas en el movimiento del balancín empleado en el registro de las precipitaciones.
 
 Tras estas reuniones se inició el proceso de la comprensión del negocio, es decir, se comenzó con la definición de los 
@@ -44,12 +44,12 @@ sustituyendo los datos identificados como extremos con la mediana del día en el
 Por otro lado, algunos de los sensores contaban con valores matemáticamente correctos (dentro de límites lógicos de las 
 diferentes variables) pero que contextualmente eran incorrectos. Un ejemplo de esto eran las lecturas artificiales de 
 distintas variables como la temperatura cuando el nivel de la batería de los sensores caía por debajo de 3,3V, lo que
-probocaba un desbordamiento de la variable en el controlador correspondiente.
+provocaba un desbordamiento de la variable en el controlador correspondiente.
 
 Ante esta situación se decidió eliminar aquellas muestras cuyo nivel de batería se encontrara por debajo del mencionado
 y por encima de los 4,1V (el máximo). Sin embargo, tras realizar esta operación se observó que ciertas 
-muestras continuaban siendo contextualmente incorrectas arrojando datos inverosímiles (bajadas de temperatura y/o 
-humedad extremas en periodos de tiempo cortos) debidas en gran medida, como se confirmó posteriormente, 
+muestras continuaban siendo contextualmente incorrectas arrojando datos inverosímiles (bajadas de temperaturas y/o 
+humedades extremas en periodos de tiempo cortos) debidas en gran medida, como se confirmó posteriormente, 
 a la extracción de las sondas de la situación original, por lo que se acordó con los docentes la eliminación de estos 
 valores que continuaban siendo erróneos.
 
@@ -60,7 +60,7 @@ por las condiciones en la que se encontraban, puesto que el lapso temporal era d
 Además de estas condiciones, algunos de los sensores contaban con muestras con discontinuidades inexplicables 
 mediante los datos, por lo que se acordó el intento de la recuperación de estos. Para ello, se observaron los muestreos
 de los sensores geográficamente más cercanos al afectado, de forma que se pudiera conocer de manera más 
-precisa cúal de las series era la que contaba con la lecura correcta y acutar en consecuencia.
+precisa cuál de las series era la que contaba con la lectura correcta y actuar en consecuencia.
 
 A pesar de que se haya podido introducir algún sesgo debido a la modificación de los valores plasmados en los muestreos, 
 los datos reales serán más cercanos a los nuevos valores asignados que a las lecturas anteriores, es decir, aún si 
@@ -73,7 +73,7 @@ eficiente no era viable, por lo que se tuvo que trabajar con la cantidad proporc
 Tras realizar una investigación preliminar acerca de los modelos con mayor precisión 
 en la regresión de series temporales, se llegó a la conclusión de emplear
 redes neuronales recurrentes con memoria como primer objetivo de modelado, 
-puesto que sobre datos meteorologicos contaban con un buen rendimiento.
+puesto que sobre datos meteorológicos contaban con un buen rendimiento.
 
 Por ese motivo, se escogió utilizar las redes neuronales con memoria a corto y medio
 plazo como son \textit{GRU} y \textit{LSTM}, empleando los mismos hiperparámetros y,
@@ -84,9 +84,9 @@ Además, otra opción a emplear fue la tradicional \textit{MLP} para poder obser
 cómo la linealidad de este modelo (no tiene en cuenta instantes anteriores) impide obtener unos 
 resultados aceptables en comparación de sus contrapartes recurrentes.
 
-El primer reto consistía en preparar los datos de entrada a la red neuronal y los 
+El primer reto consistía en preparar los datos de entrada a la red neuronal y las 
 correspondientes salidas de forma que estos fueran muestras homogéneas
-sin saltos temporales que impidiearan a los modelos ajustarse adecuadamente.
+sin saltos temporales que impidieran a los modelos ajustarse adecuadamente.
 
 En primer lugar, en un espacio de 10 minutos se podían encontrar 2 o 3 muestras según fuera 
 el \textit{offset} del controlador de muestreos de los sensores.
@@ -97,7 +97,7 @@ Una solución fue recorrer el conjunto de datos del sensor con una ventana desli
 equivalente a las instancias de entrada (establecido por parámetro) y el dato de salida (se realizó una 
 aproximación preliminar realizando una única predicción, que posteriormente se modificó para 
 que los modelos fuesen capaces de realizar varias), de esta forma en ventanas en las que 
-no habían datos suficientes para la entrada se descartaban.
+no había datos suficientes para la entrada se descartaban.
 
 \imagen{window.png}{Esquema del proceso de preparación de datos}{0.5}
 

@@ -3,18 +3,18 @@ El desarrollo del proyecto cuenta con diferentes fases siguiendo el proceso de \
 en bases de datos, KDD}, compuesto por la comprensión del negocio, la comprensión de los datos, la preparación de datos,
 el modelado, la evaluación del modelo y el despliegue del producto software \cite{book:witten2017}.
 
-\imagen{data_mining_process.jpg}{\textit{Proceso KDD}. Extraido de \cite{book:witten2017}}{0.5}
+\imagen{data_mining_process.jpg}{\textit{Proceso KDD}. Extraído de \cite{book:witten2017}}{0.5}
 
 En la fase de comprensión del negocio se analizan los objetivos y requisitos del proyecto. 
 En este caso quedan bien marcados en la descripción del proyecto y la introducción, así como en la sección de los objetivos.
 
-En la etapa de comprensión de los datos se crea el conjunto de datos inical y se comprueba si este es adecuado,
+En la etapa de comprensión de los datos se crea el conjunto de datos inicial y se comprueba si este es adecuado,
 de forma que si se determina que no lo es se deberá continuar con la recopilación.
 En el caso que nos atañe como estamos sujetos a los plazos del curso la recopilación de más datos puede complicarse.
 
 En la preparación de los datos se realiza el pre-procesamiento de estos, de forma que puedan ser empleados en el modelado.
 
-En la fase de modelado, como su propio nombre indica, se crean los modelos, lo que se encuentra relacionado extrechamente con
+En la fase de modelado, como su propio nombre indica, se crean los modelos, lo que se encuentra relacionado estrechamente con
 la fase de preparación, puesto que algunas herramientas de pre-procesamiento incluyen un modelo interno 
 de los datos para transformarlos \cite{book:witten2017}.
 
@@ -46,10 +46,10 @@ En esta tabla podríamos obtener información trascendental para proceso de aná
 En el caso de atributos numéricos un mecanismo visual que es especialmente útil es la gráfica de dispersión \cite{book:hernandez2004}, que es la técnica de visualización
 de datos que se empleará mayoritariamente durante el desarrollo del proyecto.
 
-En el conjuto de datos podemos encontrar \textbf{valores faltantes}, que pueden ser reemplazados por diferentes razones. Una de ellas es que
+En el conjunto de datos podemos encontrar \textbf{valores faltantes}, que pueden ser reemplazados por diferentes razones. Una de ellas es que
 el modelo que empleemos puede no tratar bien estos valores o que utilice un mecanismo de tratamiento que no sea adecuado.
 Un problema asociado a su detección es que estos no estén representados como nulos, lo que puede introducir sesgo en el conocimiento
-extraido \cite{book:hernandez2004}.
+extraído \cite{book:hernandez2004}.
 
 Ante esta situación se puede actuar de diferentes maneras \cite{book:hernandez2004}:
 \begin{itemize}
@@ -57,7 +57,7 @@ Ante esta situación se puede actuar de diferentes maneras \cite{book:hernandez2
     \item Eliminar el atributo que contiene valores faltantes.
     \item Filtrar las filas: eliminar las filas afectadas, lo que introduce cierto sesgo en muchas ocasiones.
     \item Reemplazar el valor por otro que preserve la media y la varianza del conjunto de datos en caso de atributos numéricos y la moda en atributos
-        catregóricos.
+        categóricos.
         Una forma de reemplazar los valores faltantes es la imputación de datos perdidos, que consiste en predecirlos a partir de otros ejemplos. Existen también
         algoritmos que se emplean tradicionalmente para este fin.
     \item Segmentar: se segmentan las filas por los valores disponibles y se obtiene un modelo por cada uno de los segmentos y se combinan.
@@ -72,17 +72,17 @@ En el caso que nos atañe se deben buscar los \textbf{valores extremos}, que no 
 estadísticamente se clasifican como anómalos, aunque representen un estado genuino de la realidad.
 Con todo y con eso, estos valores pueden suponer un problema para algunos métodos que se basan en el ajuste de pesos
 como las redes neuronales.
-En otras ocasiones pueden haber datos erróneos que caen en la normalidad, por lo que no pueden ser detectados estadísticamente sin 
+En otras ocasiones puede haber datos erróneos que caen en la normalidad, por lo que no pueden ser detectados estadísticamente sin 
 conocimiento explícito del dominio del problema \cite{book:hernandez2004}.
 
 No detectar estos valores puede resultar en problemas si posteriormente se normalizan los datos, puesto
-que la mayoria de datos estarían en un rango muy pequeño \cite{book:hernandez2004}, mientras que unos pocos 
+que la mayoría de datos estarían en un rango muy pequeño \cite{book:hernandez2004}, mientras que unos pocos 
 se encontrarán en rangos más grandes y alejados de estos, lo que puede introducir problemas de eficiencia y precisión.
 
 El tratamiento de los datos erróneos o anómalos pueden ser tratados de forma similar a los faltantes \cite{book:hernandez2004}:
 \begin{itemize}
     \item Ignorarlos (ciertos algoritmos son robustos a datos anómalos).
-    \item Eliminar el atributo que contiene los datos anómalos, por ejemplo si esta situación se produce
+    \item Eliminar el atributo que contiene los datos anómalos, por ejemplo, si esta situación se produce
         continuamente (es preferible reemplazarla por otra columna con valores discretos
         estableciendo la corrección o no del valor).
     \item Filtrar las filas: eliminar las filas afectadas, lo que, de nuevo, puede introducir cierto sesgo.
@@ -92,7 +92,7 @@ El tratamiento de los datos erróneos o anómalos pueden ser tratados de forma s
         de datos).
     \item Discretizar: transformar un valor continuo en uno discreto.
 \end{itemize}
-Los atributos con valores erróneos serán mas graves cuando este sea empleado como clase o valor de salida de la predicción \cite{book:hernandez2004},
+Los atributos con valores erróneos serán más graves cuando este sea empleado como clase o valor de salida de la predicción \cite{book:hernandez2004},
 puesto que afectarán directamente al cálculo del rendimiento del modelo. 
 
 \subsection{Filtro de Hodrick-Prescott}
@@ -100,7 +100,7 @@ Además de los mecanismos descritos para realizar el pre-procesamiento de los da
 permite extraer los componentes tendenciales y cíclicos de una secuencia temporal, de manera que de los originales se 
 puedan utilizar las tendencias para entrenar los diferentes modelos \cite{misc:wikipediaHP}.
 
-Para el cáclculo del componente tendencial (\(\tau_t\)), se emplea un valor positivo \(\lambda\), de forma que se resuelve:
+Para el cálculo del componente tendencial (\(\tau_t\)), se emplea un valor positivo \(\lambda\), de forma que se resuelve:
 \begin{equation}
     \min \sum_{t=1}^T\left(y_t-\tau_t\right)^2+\lambda \sum_{t=2}^{T-1}\left[\left(\tau_{t+1}-\tau_t\right)-\left(\tau_t-\tau_{t-1}\right)\right]^2
 \end{equation}
@@ -141,10 +141,10 @@ empleados para el cálculo de las señales de activación de cada neurona que se
 \end{equation}
 
 Donde \begin{math}\bar{h}_1\end{math} será el resultado de aplicar la función de activación en la primera capa oculta (la capa de entrada
-actua de intermedio entre las entradas y la \textit{RNA}), \begin{math}\bar{h}_{p+1}\end{math} serán los resultados de la función de activación
+actúa de intermedio entre las entradas y la \textit{RNA}), \begin{math}\bar{h}_{p+1}\end{math} serán los resultados de la función de activación
 en la capa p-ésima y \begin{math}\bar{o}\end{math} en la capa de salida.
 
-\imagen{mlp.png}{Perceptrón Multicapa. Extraido de \cite{book:aggarwal2018}}{0.75}
+\imagen{mlp.png}{Perceptrón Multicapa. Extraído de \cite{book:aggarwal2018}}{0.75}
 
 Existen diversas funciones de activación entre las que destacan las sigmoides por ser aplicadas de forma 
 elemental \cite{book:aggarwal2018}.
@@ -215,7 +215,7 @@ modelos emplearán para ello puertas que controlan el flujo de información dent
 
 Cada celda en \textit{LSTM} cuenta con tres puertas: la puerta de entrada \textit{Input Gate}, la puerta de salida 
 (\textit{Output Gate}) y la puerta de olvido (\textit{Forget Gate}). La primera decide
-cuánta información nueva debe debe agregar a la memoria, la segunda cuánta transmitir como salida y 
+cuánta información nueva debe agregar a la memoria, la segunda cuánta transmitir como salida y 
 la tercera cuánta información antigua se debe de descartar.
 
 En las celdas del modelo se calculan 3 funciones:
@@ -231,7 +231,7 @@ En las celdas del modelo se calculan 3 funciones:
 
 La función \(f_t\) se corresponde con la puerta de olvido (\textit{Forget Gate}), mientras que 
 \(i_t\) con la compuerta de entrada (\textit{Input Gate}) y \(o_t\) con la de salida (\textit{Output
-Gate})
+Gate}).
 
 De esta manera, cada una de estas empleará dos matrices de pesos diferentes (\(W\) y \(U\)) en cada caso, que se compartirán
 en distintos instantes de tiempo.
@@ -242,7 +242,7 @@ a añadirse:
     \widetilde{c}_t = tanh (W_{c} x_t + U_{c} y_{t-1} + b_c) 
 \end{equation}
 
-Finalmente el estado de la red se actualiza siguiendo la ponderación:
+Finalmente, el estado de la red se actualiza siguiendo la ponderación:
 \begin{equation}
     c_t = f_t \odot  c_{t-1} + i_{t} \odot \widetilde{c}_t 
 \end{equation}

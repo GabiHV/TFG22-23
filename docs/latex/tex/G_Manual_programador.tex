@@ -8,7 +8,7 @@ instalación y ejecución de este.
 El proyecto cuenta con la siguiente estructura de directorios:
 \begin{itemize}
     \item \textbf{/data/:} directorio que contiene los diferentes datos del proyecto, tanto procesados, sin procesar y los datos integrados que se emplearán en el modelado.
-    \subitem \textbf{/data/raw/:} directorio con los datos sin procesar (úncamente con la selección previa de validez).
+    \subitem \textbf{/data/raw/:} directorio con los datos sin procesar (únicamente con la selección previa de validez).
     \subitem \textbf{/data/processed/:} directorio con los datos procesados.
     \subitem \textbf{/data/integrated/:} directorio con los datos integrados en un único fichero.
     \item \textbf{/img/graphics/:} directorio con las diferentes gráficas resultado de la ejecución de los scripts de graficado.
@@ -34,7 +34,7 @@ La instalación puede realizarse en el siguiente enlace \cite{misc:python2023}.
 En la fuente mencionada se pueden escoger diferentes formas de instalación. Dependiendo del sistema operativo utilizado en la máquina en la que se ejecutará el proyecto se debe seleccionar una
 u otra y seguir los pasos establecidos.
 
-Durante el desarrollo del proyecto se empleó como entorno de programación Visual Studio Code \cite{misc:code2023}, sin embargo para su ejecución podemos emplear otros entornos como 
+Durante el desarrollo del proyecto se empleó como entorno de programación Visual Studio Code \cite{misc:code2023}, sin embargo, para su ejecución podemos emplear otros entornos como 
 Anaconda Navigator \cite{misc:conda2023}.
 Se explicará los pasos a seguir con el editor mencionado para habilitar los entornos, puesto que simplifica el trabajo al disponer de scripts que realizan de forma automática 
 la instalación de las dependencias.
@@ -63,7 +63,7 @@ De forma similar en Linux Bash:
 
 Una vez finalice el proceso de instalación de todas las dependencias se podrán ejecutar los diferentes ficheros fuente de Python Notebook abriendo el proyecto en Visual Studio Code
 y estableciendo el Kernel de ejecución al entorno configurado. Está definido que el entorno virtual se denomine \textbf{.venv}, por lo que será necesario buscar entre los diferentes 
-instalados haciendo click en la parte superior derecha del notebook (en el botón para la selección del intérprete de ejecución).
+instalados haciendo clic en la parte superior derecha del notebook (en el botón para la selección del intérprete de ejecución).
 
 \imagen{venv_selection.png}{Búsqueda del entorno virtual}{1}
 \imagen{venv_selected.png}{Selección del entorno virtual}{0.25}
@@ -71,14 +71,14 @@ instalados haciendo click en la parte superior derecha del notebook (en el botó
 Posteriormente podrá ejecutarse cualquier fichero Pyhton Notebook con el botón de ``Execute All'', o proceder por celda.
 
 En lo referente a los ficheros fuente de Python, con el entorno virtual instalado abriendo una consola en el sistema operativo en \textbf{/.venv/bin/} en Linux y \textbf{/.venv/Scripts/}
-en Windows, podremos ejecutar la activación del entorno virutal con los scripts incluidos en el directorio (ejecutando \linebreak \textbf{activate.bat} y \textbf{Activate.ps1} en Windows dependiendo del terminal empleado).
+en Windows, podremos ejecutar la activación del entorno virtual con los scripts incluidos en el directorio (ejecutando \linebreak \textbf{activate.bat} y \textbf{Activate.ps1} en Windows dependiendo del terminal empleado).
 Esta operación se realizará automáticamente al realizar la instalación de los módulos de Python incluidos en el fichero de requerimientos, por lo que se puede aprovechar la terminal en ejecución para 
 este propósito.
 
-Para ejecutar los ficheros de Python adecuadamente es necesario estar situados con la terminal en el directorio correspondiente. En este caso se debe nevegar hasta \textbf{./src/}
+Para ejecutar los ficheros de Python adecuadamente es necesario estar situados con la terminal en el directorio correspondiente. En este caso se debe navegar hasta \textbf{./src/}
 
 \section{Pruebas del sistema}
-En esta subsección se presentará la forma de realizar las modificaciones en los hiperparámetros de los modelos, de forma que estos puedan variar de acuerdo a los nuevos requerimientos introducidos.
+En esta subsección se presentará la forma de realizar las modificaciones en los hiperparámetros de los modelos, de forma que estos puedan variar de acuerdo con los nuevos requerimientos introducidos.
 
 Los modelos contienen los siguientes hiperparámetros:
 \begin{itemize}

@@ -7,7 +7,7 @@ la viabilidad económica y legal.
 \section{Planificación temporal}
 La planificación del desarrollo del proyecto se realizó siguiendo la metodología ágil \textit{Scrum}, aunque no en su definición completa, puesto
 que al ser una única persona desarrollando, no permite realizar todos los procedimientos recogidos dentro de los manuales de gestión de proyectos
-con metodologías ágiles \cite{book:palacio2021}, como las reuniones diarias ``daily'' para atender diferentes cuestiones como cúales son los 
+con metodologías ágiles \cite{book:palacio2021}, como las reuniones diarias ``daily'' para atender diferentes cuestiones como cuáles son los 
 problemas que ralentizan el avance del proyecto.
 
 Por otro lado, la herramienta software que apoyaba su aplicación (ZenHub \cite{misc:zenhub2023}) dejó de estar disponible de forma abierta, de modo
@@ -17,11 +17,11 @@ tareas por cada uno de los \textit{sprints}.
 Aun así, se ha continuado aplicando la filosofía ágil en líneas generales:
 \begin{itemize}
     \item Se continuó con el desarrollo iterativo incremental mediante los \textit{sprints}.
-    \item La duración media de estas iteraciones fueron de dos semanas al comienzo del proyecto y durante
+    \item La duración media de estas iteraciones fue de dos semanas al comienzo del proyecto y durante
         la mayor parte de su realización, reduciendo el tiempo al final de este.
     \item En la terminación de los \textit{sprints} se realizaba un incremento, manteniendo reuniones con los 
         tutores para la planificación de la iteración entrante y la revisión de posibles errores en el desarrollo.
-    \item Las tareas surgidas de la reunión se creaba, estimaban y priorizaban, en un inicio añadiéndolas al tablero
+    \item Las tareas surgidas de la reunión se creaban, estimaban y priorizaban, en un inicio añadiéndolas al tablero
         \textit{Canvas}.
 \end{itemize}
 
@@ -32,7 +32,7 @@ de desarrollo.
 \subsection{Sprint 0 (18/01/2023 - 31/01/2023)}
 En este \textit{sprint} se presentó el proyecto, indicándose los primeros objetivos, lo que se enmarca en la fase de comprensión
 del negocio.
-Las tareas inciales se correspondían con la fase de comprensión de datos y a su vez con la preparación de estos, 
+Las tareas iniciales se correspondían con la fase de comprensión de datos y a su vez con la preparación de estos, 
 puesto que el conjunto proporcionado contaba con diferentes casuísticas de las que en un comienzo se tenía constancia.
 
 Entre los problemas encontrados previos al análisis en profundidad de los datos se encontraban lecturas incorrectas (valores erróneos) 
@@ -73,7 +73,7 @@ En la reunión de la iteración se propusieron diferentes objetivos:
 
 Durante el desarrollo del \textit{sprint} se continuó con la selección de datos, encontrando que el efecto de la lluvia provocaba ciertos cambios 
 bruscos como en el caso del sensor 5, pero estando algunos aparentemente no relacionados con este fenómeno.
-Se comenzó, por otro lado con la selección y limpieza mediante una columna adicional de validez en los ficheros correspondientes.
+Se comenzó, por otro lado, con la selección y limpieza mediante una columna adicional de validez en los ficheros correspondientes.
 
 Además, se implementó la detección de \textit{Outliers} mediante el rango intercuartílico, para eliminar el posible ruido en el conjunto de datos
 de los sensores.
@@ -92,7 +92,7 @@ variabilidades se debían a factores externos (fueron sacados de sus posiciones 
 En lo referente del sensor 8 se llegó a la conclusión de que buena parte era irrecuperable debido a las variabilidades aleatorias 
 con las que parecía contar.
 
-Así mismo, se comenzó con la limpieza de las muestras del pluviómetro empleando los datos de varias \textit{API}, en primer lugar se trató de utilizar
+Así mismo, se comenzó con la limpieza de las muestras del pluviómetro empleando los datos de varias \textit{API}, en primer lugar, se trató de utilizar
 la mencionada anteriormente, estando el \textit{endpoint} ideal bajo licencia de pago.
 Probando con OpenWeatherMap se presentó el caso al soporte, consiguiendo ampliar los privilegios de usuario para poder acceder a la utilidad requerida, sin embargo, no
 se permitía retrotraerse en más de un año en las lecturas registradas.
@@ -103,17 +103,17 @@ del despliegue.
 
 \subsection{Sprint 4 (14/03/2023 - 28/03/2023)}
 En la reunión del \textit{sprint} se acuerda comenzar con la fase del modelado a la vista de la aparente correcta selección y limpieza realizada.
-Se plantea la implementación de una matriz de correlación para observar cúales de los atributos seleccionar para el entrenamiento.
+Se plantea la implementación de una matriz de correlación para observar cuáles de los atributos seleccionar para el entrenamiento.
 
 Durante el desarrollo de la iteración los esfuerzos se centran en la creación del entorno virtual con las dependencias correspondientes que permitan 
-realizar los modelados, además de dejar el fichero de pre-procesamiento documentado con las explciaciones pertinentes.
+realizar los modelados, además de dejar el fichero de pre-procesamiento documentado con las explicaciones pertinentes.
 
 Por otro lado, se realizan avances sustanciales en la memoria del proyecto añadiendo información en la introducción, objetivos y técnicas y herramientas,
 además de realizar una reestructuración de ficheros y una modificación de la forma en la que se realizan las gráficas de los datos.
 
 Se comienza con la creación tentativa del modelo neuronal en busca de conocimiento del dominio, que permita profundizar en los módulos empleados para tal
 propósito, realizando regresión simple.
-Se investiga sobre las redes neruonales recurrentes, más concretamente sobre la aplicación de modelos como \textit{GRU} y \textit{LSTM} en problemas
+Se investiga sobre las redes neuronales recurrentes, más concretamente sobre la aplicación de modelos como \textit{GRU} y \textit{LSTM} en problemas
 similares (predicciones de tiempo atmosférico).
 
 \subsection{Sprint 5 (28/03/2023 - 11/04/2023)}
@@ -139,11 +139,11 @@ de modo que los modelos sean capaces de generalizar de manera más precisa.
 Por otro lado, se continuó con la memoria, en concreto con los conceptos teóricos relacionados con la fase de modelado.
 
 \subsection{Sprint 7 (25/04/2023 - 09/05/2023)}
-En la reunión de la iteración se revisan los cambios realizados, llegando a la consideración de emplear varios dias previos como entrada a los modelos,
+En la reunión de la iteración se revisan los cambios realizados, llegando a la consideración de emplear varios días previos como entrada a los modelos,
 utilizando una ventana deslizante para seleccionar datos, de manera que se eviten los saltos temporales y estudiar la incorporación de una componente temporal 
 como entrada en la regresión.
 
-De esta forma, en el desarrollo se aplicó el métdodo mencionado para la selección de datos del modelo, de modo que se pudiera evitar la situación
+De esta forma, en el desarrollo se aplicó el método mencionado para la selección de datos del modelo, de modo que se pudiera evitar la situación
 anterior.
 
 \subsection{Sprint 8 (09/05/2023 - 16/05/2023)}
@@ -178,18 +178,18 @@ empleando para ello herramientas como Google Colab, de manera que pudieran agili
 Se propuso, por otro lado, la utilización nativa de librerías de \textit{IA} empleando \textit{CUDA}.
 
 \section{Estudio de viabilidad}
-En esta sección se desglosarán la viabilidad económica y legal del proyecto; en cuanto a la primera indicará los costes derivados del desarrollo en un enotorno real.
+En esta sección se desglosarán la viabilidad económica y legal del proyecto; en cuanto a la primera indicará los costes derivados del desarrollo en un entorno real.
 En lo referente la segunda, se presentarán las licencias empleadas en el proyecto y su implicación con librerías de terceros.
 
 \subsection{Viabilidad económica}
-En términos de viabilidad económoca es necesario hacer una diferenciación entre los costes y los beneficios que conlleva realizar el proyecto.
+En términos de viabilidad económica es necesario hacer una diferenciación entre los costes y los beneficios que conlleva realizar el proyecto.
 
 \subsubsection{Costes}
 Los costes que pueden surgir del proyecto en un entorno empresarial pueden desglosarse en los siguientes:
 
 \textbf{Costes de personal:}
 
-El desarrollo se ha realizado con un única persona empleada a tiempo completo en aproximadamente 4 meses, de forma que se consideran los siguientes 
+El desarrollo se ha realizado con una única persona empleada a tiempo completo en aproximadamente 4 meses, de forma que se consideran los siguientes 
 costes:
 \tablaSmallSinColores{Costes de Hardware}{l l}{Coste Hardware}{\textbf{Concepto} & \textbf{Coste} \\}
 {Salario mensual neto & 1.080€ \\
@@ -201,7 +201,7 @@ Salario mensual bruto & 1.545€ \\
 \textbf{Total 4 meses} & 6.181,92€ \\
 }
 
-El porcentaje mensual de aporte a la Segurida Social se calcula como el 0,2\% al Fondo de Garantía Salarial (FOGASA), más el 0,6\%, el 6,7\% de
+El porcentaje mensual de aporte a la Seguridad Social se calcula como el 0,2\% al Fondo de Garantía Salarial (FOGASA), más el 0,6\%, el 6,7\% de
 la prestación por desempleo y el 23,6\% de contingencias comunes \cite{misc:ss2023}.
 
 \textbf{Costes de hardware:}
@@ -257,7 +257,7 @@ en algún producto o servicio posterior.
 \subsection{Viabilidad legal}
 En esta sección se desglosarán los temas relacionados con las licencias de uso de los productos software.
 
-En primer lugar se analizará la licencia más conveniente en el desarrollo del proyecto, teniendo en cuenta las dependencias empleadas y 
+En primer lugar, se analizará la licencia más conveniente en el desarrollo del proyecto, teniendo en cuenta las dependencias empleadas y 
 sus respectivas licencias, puesto que la selección estará limitada por las restricciones en estas principalmente.
 
 \tablaSmallSinColores{Licencias de las dependencias utilizadas}{m{6em} m{5em} m{12em} m{5em}}{Licencias dependencias}{\textbf{Dependencia} & \textbf{Versión} & \textbf{Descripción} & \textbf{Licencia}\\}
@@ -268,7 +268,7 @@ IPython Kernel for Jupyter & 6.21.3 & Biblioteca para manipulación de Python No
 Statsmodel & 0.13.5 & Biblioteca con modelos y funciones estadísticas & BSD \\
 }
 
-De esta forma, se debe seleccionar una licencia compatible con Apache v2.0 y BSD, siendo la primera la más restrictiva de las licencias, requieriendo la conservación del aviso de derecho
+De esta forma, se debe seleccionar una licencia compatible con Apache v2.0 y BSD, siendo la primera la más restrictiva de las licencias, requiriendo la conservación del aviso de derecho
 de autor y un descargo de responsabilidad, sin embargo, no es \textit{copyleft} \cite{misc:apache2}.
 
 Por su versatilidad se escoge la opción MIT, puesto que se trata de una licencia permisiva de software libre, imponiendo muy pocas restricciones y otorgando una

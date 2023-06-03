@@ -3,10 +3,10 @@
 \section{Introducción}
 En la fase del modelado, como su nombre indica, se crearán los modelos, de forma que al ser
 este proceso (\textit{KDD}) iterativo, se podrá considerar con la etapa anterior, pues existen
-herramientas que aunan estos procedimientos.
+herramientas que aúnan estos procedimientos.
 
 En este caso, se toman por separado, teniendo en cuenta que los resultados en una
-fase afecta de forma directa al resto.
+fase afectan de forma directa al resto.
 
 Se estableció el desarrollo de tres redes neuronales diferentes, \textit{MLP}, 
 \textit{LSTM} y \textit{GRU}, tratándose las dos últimas de modelos recurrentes.
@@ -33,9 +33,9 @@ no se producen.
 
 \imagen{window.png}{Selección de la serie de tiempo}{0.75}
 
-En la Fiugura \ref{fig:window.png} puede observarse el proceso esquematizado.
+En la Figura \ref{fig:window.png} puede observarse el proceso esquematizado.
 De esta forma, cada uno de los subconjuntos que no tienen saltos, se recorrerá 
-mediente ventanas deslizantes formando los datos de entrada (\textit{inputs}) a los 
+mediante ventanas deslizantes formando los datos de entrada (\textit{inputs}) a los 
 modelos y las salidas (\textit{targets}).
 
 Cabe destacar que tanto los subconjuntos como las ventanas deberán contener muestras 
@@ -46,17 +46,17 @@ suficientes, es decir, \(n + m\) ejemplos.
 \section{GRU}
 En el caso de \textit{GRU}, las celdas de las que se encuentra compuesto el modelo 
 emplearán como funciones de activación la tangente hiperbólica y funciones sigmoides, 
-es decir, se emplearán los modelos por defecto como puede observars en la Figura 
+es decir, se emplearán los modelos por defecto como puede observarse en la Figura 
 \ref{fig:gru_cell.png}.
 
-\imagen{gru_cell.png}{Representación celda GRU. Extraido de \cite{wiki:gru2022}}{0.70}
+\imagen{gru_cell.png}{Representación celda GRU. Extraído de \cite{wiki:gru2022}}{0.70}
 
 \section{LSTM}
 Al igual que en \textit{GRU}, \textit{LSTM} empleará funciones sigmoides y la 
 tangente hiperbólica como funciones de activación en las compuertas de las celdas (Figura \ref{fig:LSTM_cell.png}),
 empleando, de igual manera, modelos por defecto.
 
-\imagen{LSTM_cell.png}{Representación celda LSTM. Extraido de \cite{wiki:lstm2022}}{0.70}
+\imagen{LSTM_cell.png}{Representación celda LSTM. Extraído de \cite{wiki:lstm2022}}{0.70}
 
 A diferencia de \textit{GRU}, \textit{LSTM} cuenta con 3 puertas diferentes en cada celda, 
 la compuerta de olvido (\textit{Forget Gate}), de entrada (\textit{Input Gate}), 
