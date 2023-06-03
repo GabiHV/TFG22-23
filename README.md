@@ -9,7 +9,7 @@ Estado del proceso de desarrollo del TFG:
 - [ ] Evaluación del modelo :arrow_left:
 
 Autor:
-- Gabriel Hernábdez Vallejo.
+- Gabriel Hernández Vallejo.
 
 Tutores:
 - Rubén Ruiz González
@@ -24,7 +24,7 @@ El proyecto cuenta con la siguiente estructura de directorios y ficheros:
 >.</br>
 >|-LICENSE.md -> fichero con licencia de uso de la aplicación.</br>
 >|-README.md -> fichero con la información del proyecto.</br>
->|-src -> Directorio con los codigos fuente</br>
+>|-src/ -> Directorio con los codigos fuente</br>
 >|&emsp;&emsp;|-data-preprocessing.ipynb -> fichero notebook con el pre-procesamiento del conjunto de datos.</br>
 >|&emsp;&emsp;|-ann-modeling.ipynb -> fichero notebook con el modelado de la RNA.</br>
 >|&emsp;&emsp;|-env-paths.py -> script Python con los _paths_ de los diferentes recursos.</br>
@@ -35,13 +35,18 @@ El proyecto cuenta con la siguiente estructura de directorios y ficheros:
 >|&emsp;&emsp;|-raw_sensor.py -> scripy Python para graficar los datos sin procesar de los sensores.</br>
 >|&emsp;&emsp;|-raw_pluviometer.py -> scripy Python para graficar los datos sin procesar del pluviómetro.</br>
 >|&emsp;&emsp;|-sensor-plot.py -> script Python con función para graficar los datos de los sensores.</br>
+>|&emsp;&emsp;|-modelGRU -> directorio con el modelo GRU obtenido.</br>
+>|&emsp;&emsp;|-modelLSTM/ -> directorio con el modelo LSTM obtenido.</br>
+>|&emsp;&emsp;|-modelMLP/ -> directorio con el modelo MLP obtenido.</br>
 >|-scripts/</br>
 >|&emsp;&emsp;|-requeriments.txt -> módulos requeridos para ejecutar los scripts de Python</br>
 >|&emsp;&emsp;|-virtual_env.bat -> script para instalación del entorno virtual de Python junto con los módulos requeridos en CMD. </br>
 >|&emsp;&emsp;|-virtual_env.sh -> script para instalación del entorno virtual de Python junto con los módulos requeridos en Bash.</br>
 >|&emsp;&emsp;|-Virtual_env.ps1 -> script para instalación del entorno virtual de Python junto con los módulos requeridos en PowerShell.</br>
 >|-img/</br>
->|&emsp;&emsp;|-graphics/ -> directorio que alberga las gráficas de los datos de los diferentes sensores.</br>
+>|&emsp;&emsp;|-graphics/ -> directorio que alberga diferentes gráficas de los datos.</br>
+>|&emsp;&emsp;&emsp;&emsp;|-processed_data/ -> directorio que alberga las gráficas de los datos procesados de los sensores.</br>
+>|&emsp;&emsp;&emsp;&emsp;|-raw_data/ -> directorio que alberga las gráficas de los datos _crudos_ de los sensores.</br>
 >|-docs/</br>
 >|&emsp;&emsp;|-img/ -> directorio que alberga las imágenes empleadas en la memoria del proyecto.</br>
 >|&emsp;&emsp;|-tex/ -> directorio con las diferentes secciones de la memoria (ficheros LaTeX).</br>
@@ -58,8 +63,9 @@ El proyecto cuenta con la siguiente estructura de directorios y ficheros:
 >&emsp;&emsp;|&emsp;&emsp;|-sensores/ -> directorio que alberga los muestreos de los diferentes sensores.</br>
 >&emsp;&emsp;|&emsp;&emsp;|-pluviometro/ -> directorio que alberga los muestreos del pluviómetro.</br>
 >&emsp;&emsp;|-classified_data/ -> directorio con los datos procesados.</br>
->&emsp;&emsp;&emsp;&emsp;|-sensores/ -> directorio que alberga los datos procesados de los diferentes sensores.</br>
->&emsp;&emsp;&emsp;&emsp;|-pluviometro/ -> directorio que alberga los datos procesados del pluviómetro.</br>
+>&emsp;&emsp;|&emsp;&emsp;|-sensores/ -> directorio que alberga los datos procesados de los diferentes sensores.</br>
+>&emsp;&emsp;|&emsp;&emsp;|-pluviometro/ -> directorio que alberga los datos procesados del pluviómetro.</br>
+>&emsp;&emsp;|-integrated_data/ -> directorio que alberga un fichero con los datos integrados</br>
 </font>
 
 ## Requisitos e instalación:
@@ -97,3 +103,5 @@ chmod +x virtual_env.sh && ./virtual_env.sh
 ```
 
 Tras la ejecución de los scripts podemos proceder a la ejecución de los programas empleando el entorno virtual generado.
+
+En el caso de los Python Notebook se deberá seleccionar el kernel de ejecución correspondiente. Se ha establecido en la instalación anterior con el nombre de *.venv*.
