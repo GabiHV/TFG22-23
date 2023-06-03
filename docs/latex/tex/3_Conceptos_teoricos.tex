@@ -36,7 +36,8 @@ Como norma general el \textbf{proceso de integración} debe ser realizado durant
 La \textbf{limpieza} permite la detección y corrección de los problemas no resueltos en la fase anterior como los valores anómalos (\textit{Outliers}) o faltantes 
 \cite{book:hernandez2004}.  
 
-En este caso, los datos si bien no se encontrarán integrados de forma completa, estarán en formatos compatibles, de forma que no es necesario
+En este caso, los datos si bien no se encontrarán integrados de forma completa, estarán en formatos compatibles (tanto en lo referente
+a los nombres de los atributos como las dimensiones de los valores), de forma que no es necesario
 realizar un proceso exhaustivo, simplificando las operaciones a añadir exclusivamente una clase identificativa de los sensores concretos.
 
 Tras la integración de las diferentes fuentes (e.g. bases de datos), se puede realizar un resumen de los atributos, en la que
@@ -94,6 +95,26 @@ El tratamiento de los datos erróneos o anómalos pueden ser tratados de forma s
 Los atributos con valores erróneos serán mas graves cuando este sea empleado como clase o valor de salida de la predicción \cite{book:hernandez2004},
 puesto que afectarán directamente al cálculo del rendimiento del modelo. 
 
+\subsection{Filtro de Hodrick-Prescott}
+Además de los mecanismos descritos para realizar el pre-procesamiento de los datos, se emplea el filtro de Hodrick-Prescott, que 
+permite extraer los componentes tendenciales y cíclicos de una secuencia temporal, de manera que de los originales se 
+puedan utilizar las tendencias para entrenar los diferentes modelos \cite{misc:wikipediaHP}.
+
+Para el cáclculo del componente tendencial (\(\tau_t\)), se emplea un valor positivo \(\lambda\), de forma que se resuelve:
+\begin{equation}
+    \min \sum_{t=1}^T\left(y_t-\tau_t\right)^2+\lambda \sum_{t=2}^{T-1}\left[\left(\tau_{t+1}-\tau_t\right)-\left(\tau_t-\tau_{t-1}\right)\right]^2
+\end{equation}
+
+Dónde \(y_t\) se corresponde con:
+\begin{equation}
+    y_t = \tau_t + c_t
+\end{equation}
+
+Siendo de esta forma la componente cíclica calculada cómo:
+\begin{equation}
+    c_t = y_t - \tau_t
+\end{equation}
+
 \section{Modelado}
 
 Para la creación de los modelos emplearemos diferentes tipos de \textit{Redes Neuronales Artificiales}, como 
@@ -104,12 +125,12 @@ El perceptrón multicapa además de una capa de entrada y salida contiene varias
 llamadas ocultas (\textit{hidden layers}), denominadas de este modo puesto que los cálculos
 internos están ocultos al usuario \cite{book:aggarwal2018}.
 
-En este tipo de redes las señales se propagan inicialmente hacia adelante para obtener un resultado, 
+En este tipo de redes las señales se propagan inicialmente hacia delante para obtener un resultado, 
 de forma que las neuronas de una capa se encuentran interconectadas con las de la capa
 siguiente y así sucesivamente en todas ellas (\textit{feed-forward}).
 
-Cada una de estas conexiones cuenta con un peso, que se inicializa generalmente de forma aleatoria. Estos pesos son
-empleados para el cálculo de las señales de activación de cada neurona, que se emplearán en la función de activación:
+Cada una de estas conexiones cuenta con un peso, que se inicializa generalmente de forma aleatoria. Estos son
+empleados para el cálculo de las señales de activación de cada neurona que se utilizarán en la función de activación:
 
 \begin{equation}
     \begin{aligned}
@@ -233,7 +254,7 @@ del nuevo estado oculto de la celda para obtener la nueva salida de la celda:
 \end{equation}
 
 En la Figura \ref{fig:lstm_cell_mem.png} puede observarse el diagrama con las operaciones mencionadas
-para producir la salida de la celda en el modelo \textit{LSTM}
+para producir la salida de la celda en el modelo \textit{LSTM}.
 \imagen{lstm_cell_mem.png}{Celda de memoria de LSTM}{1}
 
 \subsubsection{GRU}
@@ -266,6 +287,6 @@ entre el estado anterior y la nueva información:
 Los modelos \textit{GRU} se contemplan como una simplificación de \textit{LSTM},
 en la que se fusionan los estados con la respuesta de la red y se fuerza para que estos
 sean una media ponderada, llevando a obtener resultados similares que con las redes
-mencionadas \cite{book:rue2019}
+mencionadas \cite{book:rue2019}.
 
 \imagen{gru_cell_mem.png}{Celda de memoria de GRU}{1}
