@@ -1,3 +1,49 @@
 \capitulo{6}{Trabajos relacionados}
 
-Este apartado sería parecido a un estado del arte de una tesis o tesina. En un trabajo final grado no parece obligada su presencia, aunque se puede dejar a juicio del tutor el incluir un pequeño resumen comentado de los trabajos y proyectos ya realizados en el campo del proyecto en curso. 
+En esta sección se introducirán los trabajos que guardan relación con el proyecto desarrollado,
+es decir, aquellos cuyo objetivos, técnicas y modelos sean similares.
+
+Y es que, como se ha comentado en la introducción, la optimización de recursos hídricos en los 
+últimos años ha crecido en importancia debido principalmente a la escasez de precipitaciones
+por el cambio climático, lo que provoca que las horas y cantidad de riego disminuyan en todo el territorio
+español, especialmente en las zonas del sur de la Península Ibérica \cite{misc:PNR,misc:PNRdemanda}.
+
+\section{\textit{Weather forecasting model using Artificial Neural Network}}
+En este artículo publicado en 2012 se presenta un método de predicción del tiempo atmosférico
+empleando modelos neuronales \textit{feed-forward} con retropropagación, de forma que se busca
+explorar la importancia de las redes neuronales artificiales y sus componentes unitarios.
+
+Se experimenta, entonces, cómo incrementa el rendimiento al aumentar el número de neuronas,
+el número de capas ocultas del modelo y se presentan las conclusiones de integrar ambas decisiones
+del diseño. En esta ocasión se emplean en los datos variables de temperatura (máximos y 
+mínimos), así como velocidades diarias del viento \cite{ABHISHEK2012311}.
+
+\section{\textit{Humidity forecasting in a potato plantation using time-series neural models}}
+En el año 2022 el Grupo de Inteligencia Computacional Aplicada (GICAP) y el Composting Research Group
+(UBUCOMP) de la Universidad de Burgos publican un artículo dónde presentan un mecanismo de control
+de irrigación de una plantación de patatas en la localidad de Cabia en la provincia de Burgos.
+
+En este trabajo se muestrean diversas variables del suelo como la temperatura del aire,
+las precipitaciones, la altura y anchura de las plantas, el porcentaje de humedad y su contenido
+en nitrógeno entre otros valores, para, de este modo, predecir la necesidad de realizar o no la
+irrigación de la plantación y optimizar los recursos hídricos.
+
+En este artículo se propone emplear diferentes tipos de interpolación como técnica básica para
+comparar resultados y varios modelos neuronales como métodos de refinado de predicciones de las series de tiempo. 
+Se utilizarán, de esta forma, los modelos \textit{Non-linear Input-Output} (\textit{NIO}), 
+\textit{Non-linear Autoregressive with Exogenous Input} (\textit{NARX}) y \textit{Non-linear Autoregressive} (\textit{NAR}) \cite{article:baseca2022}.
+
+\section{\textit{BMAE-Net: A Data-Driven Weather Prediction Network for Smart Agriculture}}
+En este artículo publicado en 2023 se presenta un método de predicción de cambios de series de tiempo
+meteorológicas basadas en \textit{encoders} y \textit{decoders} de atención multicabezal
+\cite{article:kong2023} optimizados mediante estrategias de inferencia bayesiana. 
+
+Este mecanismo permite diseñar una novedosa estructura neuronal que mejora el 
+rendimiento de compatibilidad para predicciones de distinta duración \cite{article:kong2023}.  
+
+Se emplean, de esta manera, diferentes componentes; uno de ellos es un módulo bayesiano-GRU, utilizado
+para muestrear los pesos de la red con una distribución de probabilidad y optimizar sus parámetros,
+en lugar de establecer un peso concreto en la modelo neuronal.
+
+Además, cuenta con un módulo de atención multicabeza bayesiano, que se encarga de la predicción de 
+los diferentes intervalos y mejora la capacidad de extracción de características. 
