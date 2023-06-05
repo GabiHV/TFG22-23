@@ -1,4 +1,53 @@
 \capitulo{7}{Conclusiones y Líneas de trabajo futuras}
+En esta sección se presentan las conclusiones derivadas del desarrollo del trabajo, así como las
+líneas de trabajo futuras con las que se podría dar continuidad al proyecto.
 
-Todo proyecto debe incluir las conclusiones que se derivan de su desarrollo. Éstas pueden ser de diferente índole, dependiendo de la tipología del proyecto, pero normalmente van a estar presentes un conjunto de conclusiones relacionadas con los resultados del proyecto y un conjunto de conclusiones técnicas. 
-Además, resulta muy útil realizar un informe crítico indicando cómo se puede mejorar el proyecto, o cómo se puede continuar trabajando en la línea del proyecto realizado. 
+\section{Conclusiones}
+En lo referente a las aspectos generales del desarrollo del proyecto, podemos extraer las siguientes
+conclusiones:
+\begin{itemize}
+    \item Los objetivos del proyecto se han llevado a término de forma correcta, cumpliendo,
+        por otro lado, los requisitos impuestos durante el desarrollo de este. La predicción 
+        de los valores futuros de la serie temporal es funcional y arroja errores que pueden
+        calificarse como aceptables en ciertos modelos y con los datos proporcionados.
+    \item Las entradas y salidas de los modelos se han parametrizado, de modo que puedan variarse
+        el número de ejemplares utilizados para las predicciones o la propia cantidad de valores
+        futuros. Por otro lado, también es posible modificar otros parámetros como el ratio de 
+        aprendizaje, las épocas o el tamaño del lote de entrenamiento.
+    \item Además de parametrizar aspectos del diseño de los modelos, se permite variar la cantidad
+        de datos con la que se entrenan, validan y comprueban, de forma que el proceso llevado a cabo
+        durante el desarrollo pueda emplearse en trabajos futuros o en posibles cambios de diseño
+        en el \textit{KDD}.
+    \item Durante el proyecto se han empleado diferentes librerías para diversos propósitos, como
+        Pandas en el caso de la manipulación de grandes conjuntos de datos o Keras para realizar
+        los distintos modelados, así como módulos nativos del lenguaje de programación empleado. 
+    \item A pesar del incidente surgido con el sistema de gestión del proyecto ZenHub, se ha 
+        profundizado y continuado en la medida de lo posible con la aplicación
+        de las metodologías ágiles en el desarrollo de proyectos, utilizando como proceso de 
+        desarrollo los incrementos iterativos (\textit{sprint}) cada dos semanas.
+    \item La investigación llevada a cabo permite mejorar los procesos y los conocimientos adquiridos
+        en la búsqueda de bibliografía y la lectura de artículos científicos de los campos relacionados
+        con el desarrollo.
+\end{itemize}
+
+\section{Líneas de trabajo futuras}
+El desarrollo del proyecto podría continuarse con diferentes líneas de trabajo, que por su naturaleza
+no caben en el planteamiento inicial, ya sea porque no se han previsto o porque el tiempo
+de desarrollo es más elevado del disponible.
+
+A continución se presentan un conjunto de posibles líneas futuras:
+\begin{itemize}
+    \item Emplear una combinación de los modelos propuestos en el proyecto con redes convolucionales
+        para introducir una componente espacial en los datos y, de esta forma, ser capaces de predecir valores
+        en una situación concreta del viñedo.
+    \item Emplear los datos de la variación de las precipitaciones para realizar un estudio de la precisión
+        de los modelos con este nuevo atributo. De esta forma, se podría mejorar el rendimiento obtenido
+        en variables como las humedades. 
+    \item Para conocer el desempeño de los resultados se puede desarrollar una comparativa de las precisiones
+        con datos extraidos de otros viñedos. De modo que se observaría si los modelos son extrapolables
+        a otras situaciones o si en cambio se tratan de resultados específicos.
+    \item Realizar una integración completa en un producto software de cualquier índole relacionado con
+        la empresa de la que se han extraido los datos, véase, por ejemplo, la automatización de los sistemas de riego
+        instalados. En este ejemplo se desarrollaría un sistema de toma de decisiones basado en los resultados obtenidos
+        con los modelos implementados.
+\end{itemize}
