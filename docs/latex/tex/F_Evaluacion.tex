@@ -30,6 +30,9 @@ centrar los esfuerzos en la región explorada.
 
 Para cada una de las pruebas se realizarán 5 ejecuciones diferentes con 100 iteraciones, 
 tomando como medida comparativa el error cuadrático medio de validación.
+Lo que supone 405 ejecuciones por modelo, es decir, 1215 ejecuciones en total.
+
+\newpage
 
 \section{Resultados de GRU}
 En la Tabla \ref{tabla:Evaluación GRU} se presentan los errores cuadráticos medios
@@ -52,29 +55,37 @@ como salida de los modelos.
     2 & 8 & 0.001 & 1.56769E-05 & 2.90745E-05 & 4.93188E-05 \\
     2 & 8 & 0.01 & 1.65277E-06 & 6.30449E-06 & 1.14688E-05 \\
     2 & 8 & 0.1 & 0.00965 & 0.00972 & 0.00026 \\
-    2 & 16 & 0.001 & 5.07987E-06 & 1.33184E-05 &  \\
-    2 & 16 & 0.01 & \textbf{5.66822E-07} & \textbf{1.45485E-06} &  \\
+    2 & 16 & 0.001 & 5.07987E-06 & 1.33184E-05 & 2.59817E-05 \\
+    2 & 16 & 0.01 & \textbf{5.66822E-07} & \textbf{1.45485E-06} & \textbf{3.49998E-06} \\
     2 & 16 & 0.1 & 0.01148 & 0.01579 & 0.00363 \\
-    2 & 32 & 0.001 & 2.18717E-06 & 7.23831E-06 & \\
-    2 & 32 & 0.01 & \textbf{2.69205E-07} & \textbf{9.00049E-07} & \\
-    2 & 32 & 0.1 & 0.01727 & 0.00611 & \\
+    2 & 32 & 0.001 & 2.18717E-06 & 7.23831E-06 & 1.42593E-05 \\
+    2 & 32 & 0.01 & \textbf{2.69205E-07} & \textbf{9.00049E-07} & \textbf{4.04636E-06} \\
+    2 & 32 & 0.1 & 0.01727 & 0.00611 & 0.00797 \\
 
     % 3 capas ocultas
     3 & 8 & 0.001 & 1.61179E-05 & 2.57331E-05 & 4.20175E-05 \\
     3 & 8 & 0.01 & 1.42658E-06 & 5.39812E-06 & 9.51720E-06 \\
     3 & 8 & 0.1 & 0.00706 & 0.00029 & 0.00242 \\
     3 & 16 & 0.001 & 5.18860E-06 & 1.23398E-05 & 2.02378E-05 \\
-    3 & 16 & 0.01 & \textbf{4.66034E-07} & \textbf{1.29760E-06} & 3.49093E-06\\
+    3 & 16 & 0.01 & \textbf{4.66034E-07} & \textbf{1.29760E-06} & \textbf{3.49093E-06}\\
     3 & 16 & 0.1 & 0.02418 & 0.01457 & 0.01497\\
     3 & 32 & 0.001 & 2.36664E-06 & 5.75822E-06 & 1.13415E-05\\
-    3 & 32 & 0.01 & 8.90246E-07 & \textbf{9.57532E-07} & 2.41350E-06\\
+    3 & 32 & 0.01 & 8.90246E-07 & \textbf{9.57532E-07} & \textbf{2.41350E-06}\\
     3 & 32 & 0.1 & 0.00976 & 0.01064 & 0.01097\\
 }
 
-Como puede observarse, los mejores resultados en términos generales les obtendremos 
-con un \textit{learning rate} de 0.01.
+Como puede observarse, las mayores eficiencias en términos generales se obtienen 
+con un \textit{learning rate} de 0.01, destacando los modelos de 2 capas con 
+32 y 16 celdas de memoria respectivamente.
+
+Cabe destacar, además, que, como se podía intuir inicialmente, los errores aumentan generalmente
+a medida que realizamos más predicciones como salida.
+
+\newpage
 
 \section{Resultados de LSTM}
+Al igual que en la situación anterior, se realizarán pruebas con el mismo número de predicciones
+por cada entrada, obteniéndose los resultados reflejados en la Tabla \ref{tabla:Evaluación LSTM}.
 
 \tablaSmallSinColores{Evaluación LSTM}{l l l l l l}{Evaluación LSTM}{\textbf{Capas} & \textbf{Tamaño capa} & \textbf{LR} & \textbf{MSE 1} & \textbf{MSE 2} & \textbf{MSE 3}\\}
 {
@@ -92,26 +103,34 @@ con un \textit{learning rate} de 0.01.
     2 & 8 & 0.001 & 3.29916e-05 & 4.19003E-05 & 6.14671E-05 \\
     2 & 8 & 0.01 & 4.94574-06 & 8.51327E-06 & 1.33202E-05 \\
     2 & 8 & 0.1 & 6.85972E-06 & 8.04903E-06 & 1.58783E-05 \\
-    2 & 16 & 0.001 & 1.33461e-05 & 2.75447E-05 & \\
-    2 & 16 & 0.01 & 1.23340e-06 & \textbf{2.38821E-06} & \\
+    2 & 16 & 0.001 & 1.33461e-05 & 2.75447E-05 & 4.1725E-05 \\
+    2 & 16 & 0.01 & 1.23340e-06 & \textbf{2.38821E-06} & \textbf{4.63577E-06} \\
     2 & 16 & 0.1 & 6.65626E-06 & 2.42052E-05 & 1.43046E-05 \\
-    2 & 32 & 0.001 & 5.63944E-06 & 1.15909E-05 & \\
-    2 & 32 & 0.01 & \textbf{4.56945E-07} & \textbf{1.43223E-06} & \\
-    2 & 32 & 0.1 & 4.20038E-06 & 1.00814E-05 & \\
+    2 & 32 & 0.001 & 5.63944E-06 & 1.15909E-05 & 2.34114E-05 \\
+    2 & 32 & 0.01 & \textbf{4.56945E-07} & \textbf{1.43223E-06} & \textbf{2.78594E-06}\\
+    2 & 32 & 0.1 & 4.20038E-06 & 1.00814E-05 & 7.57666E-05\\
 
     % 3 capas ocultas
     3 & 8 & 0.001 & 4.58400E-06 & 5.81849E-05 & 0.00012 \\
     3 & 8 & 0.01 & 5.90159E-06 & 9.07351E-06 & 1.48364E-05 \\
     3 & 8 & 0.1 & 0.00031 & 0.00486 & 1.73157E-05 \\
     3 & 16 & 0.001 & 2.22344-05 & 3.47894E-05 & 5.07083E-05 \\
-    3 & 16 & 0.01 & 1.17654E-06 & 2.41703E-06 & 4.06992E-06 \\
+    3 & 16 & 0.01 & 1.17654E-06 & 2.41703E-06 & \textbf{4.06992E-06} \\
     3 & 16 & 0.1 & 0.00487 & 1.02880E-05 & 0.00490 \\
     3 & 32 & 0.001 & 8.16043E-06 & 1.64882E-05 & 2.57956E.05 \\
-    3 & 32 & 0.01 & \textbf{6.54021E-07} & \textbf{1.19201E-06} & 2.58606E-06 \\
+    3 & 32 & 0.01 & \textbf{6.54021E-07} & \textbf{1.19201E-06} & \textbf{2.58606E-06} \\
     3 & 32 & 0.1 & 0.00491 & 0.01459 & 0.00986 \\
 }
 
+De forma similar que en \textit{GRU}, en \textit{LSMT} se generan mejores resultados con un 
+\textit{learning rate} de 0.01, destacando, de igual forma, los modelos con 2 capas, además
+de los de 3 capas y 32 celdas de memoria.
+Al igual que antes, los errores se incrementan, generalmente, con el aumento del número de predicciones.
+
+\newpage
+
 \section{Resultados de MLP}
+En la Tabla \ref{tabla:Evaluación MLP} se proporcionan los diferentes resultados obtenidos con \textit{MLP}.
 
 \tablaSmallSinColores{Evaluación MLP}{l l l l l l}{Evaluación MLP}{\textbf{Capas} & \textbf{Tamaño capa} & \textbf{LR} & \textbf{MSE 1} & \textbf{MSE 2} & \textbf{MSE 3} \\}
 {
@@ -126,15 +145,15 @@ con un \textit{learning rate} de 0.01.
     1 & 32 & 0.1 & 0.02415E-05 & 0.02062 & \\
 
     % 2 capas ocultas
-    2 & 8 & 0.001 & 0.00094 & 0.00043 & \\
-    2 & 8 & 0.01 & 0.00673 & 0.00332 & \\
-    2 & 8 & 0.1 & 0.02428 & 0.02430 & \\
-    2 & 16 & 0.001 & 1.96797E-05 & 2.97114E-05 & \\
-    2 & 16 & 0.01 & 0.00042 & 0.00040 & \\
-    2 & 16 & 0.1 & 0.01624 & 0.02422 & \\
-    2 & 32 & 0.001 & 8.32571E-06 & \textbf{2.15010E-05} & \\
-    2 & 32 & 0.01 & \textbf{5.56436E-06} & 5.32363E-05 & \\
-    2 & 32 & 0.1 & 0.02032 & 0.02060 & \\
+    2 & 8 & 0.001 & 0.00094 & 0.00043 &  \\
+    2 & 8 & 0.01 & 0.00673 & 0.00332 &  \\
+    2 & 8 & 0.1 & 0.02428 & 0.02430 &  \\
+    2 & 16 & 0.001 & 1.96797E-05 & 2.97114E-05 &  \\
+    2 & 16 & 0.01 & 0.00042 & 0.00040 &  \\
+    2 & 16 & 0.1 & 0.01624 & 0.02422 &  \\
+    2 & 32 & 0.001 & 8.32571E-06 & \textbf{2.15010E-05} &  \\
+    2 & 32 & 0.01 & \textbf{5.56436E-06} & 5.32363E-05 &  \\
+    2 & 32 & 0.1 & 0.02032 & 0.02060 &  \\
 
     % 3 capas ocultas
     3 & 8 & 0.001 & 0.00152 & 0.00283 & \\
@@ -147,3 +166,4 @@ con un \textit{learning rate} de 0.01.
     3 & 32 & 0.01 & \textbf{6.91262E-06} & 3.07683E-05 & \\
     3 & 32 & 0.1 & 0.02028 & 0.01674 & \\
 }
+

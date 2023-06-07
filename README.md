@@ -43,6 +43,8 @@ El proyecto cuenta con la siguiente estructura de directorios y ficheros:
 >|&emsp;&emsp;|-virtual_env.bat -> script para instalación del entorno virtual de Python junto con los módulos requeridos en CMD. </br>
 >|&emsp;&emsp;|-virtual_env.sh -> script para instalación del entorno virtual de Python junto con los módulos requeridos en Bash.</br>
 >|&emsp;&emsp;|-Virtual_env.ps1 -> script para instalación del entorno virtual de Python junto con los módulos requeridos en PowerShell.</br>
+>|&emsp;&emsp;|-docker-install.sh -> script para instalación de Docker.</br>
+>|&emsp;&emsp;|-docker-create.sh -> script para creación de contenedor de Docker para entrenamiento con CUDA y TensorFlow.</br>
 >|-img/</br>
 >|&emsp;&emsp;|-graphics/ -> directorio que alberga diferentes gráficas de los datos.</br>
 >|&emsp;&emsp;&emsp;&emsp;|-processed_data/ -> directorio que alberga las gráficas de los datos procesados de los sensores.</br>

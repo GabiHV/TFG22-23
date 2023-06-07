@@ -118,8 +118,8 @@ neurona en la capa de salida por cada predicción.
 
 \section{Fase de evaluación de modelos}
 En la fase de evaluación se estableció realizar pruebas sobre los modelos modificando ciertos hiperparámetros como 
-el número de capas ocultas, el número de unidades (celdas o neuronas dependiendo del contexto) por capa y
-ratio de aprendizaje.
+el número de capas ocultas, el número de unidades (celdas o neuronas dependiendo del contexto) por capa, el
+ratio de aprendizaje y el número de predicciones que se realizan por cada dato de entrada.
 
 De esta forma, los modelos empleados tendrán las especificaciones estándar en el caso de
 \textit{GRU} y \textit{LSTM}, modificando la función de activación de las neuronas en las capas ocultas en 
@@ -133,4 +133,15 @@ Se realizarán, entonces, combinaciones con diferentes valores:
     \item Capas: 1, 2 y 3 capas.
     \item Tamaño de capa: 8, 16 y 32 celdas/neuronas.
     \item Ratio de aprendizaje: 0.1, 0.01 y 0.001.
+    \item Número de ejemplos de salida: 1, 2 y 3 predicciones.
 \end{itemize}
+
+Por otro lado, para agilizar el proceso de las pruebas y el entrenamiento, se acordó emplear alguna 
+plataforma que permitiera la ejecución paralelizada, haciendo incapié en tecnologías como Google Colab 
+o CUDA.
+
+En el primer caso, la ejecución no requería de mayor preocupación de cara al usuario, más allá de realizar un
+par de configuraciones básicas en los entornos.
+En el segundo caso, sin embargo, se optó por emplear Docker para crear los contenedores proporcionados por
+TensorFlow para crear el entorno que permitiera la ejecución de los entrenamientos de forma paralela, siendo, de
+esta manera, una solución portable y fácil de instalar en cualquier máquina.
