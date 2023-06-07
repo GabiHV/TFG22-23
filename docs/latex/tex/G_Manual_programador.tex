@@ -27,8 +27,10 @@ git:
     git clone https://github.com/GabiHV/TFG22-23
 \end{lstlisting}
 
-De igual forma, para poder llevar a cabo la ejecución e instalación del resto de las dependencias es necesario tener instalado Python 3.9.13.
+De igual forma, para poder llevar a cabo la ejecución e instalación del resto de las dependencias es necesario tener instalado \textbf{Python 3.9.13} en el
+caso de realizar las ejecuciones con CPU.
 
+\subsection{Ejecución de los scripts mediante CPU}
 Para instalar el intérprete del lenguaje empleado en el proyecto se debe acudir a la página web oficial de los desarrolladores y descargar el ejecutable de instalación oficial.
 La instalación puede realizarse en el siguiente enlace \cite{misc:python2023}.
 En la fuente mencionada se pueden escoger diferentes formas de instalación. Dependiendo del sistema operativo utilizado en la máquina en la que se ejecutará el proyecto se debe seleccionar una
@@ -62,20 +64,66 @@ De forma similar en Linux Bash:
 \end{lstlisting}
 
 Una vez finalice el proceso de instalación de todas las dependencias se podrán ejecutar los diferentes ficheros fuente de Python Notebook abriendo el proyecto en Visual Studio Code
-y estableciendo el Kernel de ejecución al entorno configurado. Está definido que el entorno virtual se denomine \textbf{.venv}, por lo que será necesario buscar entre los diferentes 
+y estableciendo el Kernel de ejecución al entorno configurado (Figura \ref{fig:venv_selection.png}).
+Está definido que el entorno virtual se denomine \textbf{.venv}, por lo que será necesario buscar entre los diferentes 
 instalados haciendo clic en la parte superior derecha del notebook (en el botón para la selección del intérprete de ejecución).
 
 \imagen{venv_selection.png}{Búsqueda del entorno virtual}{1}
+
 \imagen{venv_selected.png}{Selección del entorno virtual}{0.25}
 
 Posteriormente podrá ejecutarse cualquier fichero Pyhton Notebook con el botón de ``Execute All'', o proceder por celda.
 
 En lo referente a los ficheros fuente de Python, con el entorno virtual instalado abriendo una consola en el sistema operativo en \textbf{/.venv/bin/} en Linux y \textbf{/.venv/Scripts/}
-en Windows, podremos ejecutar la activación del entorno virtual con los scripts incluidos en el directorio (ejecutando \linebreak \textbf{activate.bat} y \textbf{Activate.ps1} en Windows dependiendo del terminal empleado).
+en Windows, podremos ejecutar la activación del entorno con los scripts incluidos en el directorio (ejecutando \linebreak \textbf{activate.bat} y \textbf{Activate.ps1} en Windows dependiendo del terminal empleado).
 Esta operación se realizará automáticamente al realizar la instalación de los módulos de Python incluidos en el fichero de requerimientos, por lo que se puede aprovechar la terminal en ejecución para 
 este propósito.
 
 Para ejecutar los ficheros de Python adecuadamente es necesario estar situados con la terminal en el directorio correspondiente. En este caso se debe navegar hasta \textbf{./src/}
+
+\subsection{Ejecución acelerada mediante GPU: CUDA}
+Para disminuir el tiempo de entrenamiento de los modelos puede realizarse una instalación de un contenedor de Docker que emplea la tecnología
+CUDA (plataforma de computación paralela desarrollada por NVIDIA \cite{misc:wikiCuda}) e incorpora las librerías necesarias de TensorFlow.
+
+Para ello, es necesario disponer de una tarjeta gráfica de la marca mencionada compatible con una versión de CUDA mayor a 11.7, al mismo tiempo
+que actualizar sus \textit{drivers} a la última versión estable disponible.
+
+Para realizar la instalación en un sistema Windows es necesario disponer a su vez del WSL (Windows Subsystem Linux) activo y funcionando con una distribución
+de Ubuntu.
+Se puede instalar la tecnología mencionada ejecutando la PowerShell en modo administrador e introduciendo:
+\begin{lstlisting}[language=Bash]
+    wsl --install
+\end{lstlisting}
+
+Al finalizar se deberá crear el entorno de Linux siguiendo los pasos indicados en la terminal para posteriormente establecer el usuario
+de WSL.
+Los siguientes pasos serán comunes.
+
+Es necesario situarse en la carpeta principal del proyecto para poder realizar una correcta inicialización del contenedor. 
+Si Docker ya se encuentra instalado en el sistema, únicamente se debe ejecutar el script \textbf{docker-create.sh}, en caso contrario,
+previamente ejecutar \textbf{docker-install.sh}. Ambos con permisos de superusuario (empleando \textit{sudo}).
+
+Tras iniciar el contenedor se creará el servicio de Jupyter Notebook al que podremos acceder mediante el navegador con:
+\begin{lstlisting}
+    https://localhost:8888/?token=<token>
+\end{lstlisting} 
+
+De esta forma, como se muestra en la Figura \ref{fig:execDocker.png}, \textbf{<token>} podrá obtenerse del terminal en el que se encuentra corriendo
+el contenedor.
+
+\imagen{execDocker.png}{Ejecución del servicio de Jupyter Notebook con GPU}{1}
+
+Tras esto, se puede acceder desde Jupyter a los ficheros \textbf{.ipynb} para ejecutarlos según la necesidad.
+
+\subsection{Ejecución acelerada mediante GPU: Google Colab}
+Si no se dispone de una tarjeta gráfica compatible con CUDA puede emplearse Google Colab para realizar la ejecución acelerada del entrenamiento.
+Para ello, se debe abrir el proyecto desde la plataforma mencionada, de forma que se dispongan de los datos en \textbf{./data/integrated\_data} 
+(pueden crearse para ello las estructuras de directorios necesarios) y el Python Notebook a ejecutar.
+
+Debe cambiarse, por otro lado, el tipo de entorno de ejecución, seleccionando en \textbf{Entorno de ejecución > Seleccionar entorno de ejecución}
+la opción \textit{``GPU''} en \textit{``Acelerador por hardware''} como se muestra en la Figura \ref{fig:googleColabGPU.png}.
+
+\imagen{googleColabGPU.png}{Selección de GPU en Google Colab}{0.75}
 
 \section{Pruebas del sistema}
 En esta subsección se presentará la forma de realizar las modificaciones en los hiperparámetros de los modelos, de forma que estos puedan variar de acuerdo con los nuevos requerimientos introducidos.
