@@ -9,8 +9,8 @@ En la fase de comprensión del negocio se analizan los objetivos y requisitos de
 En este caso quedan bien marcados en la descripción del proyecto y la introducción, así como en la sección de los objetivos.
 
 En la etapa de comprensión de los datos se crea el conjunto de datos inicial y se comprueba si este es adecuado,
-de forma que si se determina que no lo es se deberá continuar con la recopilación.
-En el caso que nos atañe como estamos sujetos a los plazos del curso la recopilación de más datos puede complicarse.
+de forma que si se determina que no lo es, se deberá continuar con la recopilación.
+En el caso que nos atañe como estamos sujetos a los plazos del curso, la recopilación de más datos puede complicarse.
 
 En la preparación de los datos se realiza el pre-procesamiento de estos, de forma que puedan ser empleados en el modelado.
 
@@ -140,9 +140,13 @@ empleados para el cálculo de las señales de activación de cada neurona que se
     \end{aligned}
 \end{equation}
 
-Donde \begin{math}\bar{h}_1\end{math} será el resultado de aplicar la función de activación en la primera capa oculta (la capa de entrada
+Donde \begin{math}\bar{h}_1\end{math} será el resultado de aplicar la función de activación (denotada por \(\Phi\)) en la primera capa oculta (la capa de entrada
 actúa de intermedio entre las entradas y la \textit{RNA}), \begin{math}\bar{h}_{p+1}\end{math} serán los resultados de la función de activación
 en la capa p-ésima y \begin{math}\bar{o}\end{math} en la capa de salida.
+
+Con respecto a \(W_i\), se trata de la matriz de pesos sinápticos empleados para ajustar los modelos a la función
+objetivo, mientras que \(\bar{x}\) se corresponde con los valores de entrada, siendo, de este modo, 
+\(\bar{h}_i\) las salidas en las capas i-ésimas.
 
 \imagen{mlp.png}{Perceptrón Multicapa. Extraído de \cite{book:aggarwal2018}}{0.75}
 
@@ -155,11 +159,11 @@ que los gradientes calculados se emplearán posteriormente para actualizar los p
 
 \subsection{Redes Neuronales Recurrentes (\textit{RNN})}
 Las redes neuronales convencionales (véase por ejemplo los \textit{MLP}, las redes neuronales de base radial, etc.) están diseñadas para
-datos multidimensionales cuyos ejemplos son independientes unos otros (no tienen en cuenta estados anteriores).
+datos multidimensionales cuyos estados actuales son independientes de los pasados.
 Sin embargo, existen datos que contienen dependencias de valores previos como los datos de series temporales, 
 biológicos o cadenas de texto \cite{book:aggarwal2018}.
 
-Las redes neuronales recurrentes pueden ser empleadas en este tipo de datos y, además, a diferencia de estas recibe y procesa las 
+Las redes neuronales recurrentes pueden ser empleadas para este tipo de datos y, además, a diferencia de las redes convencionales recibe y procesa las 
 entradas en el orden de llegada y las trata de igual manera que los instantes anteriores.
 
 Además, en lugar de un número variable de entradas, contienen un número variable de celdas (operaciones sobre los datos de entrada, 

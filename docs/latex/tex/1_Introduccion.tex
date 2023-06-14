@@ -29,7 +29,7 @@ Las precipitaciones, además, no son uniformes, sino que aumentan en zonas donde
 en las regiones más secas \cite{book:zuniga2021}.
 
 Ante esta situación se plantea la cuestión de cuáles de estos efectos podríamos ser capaces de predecir
-y en qué proporción para, si bien no subsanar completamente, si ser capaces de paliar en cierta medida
+y en qué proporción para, si bien no subsanar completamente, sí ser capaces de paliar en cierta medida
 conociendo con anterioridad ciertos datos climatológicos que ayudarán a las diferentes tomas de decisiones de 
 los viticultores.
 
@@ -39,10 +39,19 @@ cultivos y por otro lado, gestionar de forma adecuada los recursos hídricos nac
 de la zona hidrográfica del Duero) al mismo tiempo que protegemos a las vides de plagas y trastornos fisiológicos 
 debidos a diferentes factores como la humectación o la temperatura del suelo.
 
+En los últimos años las mejoras en los modelos predictivos basados en los datos, han hecho posible la aplicación
+de diferentes soluciones en multitud de aplicaciones, ayudando a resolver distintos problemas relacionados con 
+diversos campos, como la evolución futura de precios en el mercado bursátil, recomendación de productos, diagnósticos médicos, detección de fraudes, etc.
+
 En este proyecto se propone el análisis de los datos de temperatura y humedad del suelo procedentes de 
 sensores IoT (\textit{Internet of Things}) desplegados en un viñedo situado en la zona sur de la provincia de Burgos, para, de esta forma,
 obtener modelos predictivos que nos permitan conocer el comportamiento de ciertas variables en función de otras
 y anticipar su evolución futura a corto plazo.
+
+Se emplearán diferentes modelos, siendo \textit{Long Short-Term Memory} 
+(\textit{LSTM}) y \textit{Gated Recurrent Unit} (\textit{GRU}) las estructuras recurrentes estudiadas y 
+\textit{Multi-Layer Perceptron} (\textit{MLP}) la contraparte convencional, realizando una comparación
+entre las distintas soluciones para observar su comportamiento con los datos proporcionados.
 
 \section{Estructura de la memoria}
 La memoria del proyecto cuenta con la siguiente estructura:
@@ -74,10 +83,12 @@ Además de la memoria, se incluyen una serie de anexos:
 \section{Materiales adjuntos}
 El proyecto incluye el siguiente contenido:
 \begin{itemize}
-    \item Python Notebook con el pre-procesamiento de datos y las diferentes explicaciones.
-    \item Python Notebook con la integración de los diferentes conjuntos de datos en un único fichero.
+    \item Python Notebook con el pre-procesamiento de datos (denominado \textbf{data-preprocessing.ipynb}) y 
+        las diferentes explicaciones.
+    \item Python Notebook con la integración de los diferentes conjuntos de datos (\textbf{data-integration.ipynb})
+    en un único fichero.
     \item Python Notebook con el modelado de la Red Neuronal Artificial empleada para la regresión
-        de humedad y temperatura y las explicaciones correspondientes.
+        de humedad y temperatura y las explicaciones correspondientes, denominado \textbf{ann-modeling.ipynb}.
     \item Conjunto de datos de los sensores desplegados en el viñedo.
     \item Conjunto de datos del pluviómetro desplegado en el viñedo.
     \item Scripts de Python para mostrar las gráficas de los datos (de sensores y pluviómetro) sin procesar.
