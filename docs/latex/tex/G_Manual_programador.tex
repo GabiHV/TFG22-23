@@ -88,7 +88,7 @@ CUDA (plataforma de computación paralela desarrollada por NVIDIA \cite{misc:wik
 Para ello, es necesario disponer de una tarjeta gráfica de la marca mencionada compatible con una versión de CUDA mayor a 11.7, al mismo tiempo
 que actualizar sus \textit{drivers} a la última versión estable disponible.
 
-Para realizar la instalación en un sistema Windows es necesario disponer a su vez del WSL (Windows Subsystem Linux) activo y funcionando con una distribución
+Para realizar la instalación en un sistema Windows es necesario disponer a su vez del WSL (Windows Subsystem for Linux) activo y funcionando con una distribución
 de Ubuntu.
 Se puede instalar la tecnología mencionada ejecutando la PowerShell en modo administrador e introduciendo:
 \begin{lstlisting}[language=Bash]
@@ -100,13 +100,14 @@ de WSL.
 Los siguientes pasos serán comunes.
 
 Es necesario situarse en la carpeta principal del proyecto para poder realizar una correcta inicialización del contenedor. 
-Si Docker ya se encuentra instalado en el sistema, únicamente se debe ejecutar el script \textbf{docker-create.sh}, en caso contrario,
+Si Docker ya se encuentra instalado en el sistema, únicamente se debe ejecutar el script \textbf{docker-create.sh} (se recomienda una instalación limpia para evitar
+posibles incompatibilidades), en caso contrario,
 previamente ejecutar \textbf{docker-install.sh}. Ambos con permisos de superusuario (empleando \textit{sudo}).
 
 Tras iniciar el contenedor se creará el servicio de Jupyter Notebook al que podremos acceder mediante el navegador con:
 \begin{lstlisting}
     https://localhost:8888/?token=<token>
-\end{lstlisting} 
+\end{lstlisting}
 
 De esta forma, como se muestra en la Figura \ref{fig:execDocker.png}, \textbf{<token>} podrá obtenerse del terminal en el que se encuentra corriendo
 el contenedor.
