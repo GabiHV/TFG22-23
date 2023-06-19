@@ -10,4 +10,4 @@ distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
 sudo apt-get update
 sudo apt-get install -y nvidia-docker2
 sudo systemctl restart docker
-sudo docker run --gpus all -it --rm -v ./:/tf -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter ./scripts/init.sh
+sudo docker run --gpus all -it --rm -v ./:/tf -p 8888:8888 tensorflow/tensorflow:latest-gpu-jupyter /bin/bash ./scripts/init.sh
