@@ -1,12 +1,12 @@
 # Análisis de datos de temperatura y humedad de suelo procedentes de los sensores IoT desplegados en un viñedo
-Repositorio del Trabajo Fin de Grado _"Análisis de datos de temperatura y huemedad de suelo procedentes de sensores IoT desplegados en un viñedo"_.
+Repositorio del Trabajo Fin de Grado _"Análisis de datos de temperatura y humedad de suelo procedentes de sensores IoT desplegados en un viñedo"_.
 
 Estado del proceso de desarrollo del TFG:
 - [x] Preprocesamiento de datos 
 - [x] Selección del modelo de RNA
 - [x] Modelado de la red
 - [x] Entrenamiento de la red 
-- [ ] Evaluación del modelo :arrow_left:
+- [x] Evaluación del modelo :arrow_left:
 
 Autor:
 - Gabriel Hernández Vallejo.
@@ -72,6 +72,8 @@ El proyecto cuenta con la siguiente estructura de directorios y ficheros:
 </font>
 
 ## Requisitos e instalación:
+
+### Instalación de entorno virtual de Python para ejecución con CPU:
 El proyecto se ha desarrollado y probado en [Python 3.9.13](https://www.python.org/downloads/release/python-3913/).
 Para realizar la instalación del entorno virtual es necesario seguir los siguientes pasos.
 
@@ -108,3 +110,43 @@ chmod +x virtual_env.sh && ./virtual_env.sh
 Tras la ejecución de los scripts podemos proceder a la ejecución de los programas empleando el entorno virtual generado.
 
 En el caso de los Python Notebook se deberá seleccionar el kernel de ejecución correspondiente. Se ha establecido en la instalación anterior con el nombre de *.venv*.
+
+### Instalación de entorno para ejecución con GPU:
+En el caso de disponer de una tarjeta gráfica NVIDIA compatible con la tecnología CUDA >= 11.7 se puede realizar la ejecución de los Python Notebooks empleando
+la GPU (se debe contar con los controladores actualizados de la gráfica en cuestión).
+
+Por otro lado, puede emplearse, de igual manera, servicios de terceros que realicen 
+el mismo propósito sin la necesidad de la siguiente instalación, como el conocido
+Google Colab.
+
+Para la creación del servicio de Jupyter Notebook que permita la ejecución acelerada del entrenamiento de los modelos se disponen de diferentes _scripts_ en el directorio
+con el mismo nombre.
+
+Es preciso recalcar que los entornos se han probado en WSL y Ubuntu, de forma que en sistemas Windows será necesario contar con la tecnología mencionada para realizar la 
+virtualización del contenedor.
+
+Se proporciona el _script_ para realizar la instalación de Docker, paso que puede 
+obviarse en caso de tener el servicio instalado en el sistema, aunque se recomienda 
+realizar la instalación
+limpia para evitar posibles incompatibilidades. Para comenzar el proceso de 
+instalación se deberá situar en el directorio princiapal del proyecto y ejecutar el 
+siguiente comando:
+```
+chmod +x ./scripts/docker-install.sh && ./docker-install.sh
+```  
+
+Una vez instalado Docker en el sistema, se debe comenzar con la instalación del
+contenedor que virtualizará el servicio de Jupyter Notebook que permitirá la 
+ejecución del entrenamiento con GPU. Para realizar el proceso mencionado se debe ejecutar el siguiente comando:
+```
+chmod +x ./scripts/docker-create.sh && ./docker-create.sh
+```
+
+Una vez descargado e iniciado el contenedor, se pueden ejecutar los Notebooks de 
+creación de los modelos, para ello se debe acceder desde el navegador a la dirección
+indicada en la terminal en la que se está ejecutando el servicio:
+```
+http://localhost:8888/?token=<token>
+```
+Dónde _\<token>_ se corresponde con el token de acceso (disponible en la localización
+indicada).
