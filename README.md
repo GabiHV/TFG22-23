@@ -132,14 +132,14 @@ limpia para evitar posibles incompatibilidades. Para comenzar el proceso de
 instalación se deberá situar en el directorio princiapal del proyecto y ejecutar el 
 siguiente comando:
 ```
-chmod +x ./scripts/docker-install.sh && ./docker-install.sh
+chmod +x ./scripts/docker-install.sh && ./scripts/docker-install.sh
 ```  
 
 Una vez instalado Docker en el sistema, se debe comenzar con la instalación del
 contenedor que virtualizará el servicio de Jupyter Notebook que permitirá la 
 ejecución del entrenamiento con GPU. Para realizar el proceso mencionado se debe ejecutar el siguiente comando:
 ```
-chmod +x ./scripts/docker-create.sh && ./docker-create.sh
+chmod +x ./scripts/docker-create.sh && ./scripts/docker-create.sh
 ```
 
 Una vez descargado e iniciado el contenedor, se pueden ejecutar los Notebooks de 
