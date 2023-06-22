@@ -29,8 +29,7 @@ que en la época 50 disminuye multiplicando \(lr * e^{-0.1}\), para, de esta man
 centrar los esfuerzos en la región explorada.
 
 Para cada una de las pruebas se realizarán 5 ejecuciones diferentes con 100 iteraciones, 
-tomando como medida comparativa el error cuadrático medio de validación.
-Lo que supone 405 ejecuciones por modelo, es decir, 1215 ejecuciones en total.
+tomando como medida comparativa el error cuadrático medio de validación, lo que supone 405 ejecuciones por modelo, es decir, 1215 ejecuciones en total.
 
 \newpage
 
@@ -81,6 +80,29 @@ con un \textit{learning rate} de 0.01, destacando los modelos de 2 capas con
 Cabe destacar, además, que, como se podía intuir inicialmente, los errores aumentan generalmente
 a medida que realizamos más predicciones como salida.
 
+A continuación se presentan las comparativas de los errores cuadráticos medios promedio para un número
+diferente de predicciones (1, 2 y 3 predicciones) del modelo estudiado y un parámetro diferente en cada
+ocasión.
+
+En el caso del número de capas, como puede observarse en la Figura \ref{fig:Capas_GRU.png}, en promedio
+se obtendrán modelos con menor error generalmente en sistemas con 3 predicciones a la salida, siendo los 
+modelos de 1 capa los que mayor precisión han presentado en las pruebas.
+\imagen{Capas_GRU.png}{Comparativa de número de capas para GRU}{0.9}
+
+En lo que se refiere a las celdas de memoria, por término medio generalmente se obtendrán modelos más
+precisos con estructuras que realizan 3 predicciones por entrada, siendo la configuración de 8 unidades 
+la que proporciona modelos con errores menores en promedio.
+\imagen{Unidades_GRU.png}{Comparativa de número de unidades para GRU}{0.9}
+
+Como puede apreciarse en la Figura \ref{fig:Lr_GRU.png}, con 0.1 como ratio de aprendizaje se obtienen los
+resultados con mayor error en promedio.
+\imagen{Lr_GRU.png}{Comparativa de ratio de aprendizaje para GRU}{0.9}
+
+En la Figura \ref{fig:Lr_GRU_ampl.png} puede observarse la diferencia del resto de los valores del 
+parámetro. En este caso, se obtienen mejores resultados por término medio con un ratio de aprendizaje de
+0.01, siendo los modelos de 1 predicción por entrada los que generalmente obtienen errores menores.
+\imagen{Lr_GRU_ampl.png}{Comparativa de ratio de aprendizaje para GRU (0.01 y 0.001)}{0.9}
+
 \newpage
 
 \section{Resultados de LSTM}
@@ -127,6 +149,29 @@ De forma similar que en \textit{GRU}, en \textit{LSMT} se generan mejores result
 de los de 3 capas y 32 celdas de memoria.
 Al igual que antes, los errores se incrementan, generalmente, con el aumento del número de predicciones.
 
+A continuación, del mismo modo que en la sección anterior, se presentan las comparativas de los errores 
+cuadráticos medios promedio para un número diferente de predicciones (1, 2 y 3 predicciones) del modelo estudiado y un parámetro diferente en cada ocasión.
+
+En la Figura \ref{fig:Capas_LSTM.png} se observa que las configuraciones de 2 capas registran los 
+errores más bajos en promedio que el resto de valores del parámetro, siendo los modelos de 1 predicción
+futura los que generalmente obtendrán mejores resultados.
+\imagen{Capas_LSTM.png}{Comparativa de número de capas para LSTM}{0.9}
+
+En el caso del número de celdas de memoria, se obtendrán modelos más precisos por término medio con 8 
+unidades por capa (a excepción de los sistemas con 2 predicciones por entrada que contarán con mejor 
+desempeño en redes con 16 unidades). 
+\imagen{Unidades_LSTM.png}{Comparativa de número de unidades para LSTM}{0.9}
+
+En lo referente al ratio de aprendizaje, los valores del parámetro para los que se obtienen modelos
+con menor precisión por término medio será 0.1, seguido de 0.001.
+\imagen{Lr_LSTM.png}{Comparativa de ratio de aprendizaje para LSTM}{0.9}
+
+En la Figura \ref{fig:Lr_LSTM_ampl.png} puede observarse que para 0.01 de ratio de aprendizaje se obtienen
+los resultados con mayor precisión por término con 1 y 2 predicciones por entrada. Siendo, de esta forma,
+la configuración de 1 predicción la que menores errores arroje en promedio en comparación con el resto
+de parámetros.
+\imagen{Lr_LSTM_ampl.png}{Comparativa de ratio de aprendizaje para LSTM (0.01)}{0.9}
+
 \newpage
 
 \section{Resultados de MLP}
@@ -167,3 +212,25 @@ En la Tabla \ref{tabla:Evaluación MLP} se proporcionan los diferentes resultado
     3 & 32 & 0.1 & 0.02028 & 0.01674 & 0.01653 \\
 }
 
+Al igual que en las anteriores secciones, se presentan las comparativas de los errores 
+cuadráticos medios promedio para un número diferente de predicciones (1, 2 y 3 predicciones) del modelo 
+estudiado y un parámetro diferente en cada ocasión.
+
+En el caso del número de capas, se puede observar (Figura \ref{fig:Capas_MLP.png}) que a diferencia de
+los otros modelos, la influencia del número de capas en la precisión es aparentemente menor.
+\imagen{Capas_MLP.png}{Comparativa de número de capas para MLP}{0.9}
+
+En cuanto al número de neuronas por capa, puede apreciarse que con 32 unidades se obtienen los modelos
+con mayor precisión por término medio, siendo la configuración de 2 predicciones por entrada la que
+generalmente arrojará resultados con menor error.
+\imagen{Unidades_MLP.png}{Comparativa de número de unidades para MLP}{0.9}
+
+Como puede observarse en la Figura \ref{fig:Lr_MLP.png}, el ratio de aprendizaje tiene una aparente
+mayor influencia sobre los resultados, siendo la configuración de 0.001 la que menores errores por
+término medio proporcionan.
+\imagen{Lr_MLP.png}{Comparativa de ratio de aprendizaje para MLP}{0.9}
+
+\section{Comparativa entre modelos}
+\imagen{Capas_Comp.png}{Comparativa de número de capas}{0.9}
+\imagen{Unidades_Comp.png}{Comparativa de número de unidades}{0.9}
+\imagen{Lr_Comp.png}{Comparativa de ratio de aprendizaje}{0.9}
