@@ -231,6 +231,25 @@ término medio proporcionan.
 \imagen{Lr_MLP.png}{Comparativa de ratio de aprendizaje para MLP}{0.9}
 
 \section{Comparativa entre modelos}
+Tras la comparativa de los resultados obtenidos con los diferentes valores de los hiperparámetros, 
+se puede proceder de forma similar para los diferentes modelos implementados.
+De forma similar a la anterior, se realizan los promedios de los resultados obtenidos para cada valor 
+individual de un parámetro concreto.
+
+Como puede observarse en la Figura \ref{fig:Capas_Comp.png}, por término medio es el modelo \textit{LSTM}
+quien obtiene los resultados más precisos generalmente para el número de capas del ensayo.
 \imagen{Capas_Comp.png}{Comparativa de número de capas}{0.9}
+
+De forma similar a la anterior, se obtienen errores menores para el modelo mencionado, siendo las 
+arquitecturas \textit{LSTM} con las que se obtienen predicciones más precisas en promedio, destacando los
+modelos con 16 celdas de memoria en cada capa.
 \imagen{Unidades_Comp.png}{Comparativa de número de unidades}{0.9}
+
+En cuanto al ratio de aprendizaje, como se aprecia en la Figura \ref{fig:Lr_Comp.png}, el valor de 
+0.1 arroja los resultados con mayor error, siendo \textit{MLP} las arquitecturas que por término medio
+obtendrán predicciones con menor precisión.
 \imagen{Lr_Comp.png}{Comparativa de ratio de aprendizaje}{0.9}
+
+De este modo, como se puede observar en la Figura \ref{fig:Lr_Comp_ampl.png}, los resultados más precisos
+en promedio generalmente se obtienen con 0.01 de ratio de aprendizaje.
+\imagen{Lr_Comp_ampl.png}{Comparativa de ratio de aprendizaje ampliado}{0.9}
