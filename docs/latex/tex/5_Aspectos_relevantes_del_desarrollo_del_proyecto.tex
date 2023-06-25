@@ -124,7 +124,7 @@ ratio de aprendizaje y el número de predicciones que se realizan por cada dato 
 
 De esta forma, los modelos empleados tendrán las especificaciones estándar en el caso de
 \textit{GRU} y \textit{LSTM}, modificando la función de activación de las neuronas en las capas ocultas en 
-\textit{MLP} por una función \textit{ReLU} (Figura \ref{fig:relu.png}), que aportará la no linealidad al modelo, lo que presumiblemente
+\textit{MLP} por una función \textit{ReLU} (Figura \ref{fig:relu.png}), que aportará la no linealidad al modelo, lo que previsiblemente
 mejoraría el rendimiento concreto con los datos empleados.
 
 \imagen{relu.png}{Función ReLU}{0.75}
@@ -138,7 +138,7 @@ Se realizarán, entonces, combinaciones con diferentes valores:
 \end{itemize}
 
 Por otro lado, para agilizar el proceso de las pruebas y el entrenamiento, se acordó emplear alguna 
-plataforma que permitiera la ejecución paralelizada, haciendo incapié en tecnologías como Google Colab 
+plataforma que permitiera la ejecución paralelizada, haciendo hincapié en tecnologías como Google Colab 
 o CUDA.
 
 En el primer caso, la ejecución no requería de mayor preocupación de cara al usuario, más allá de realizar un
@@ -146,3 +146,75 @@ par de configuraciones básicas en los entornos.
 En el segundo caso, sin embargo, se optó por emplear Docker para crear los contenedores proporcionados por
 TensorFlow para crear el entorno que permitiera la ejecución de los entrenamientos de forma paralela, siendo, de
 esta manera, una solución portable y fácil de instalar en cualquier máquina.
+
+Los resultados finales se encuentran detallados en los anexos del proyecto, siendo la siguiente 
+información un resumen de las pruebas realizadas.
+
+La Figura \ref{fig:Lr_GRU.png} y \ref{fig:Lr_GRU_ampl.png} muestra una comparativa de los resultados 
+promedio obtenidos con diferentes valores de ratio de aprendizaje (0.1, 0.01 y 0.001).
+En ella se puede observar que se obtienen mejores resultados por término medio con un ratio de
+aprendizaje de 0.01, siendo los modelos de 1 predicción por entrada los que generalmente obtienen errores menores.
+\imagen{Lr_GRU.png}{Comparativa de ratio de aprendizaje para GRU}{0.9}
+\imagen{Lr_GRU_ampl.png}{Comparativa de ratio de aprendizaje para GRU (0.01 y 0.001)}{0.9}
+
+En la Figura \ref{fig:Lr_LSTM.png} se presentan, de igual forma, los resultados de los modelos 
+obtenidos con la arquitectura \textit{LSTM}, dónde puede observarse que para 0.01 de ratio de aprendizaje 
+se obtienen los modelos con mayor precisión por término medio con 1 y 2 predicciones por entrada. Siendo, 
+de esta forma, la configuración de 1 predicción la que menores errores arroje en promedio en comparación 
+con el resto de parámetros (Figura \ref{fig:Lr_LSTM_ampl.png}).
+\imagen{Lr_LSTM.png}{Comparativa de ratio de aprendizaje para GRU}{0.9}
+\imagen{Lr_LSTM_ampl.png}{Comparativa de ratio de aprendizaje para LSTM (0.01)}{0.9}
+
+Por otro lado, la Figura \ref{fig:Lr_MLP.png} puede observarse que el ratio de aprendizaje tiene una 
+aparente mayor influencia sobre los resultados, siendo la configuración de 0.001 la que menores errores 
+por término medio proporcionan.
+\imagen{Lr_MLP.png}{Comparativa de ratio de aprendizaje para LSTM (0.01)}{0.9}
+
+De este modo, se puede realizar también una comparativa de las combinaciones obtenidas de forma 
+individual, puesto que aunque en término medio los modelos \textit{LSTM} parecen obtener resultados más
+precisos, los resultados con los errores cuadráticos medios más bajos se han obtenido con arquitecturas
+\textit{GRU}.
+
+La Tabla \ref{tabla:Tabla comparativa de modelos} muestra los menores errores cuadráticos medios promedio 
+(de las 5 ejecuciones por cada una de las combinaciones) junto con el modelo al que se corresponde el dato.
+\tablaSmallSinColores{Tabla comparativa de modelos}{l l l l}{Tabla comparativa de modelos}
+{Capas & Tamaño capa & LR & Modelo con menor error \\}
+{
+    1 & 8 & 0.001 & GRU (1.72183E-05)\\
+    1 & 8 & 0.01 & GRU (3.37952E-06)\\
+    1 & 8 & 0.1 & LSTM (3.9049E-06)\\
+    1 & 16 & 0.001 & GRU (9.1907E-06)\\
+    1 & 16 & 0.01 & GRU (9.55771E-07)\\
+    1 & 16 & 0.1 & LSTM (0.00138)\\
+    1 & 32 & 0.001 & GRU (4.50204E-06)\\
+    1 & 32 & 0.01 & GRU (\textbf{5.96471E-07})\\
+    1 & 32 & 0.1 & LSTM (9.51891E-07)\\
+
+    % 2 capas ocultas
+    2 & 8 & 0.001 & GRU (1.56769E-05)\\
+    2 & 8 & 0.01 & GRU (1.65277E-06)\\
+    2 & 8 & 0.1 & LSTM (6.85972E-06)\\
+    2 & 16 & 0.001 & GRU (5.07987E-06)\\
+    2 & 16 & 0.01 & GRU (\textbf{5.66822E-07})\\
+    2 & 16 & 0.1 & LSTM (6.65626E-06)\\
+    2 & 32 & 0.001 & GRU (2.18717E-06)\\
+    2 & 32 & 0.01 & GRU (\textbf{2.69205E-07})\\
+    2 & 32 & 0.1 & LSTM (4.20038E-06)\\
+
+    % 3 capas ocultas
+    3 & 8 & 0.001 & LSTM (4.58400E-06)\\
+    3 & 8 & 0.01 & GRU (1.42658E-06)\\
+    3 & 8 & 0.1 & LSTM (5.90159E-06)\\
+    3 & 16 & 0.001 & GRU (5.18860E-06)\\
+    3 & 16 & 0.01 & GRU (\textbf{4.66034E-07})\\
+    3 & 16 & 0.1 & LSTM (1.02880E-05)\\
+    3 & 32 & 0.001 & GRU (0.01457)\\
+    3 & 32 & 0.01 & LSTM (6.54021E-07)\\
+    3 & 32 & 0.1 & LSTM (0.00491)\\
+}
+
+\newpage
+
+Como puede observarse en la Figura \ref{fig:Freq_mejor.png}, los modelos con menor error para las 
+combinaciones probadas se obtendrán en mayor frecuencia con arquitecturas \textit{GRU}.
+\imagen{Freq_mejor.png}{Comparativa de frecuencias de menor error en combinaciones.}{0.9}
