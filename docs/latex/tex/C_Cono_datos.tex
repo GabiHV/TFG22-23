@@ -59,9 +59,11 @@ errores de muestreo.
 
 En el primer sensor, como puede observarse en la Figura \ref{fig:raw_data/sensor1.png},
 se encuentran varias situaciones que a \textit{priori} son sencillas de solucionar, 
-puesto que existe una cantidad importante de muestras para las que no se cuentan con datos,
+puesto que existe una cantidad importante de muestras para las que no se cuentan con datos
+(e.g. instantes \(1.637 \cdot 10^{12}\) a \(1.640 \cdot 10^{12}\)),
 además de valores claramente inverosímiles (como en el caso de la humedad
-más profunda, o el aumento tan repentino de la humedad superficial).
+más profunda, o el aumento tan repentino de la humedad superficial en el instante cercano a
+\(1.640 \cdot 10^{12}\).
 A pesar de esto, el resto parecen encontrarse dentro de la normalidad, por lo que
 las labores en el sensor mencionado serán de las menos tediosas.
 
@@ -74,10 +76,11 @@ de producirse provocaba que las sondas arrojaran valores artificiales para luego
 % Sensor 2
 \imagen{raw_data/sensor2.png}{Datos no procesados: sensor 2}{1}
 
-En el segundo caso, además de las muestras para las que no se cuenta con valores,
+En el segundo caso, además de las muestras para las que no se cuenta con valores (e.g. 
+instantes \(1.654 \cdot 10^{12}\) a \(1.655 \cdot 10^{12}\)),
 en la Figura \ref{fig:raw_data/sensor2.png} se observa cómo llegado un instante en
 las sondas de temperatura y humedad superficiales se comienzan a realizar lecturas
-muy variadas a lo largo del tiempo, para posteriormente dejar de producir datos.
+muy variadas a lo largo del tiempo en \(1.652 \cdot 10^{12}\) a \(1.1654 \cdot 10^{12}\), para posteriormente dejar de producir datos.
 
 Además, puede observarse la presencia de cierto ruido durante los muestreos previos
 al suceso mencionado en las sondas de humedad, lo que posiblemente sea debido a 
@@ -95,7 +98,7 @@ en el conjunto de datos), existen aumentos remarcables en las humedades, con una
 bajadas que pueden considerarse aceleradas o repentinas.
 
 La mayor parte de estas son genuinas y debidas a las lluvias contrastadas esos días, sin 
-embargo, la última de las subidas se observa contextualmente errónea, provocando 
+embargo, la última de las subidas se observa contextualmente errónea (instantes \(1.651 \cdot 10^{12}\) a \(1.652 \cdot 10^{12}\)), provocando 
 un cambio brusco en ambas humedades del suelo.
 
 \newpage
@@ -106,7 +109,7 @@ un cambio brusco en ambas humedades del suelo.
 
 En este caso, pueden observarse en la Figura \ref{fig:raw_data/sensor4.png}, diferentes
 situaciones. La primera de ellas, como en el resto de sensores son los valores faltantes; la
-segunda es el ruido existente en ciertos periodos de tiempo.
+segunda es el ruido existente en ciertos periodos de tiempo (e.g. \(1.652 \cdot 10^{12}\)).
 
 Tras esta situación, puede apreciarse cómo la variabilidad de las muestras
 aumenta de forma homogénea en todas y cada una de las sondas, a salvedad de las que recogen
@@ -131,7 +134,7 @@ De esta forma, todos se contrastaron como genuinos observando ciertos parámetro
 el tiempo atmosférico en los instantes de subida.
 
 Este sensor cuenta, en términos generales, con uno de los conjuntos de datos con menos singularidades
-de todos los analizados, formando parte de los conjuntos con menor transformación de todos.
+de todos los analizados, formando parte de los conjuntos con menor transformación.
 
 \newpage
 \subsection{Sensor 6}
@@ -143,12 +146,13 @@ En el conjunto de datos que se puede observar en la Figura \ref{fig:raw_data/sen
 al igual que en los sensores anteriores, existen valores faltantes, además de 
 otras situaciones.
 
-Una de ellas es la presencia generalizada de ruido en las lecturas
-de las sondas que miden variables del suelo.
+Una de ellas es la presencia generalizada de ruido en las lecturas  de las sondas que miden 
+variables del suelo.
 
-Por otro lado, en un instante de tiempo las humedades aumentan de forma repentina, posiblemente
-por la lluvia, sin embargo, en la humedad del suelo a mayor profundidad, hay una variabilidad
-que se consideró como irrecuperable por su estado.
+Por otro lado, en en los instantes \(1.651 \cdot 10^{12}\) a \(1.653 \cdot 10^{12}\) las 
+humedades aumentan de forma repentina, posiblemente por la lluvia, sin embargo, en la humedad 
+del suelo a mayor profundidad, hay una variabilidad que se consideró como irrecuperable por su 
+estado.
 
 \newpage
 \subsection{Sensor 7}
@@ -160,11 +164,10 @@ En este caso pueden apreciarse en la Figura \ref{fig:raw_data/sensor7.png} difer
 situaciones, además de la falta de valores en algunas muestras ya mencionada en el 
 resto de sensores.
 
-En primer lugar, en las sondas de humedad no ambientales se comienza a producir un aumento
-que podría considerarse como exponencial en el tiempo debido al agotamiento de la batería.
+En primer lugar, en las sondas de humedad no ambientales se comienza a producir un aumento que podría considerarse como exponencial en el tiempo debido al agotamiento de la batería (instantes \(1.636 \cdot 10^{12}\) a \(1.637 \cdot 10^{12}\)).
 
 En segundo lugar, al igual que en el sensor 4, se observa un incremento significativo de la variabilidad
-de la temperatura del suelo, produciéndose, además, un aumento de las lecturas en la sonda de
+de la temperatura del suelo (a partir del instante \(1.652 \cdot 10^{12}\)), produciéndose, además, un aumento de las lecturas en la sonda de
 humedad más profunda.
 
 De igual manera que en el sensor mencionado, las labores en los cultivos habían provocado un
