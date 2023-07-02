@@ -34,11 +34,20 @@ Respecto a los modelos obtenidos, se puede concluir que para los datos proporcio
 empleados, las redes neuronales recurrentes tienen un desempeño mayor que los modelos neuronales
 convencionales para predicciones de series de tiempo, destacando \textit{GRU}
 entre los tres del ensayo y siendo la variante de 2 capas, 32 celdas de memoria y un \textit{learning rate}
-de 0.01 la que mejor precisión proporciona.
+de 0.01 la que mejor precisión proporciona, obteniéndose, de igual forma, mejores resultados en 
+promedio en arquitecturas \textit{LSTM}.
 
-Por otro lado, las predicciones de series temporales multivariadas con varias salidas temporales contarán
-con un rendimiento menor por término medio que las de una única predicción para la misma cantidad
-de ejemplos de entrada.
+La Tabla \ref{tabla:Resumen de ejecuciones} muestra los 4 mejores resultados por modelo (que se 
+corresponden en todas las situaciones a arquitecturas con una única predicción) junto con el 
+promedio total de los resultados de cada uno.
+\tablaSmallSinColores{Resumen de ejecuciones}{l l l l}{Resumen de ejecuciones}{& \textbf{GRU} & \textbf{LSTM} & \textbf{MLP}\\}{
+  & \textbf{2.69205E-07} & 4.56945E-07 & 5.56436E-06\\
+  & 4.66034E-07 & 6.54021E-07 & 5.57840E-06 \\
+  & 5.66822E-07 & 6.62421E-07 & 6.49630E-06 \\
+  & 5.96471E-07 & 9.51891E-07 & 6.91262E-06 \\
+  \hline
+  Promedio Total & 2.57000E-03 & \textbf{5.64000E-04} & 0.00736 \\ 
+}
 
 \section{Líneas de trabajo futuras}
 El desarrollo del proyecto podría continuarse con diferentes líneas de trabajo, que por su naturaleza
