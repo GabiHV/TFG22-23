@@ -38,7 +38,7 @@ u otra y seguir los pasos establecidos.
 
 Durante el desarrollo del proyecto se empleó como entorno de programación Visual Studio Code \cite{misc:code2023}, sin embargo, para su ejecución podemos emplear otros entornos como 
 Anaconda Navigator \cite{misc:conda2023}.
-Se explicará los pasos a seguir con el editor mencionado para habilitar los entornos, puesto que simplifica el trabajo al disponer de scripts que realizan de forma automática 
+Se explicará primero los pasos a seguir con el editor mencionado para habilitar los entornos, puesto que simplifica el trabajo al disponer de scripts que realizan de forma automática 
 la instalación de las dependencias.
 Los ficheros mencionados se encuentran en el directorio \textbf{/scripts/}.
 
@@ -80,6 +80,22 @@ Esta operación se realizará automáticamente al realizar la instalación de lo
 este propósito.
 
 Para ejecutar los ficheros de Python adecuadamente es necesario estar situados con la terminal en el directorio correspondiente. En este caso se debe navegar hasta \textbf{./src/}
+
+Para realizar las ejecuciones en Anaconda Navigator, se debe crear un nuevo entorno situándose en el directorio en el que se encuentran los ficheros (\textbf{./scripts/}) e introduciendo en la terminal:
+\begin{lstlisting}[language=Bash, basicstyle=\scriptsize]
+    conda create -n .venv python=3.9.13 --file requirements_conda.txt
+\end{lstlisting}
+
+Para emplear el entorno desde la terminal es necesario activarlo con:
+\begin{lstlisting}[language=Bash]
+    conda activate .venv
+\end{lstlisting}
+
+En Anaconda Navigator se debe seleccionar el entorno a emplear en la parte superior izquierda 
+de la página ``Home'' estableciendo el entorno de ejecución al creado recientemente (Figura \ref{fig:anaconda.png}).
+Tras esto se requerirá la instalación del servicio de Jupyter Notebook, por lo que será necesario pulsar en ``Instalar'' antes de ejecutarlo.
+
+\imagen{anaconda.png}{Selección del entorno en Anaconda Navigator}{1}
 
 \subsection{Ejecución acelerada mediante GPU: CUDA}
 Para disminuir el tiempo de entrenamiento de los modelos puede realizarse una instalación de un contenedor de Docker que emplea la tecnología

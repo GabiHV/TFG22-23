@@ -40,6 +40,7 @@ El proyecto cuenta con la siguiente estructura de directorios y ficheros:
 >|&emsp;&emsp;|-modelMLP/ -> directorio con el modelo MLP obtenido.</br>
 >|-scripts/</br>
 >|&emsp;&emsp;|-requeriments.txt -> módulos requeridos para ejecutar los scripts de Python</br>
+>|&emsp;&emsp;|-requeriments_conda.txt -> módulos requeridos para ejecutar los scripts de Python en Anaconda</br>
 >|&emsp;&emsp;|-virtual_env.bat -> script para instalación del entorno virtual de Python junto con los módulos requeridos en CMD. </br>
 >|&emsp;&emsp;|-virtual_env.sh -> script para instalación del entorno virtual de Python junto con los módulos requeridos en Bash.</br>
 >|&emsp;&emsp;|-Virtual_env.ps1 -> script para instalación del entorno virtual de Python junto con los módulos requeridos en PowerShell.</br>

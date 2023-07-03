@@ -31,6 +31,9 @@ centrar los esfuerzos en la región explorada.
 Para cada una de las pruebas se realizarán 5 ejecuciones diferentes con 100 iteraciones, 
 tomando como medida comparativa el error cuadrático medio de validación, lo que supone 405 ejecuciones por modelo, es decir, 1215 ejecuciones en total.
 
+Cabe destacar que los errores cuadráticos medios reflejados son medidas calculadas a partir de 
+datos normalizados.
+
 \newpage
 
 \section{Resultados de GRU}
@@ -167,9 +170,9 @@ con menor precisión por término medio será 0.1, seguido de 0.001.
 \imagen{Lr_LSTM.png}{Comparativa de ratio de aprendizaje para LSTM}{0.9}
 
 En la Figura \ref{fig:Lr_LSTM_ampl.png} puede observarse que para 0.01 de ratio de aprendizaje se obtienen
-los resultados con mayor precisión por término medio con 1 y 2 predicciones por entrada. Siendo, de esta forma,
-la configuración de 1 predicción la que menores errores arroje en promedio en comparación con el resto
-de parámetros.
+los resultados con mayor precisión por término medio con 1 y 2 predicciones por entrada. Siendo, de esta 
+forma, la configuración de 1 predicción la que menores errores arroje en promedio en comparación con el 
+resto de parámetros.
 \imagen{Lr_LSTM_ampl.png}{Comparativa de ratio de aprendizaje para LSTM (0.01)}{0.9}
 
 \newpage
@@ -240,7 +243,7 @@ Como puede observarse en la Figura \ref{fig:Capas_Comp.png}, por término medio 
 quien obtiene los resultados más precisos generalmente para el número de capas del ensayo.
 \imagen{Capas_Comp.png}{Comparativa de número de capas}{0.9}
 
-De forma similar a la anterior, se obtienen errores menores para el modelo mencionado, siendo las 
+De igual manera, se obtienen errores menores para el modelo mencionado, siendo las 
 arquitecturas \textit{LSTM} con las que se obtienen predicciones más precisas en promedio, destacando los
 modelos con 16 celdas de memoria en cada capa.
 \imagen{Unidades_Comp.png}{Comparativa de número de unidades}{0.9}
@@ -253,3 +256,14 @@ obtendrán predicciones con menor precisión.
 De este modo, como se puede observar en la Figura \ref{fig:Lr_Comp_ampl.png}, los resultados más precisos
 en promedio generalmente se obtienen con 0.01 de ratio de aprendizaje.
 \imagen{Lr_Comp_ampl.png}{Comparativa de ratio de aprendizaje ampliado}{0.9}
+
+\newpage
+
+Ante los resultados obtenidos, se propone emplear una red \textit{GRU} utilizando los parámetros
+para los que en promedio se obtienen resultados más precisos (2 capas, 32 celdas de memoria por 
+capa, 0.01 de ratio de aprendizaje y 1 predicción futura). En la Figura 
+\ref{fig:best_model.png} puede observarse un ejemplo de la evolución temporal de las variables 
+predichas por el modelo obtenido.
+
+\imagen{best_model.png}{Ejemplo de evolución temporal del modelo}{1}
+
